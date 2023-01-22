@@ -8,7 +8,7 @@ const Booking = (props) => {
   const { Notification, setNotification } = useContext(AuthContext);
   let { data_from_server, setdata_from_server } = useContext(AuthContext);
   let { Cart, setCart } = useContext(AuthContext);
-
+//seting up data
   if (data_from_server) {
     Cart = data_from_server;
   }
@@ -73,6 +73,7 @@ const Booking = (props) => {
         Description:<span className="gray">{booked.description}</span>
       </p>
       <label>Days:</label>
+      
       <select value={booked.days} name="days" onChange={SetDays}>
         <option value={1}>1</option>
         <option value={2}>2</option>
