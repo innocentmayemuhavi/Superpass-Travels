@@ -1,0 +1,178 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 3px solid green;
+}
+
+.logo > img {
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+body {
+  background-color: #ededed;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.account > img {
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.service {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.23);
+  padding: 10px;
+
+  height: 250px;
+
+  font-size: 13px;
+}
+
+.services {
+  display: grid;
+  gap: 19px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+.service > img {
+  height: 150px;
+  width: 220px;
+  min-width: 220px;
+  cursor: pointer;
+}
+.gray {
+  color: gray;
+}
+footer {
+  background-color: rgb(238, 244, 238);
+  text-align: center;
+  margin-top: 20px;
+}
+footer > a {
+  color: black;
+}
+.booking {
+  background-color: ghostwhite;
+  height: 40%;
+
+  text-align: center;
+  padding: 1px;
+  position: fixed;
+  bottom: 2px;
+  font-size: 13px;
+  width: 99%;
+  box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.23);
+}
+
+button {
+  background-color: rgb(200, 241, 210);
+  padding: 5px 15px;
+  width: fit-content;
+  border-radius: 14px;
+  font-weight: 700;
+  box-shadow: 1px 1px 6px rgb(0, 0, 0, 0.2);
+  bottom: 0;
+  margin: 12px;
+  cursor: pointer;
+}
+button:active {
+  background-color: black;
+  color: rgb(200, 241, 210);
+  border: 0.27em solid blue;
+}
+
+.booking > img {
+  height: 150px;
+}
+.notification {
+  position: fixed;
+  background-color: ghostwhite;
+  width: 45%;
+  right: 2px;
+  top: 10%;
+  
+  box-shadow: 2px 2px 8px rgb(0, 0, 0, 0.3);
+  border-radius: 17px;
+  padding: 5px;
+  font-size: 15px;
+}
+.notification > img {
+  height: 12px;
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  cursor: pointer;
+}
+select {
+  border: none;
+  width: 40px;
+  border-bottom: 2px solid black;
+  cursor: pointer;
+}
+select:active,
+select:focus,
+select::after {
+  border: none;
+  border-bottom: 2px solid black;
+  cursor: pointer;
+}
+.accountsection {
+  position: fixed;
+  background-color: ghostwhite;
+  padding: 10px;
+  right: 5px;
+  height: 20%;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 2px 2px 8px rgb(0, 0, 0, 0.3);
+}
+.cartbtn> img {
+  height: 50px;
+  cursor: pointer;
+}
+.user {
+  text-align: left;
+}
+
+.cancel {
+ max-height: 15px;
+ position: absolute;
+  right: 7px;
+  top: 7px;
+  cursor: pointer;
+}
+table{
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    margin: 12px 0;
+}
+th,td{
+    padding: 3px;
+    border:  1px solid green;
+}
+tr:nth-child(odd){
+    background-color: rgb(237, 243, 237);
+}
+.alert{
+    position: absolute;
+    border:  3px solid red;
+    border-radius: 100%;
+    width: 19px;
+    height: 19px;
+    color: red;
+    font-weight: 900;
+    right:100px;
+    background-color: ghostwhite;
+}
+
+.cancel1{
+  max-height: 15px;
+ position: static;
+
+
+}
