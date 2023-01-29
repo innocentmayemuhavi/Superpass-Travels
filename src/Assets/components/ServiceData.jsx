@@ -4,7 +4,7 @@
    picture:"./src/Assets/images/taxi.jpg",
     id:1,
    name:"Taxi",
-   description:"Taxis Painted Yellow With Our Companies logo",
+   description:"Taxis Painted Yellow With Our Com",
    available:30
 },
 {

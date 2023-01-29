@@ -36,7 +36,7 @@ localStorage.setItem("Cart1",JSON.stringify(Cart))
         <td>{book.name}</td>
         <td>{book.days}</td>
         <td>
-          <p>9000</p>
+          <p>Ksh.{book.days*9000}</p>
           <img src="./src/Assets/images/cancel.png"    className="cancel1"  onClick={() => DeletingFromCart(book.id)}/>
         </td>
       </tr>

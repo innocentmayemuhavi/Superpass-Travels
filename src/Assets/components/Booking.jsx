@@ -44,7 +44,7 @@ const Booking = (props) => {
       setNotification((prev) => {
         return (
           <p>
-            You Have Booked <b> {booked.name}</b> for <b>{booked.days}</b> day
+            You Have Booked <b> {booked.name}</b> for <b>{Cart.days}</b> day
             {booked.days > 1 ? "s" : ""} Succesfully
           </p>
         );
@@ -64,7 +64,8 @@ const Booking = (props) => {
   };
 
   return (
-    <section className="booking">
+    <div className="dialog">
+       <section className="dialog-content">
       <img src={booked.picture} />
       <p>
         Service:<span className="gray">{booked.name}</span>
@@ -99,6 +100,9 @@ const Booking = (props) => {
         </button>
       </div>
     </section>
+
+    </div>
+   
   );
 };
 
