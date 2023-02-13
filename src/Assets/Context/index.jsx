@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const AuthContext = createContext({
   user: {
@@ -10,7 +10,7 @@ const AuthContext = createContext({
   setUser: () => {},
   isLoading: true,
   setisLoading: () => {},
-  isloggedin: true,
+  isloggedin: false,
   setisLoggedin: () => {},
   showAccount: false,
   setShowaccount: () => {},
@@ -22,10 +22,11 @@ const AuthContext = createContext({
   setNotification:()=>{},
   showNotification:false,
   setShowNotification:()=>{},
-  Cart:[],
+  Cart: {
+    cars: [],
+    totalAmount:0,
+  },
   setCart:()=>{},
-  data_from_server:JSON.parse(localStorage.getItem("Cart1")),
-  setdata_from_server:()=>{},
   ShowCart:false,
   setShowCart:()=>{}
 });
@@ -37,16 +38,37 @@ const AuthProvider = ({ children }) => {
     email: "innocentmayemuhavi",
     password: 1234,
   });
-  const [isloggedin, setisLoading] = useState(true);
-  const [isLoading, setisLoggedin] = useState(true);
+  const [isloggedin, setisLoggedin] = useState(false);
+  const [isLoading, setisLoading] = useState(true);
   const [showBooking, setShowBooking] = useState(false);
   const [showAccount, setShowaccount] = useState(false);
   const [booked,setBooked]=useState([{}])
   const [Notification,setNotification]=useState("")
   const [showNotification,setShowNotification]=useState(false)
-  const  [Cart,setCart]=useState([])
-  const [data_from_server,setdata_from_server]=useState(JSON.parse(localStorage.getItem("Cart1")))
+  const  [Cart,setCart]=useState({
+    cars: [],
+    totalAmount:0,
+  },)
+
   const [ShowCart,setShowCart]=useState(false)
+
+  useEffect(() => {
+    const savedCart =
+      localStorage.getItem("Cart") === "undefined"
+        ? {
+            cars: [],
+            totalAmount: 0,
+          }
+        : JSON.parse(localStorage.getItem("Cart1"));
+   setCart(savedCart)
+
+  }, []);
+
+  useEffect(()=>{
+if(Cart.cars){
+  localStorage.setItem("Cart1",JSON.stringify(Cart))
+}
+  },[Cart])
 
   return (
     <AuthContext.Provider
@@ -69,8 +91,6 @@ const AuthProvider = ({ children }) => {
         setShowNotification,
         Cart,
         setCart,
-        data_from_server,
-        setdata_from_server,
         ShowCart,
         setShowCart
 

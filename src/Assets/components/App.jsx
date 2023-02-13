@@ -1,22 +1,21 @@
-import React from "react";
-import { AuthProvider } from "../Context";
-import { Header } from "./Header";
-import { Home } from "./Home";
-import { Footer } from "./Footer";
-import { Cart } from "./Cart";
-import { AuthContext } from "../Context";
-import { useContext } from "react";
+
+import { AuthProvider} from "../Context";
+import { Home } from "./Homepage/Home";
+import { Cart } from "./Cart/Cart";
+
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./login";
 
 const App = () => {
-  const{data_from_server,setdata_from_server}=useContext(AuthContext)
-  const {Cart,setCart}=useContext(AuthContext)
-  
-  localStorage.setItem("Cart1",JSON.stringify(data_from_server))
   return  <AuthProvider>
+<BrowserRouter>
+<Routes>
+  <Route path="/login" element={<Login/>}/>
+  <Route path="/" element={<Home/>}/>
+  <Route path="/cart" element={<Cart/>}/>
 
-<Header/>
-<Home/>
-<Footer/>
+</Routes>
+</BrowserRouter>
   </AuthProvider>
 }
 
