@@ -1,0 +1,9 @@
+footer {
+    background-color: rgb(238, 244, 238);
+    text-align: center;
+    margin-top: 20px;
+    padding: 12px ;
+  }
+  footer > a {
+    color: black;
+  }

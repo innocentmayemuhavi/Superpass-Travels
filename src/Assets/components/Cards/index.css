@@ -1,0 +1,31 @@
+
+.service {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.23);
+    background-color: ghostwhite;
+    height: 300px;
+    border-radius: 12px;
+    font-size: 13px;
+  }
+  .service-content {
+    margin: 1px 6px;
+  }
+  .service-picture {
+    width: 100%;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    height: 150px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  .service-picture img {
+    width: 100%;
+    display: flex;
+    max-height: 150px;
+    align-items: center;
+  }
+  .service:hover{
+  cursor: pointer;
+  }

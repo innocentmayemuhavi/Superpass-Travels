@@ -1,5 +1,5 @@
 import { AuthContext } from "../../Context";
-
+import "./index.css"
 import { useContext } from "react";
 import { Header } from "../Header/Header";
 import { Footer } from "../footer/Footer";
@@ -24,9 +24,11 @@ setCart(prev=>{
         <td><img className="order-picture" src={book.picture}></img></td>
         <td>{book.name}</td>
         <td>{book.days}</td>
-        <td className="tr-amt">
+        <td >
           {book.amount*book.days}{" "}
-          <svg
+        </td>
+        <td>
+        <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             width="24"
@@ -46,7 +48,7 @@ setCart(prev=>{
       <Header />
       <section className="Cart">
     <p>Your Car Orders...</p>
-    <p>Total Payout:.{Cart.totalAmount}</p>
+    <p>Total Payout:.Ksh.{Cart.totalAmount}</p>
     <hr/>
         <table>
           <thead>

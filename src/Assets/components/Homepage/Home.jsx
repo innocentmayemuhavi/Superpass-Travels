@@ -6,6 +6,7 @@ import { Cart } from "../Cart/Cart";
 import { useContext, useEffect } from "react";
 import ServiceData from "../SystemData/ServiceData";
 import { Header } from "../Header/Header";
+import { Footer } from "../footer/Footer";
 
 const Home = () => {
   const { showBooking, setShowBooking } = useContext(AuthContext);
@@ -20,7 +21,7 @@ const Home = () => {
       <hr />
       <section className="services">{render}</section>
     <center>{showBooking&&<Booking/>}</center> 
-   
+   <Footer/>
   </>
    
   );

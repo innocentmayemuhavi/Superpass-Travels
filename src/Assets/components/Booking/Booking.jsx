@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Context";
-
+import "./index.css"
 const Booking = (props) => {
   const {
     booked,
@@ -15,13 +15,15 @@ const Booking = (props) => {
     const Exists = Cart.cars.find((prev) => prev.id === booked.id);
 
     if (Exists) {
+      let filll=Cart.cars.filter(c=>c.id===booked.id)
+console.log(filll[0].id)
       console.log("its here");
       setNotification((prev) => {
         return (
           <p>
-            you have already booked <b> {booked.name} </b> for{" "}
-            <b>{booked.days}</b> day
-            {booked.days > 1 ? "s" : ""}
+            you have already booked <b> {filll[0].name} </b> for{" "}
+            <b>{filll[0].days}</b> day
+            {filll[0].days > 1 ? "s" : ""}
           </p>
         );
       });
@@ -46,7 +48,7 @@ const Booking = (props) => {
       setNotification((prev) => {
         return (
           <p>
-            You Have Booked <b> {booked.name}</b> for <b>{Cart.days}</b> day
+            You Have Booked <b> {booked.name}</b> for <b>{booked.days}</b> day
             {booked.days > 1 ? "s" : ""} Succesfully
           </p>
         );
@@ -67,13 +69,16 @@ const Booking = (props) => {
   return (
     <div className="dialog">
       <section className="dialog-content">
-        <img src={booked.picture} />
-        <p>
+       <div className="dialog-image"> <img src={booked.picture} /></div>
+       
+      <div className="booking-content">
+      <p>
           Service:<span className="gray">{booked.name}</span>
         </p>
         <p>
           Description:<span className="gray">{booked.description}</span>
         </p>
+        <p>Price/Day:{booked.amount}</p>
         <label>Days:</label>
         <select value={booked.days} name="days" onChange={SetDays}>
           <option value={""}>Select Number Of Dayas</option>
@@ -94,7 +99,9 @@ const Booking = (props) => {
             Cancel
           </button>
           <button onClick={() => Saving(booked)}>Book</button>
-        </div>
+       </div>
+      </div>
+        
       </section>
     </div>
   );

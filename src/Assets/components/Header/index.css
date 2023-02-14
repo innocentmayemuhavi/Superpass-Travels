@@ -1,0 +1,14 @@
+
+header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 3px solid green;
+  }
+  
+.logo > img {
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+  

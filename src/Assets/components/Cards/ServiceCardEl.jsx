@@ -1,19 +1,19 @@
-import { Booking } from "../Booking/Booking";
+
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../../Context";
-
+import "./index.css"
 const ServiceCardEl = (props) => {
   const { setShowBooking, setShowNotification, booked, setBooked } =
     useContext(AuthContext);
 
-  const UpdatingBooked = (id, picture, name, description) => {
+  const UpdatingBooked = (id, picture, name, description,price) => {
     setBooked({
         id: id,
         picture: picture,
         name: name,
         description: description,
         days: 1,
-        amount: 7000,
+        amount: price,
       });
     setShowBooking(true);
     setShowNotification(false);
@@ -24,11 +24,14 @@ const ServiceCardEl = (props) => {
     <div
       className="service"
       onClick={() =>
-        UpdatingBooked(props.id, props.picture, props.name, props.description)
+        UpdatingBooked(props.id, props.picture, props.name, props.description,props.price)
       }
     >
-      <img src={props.picture} />
-      <p>
+     <div className="service-picture">
+     <img src={props.picture} alt='Picture'/>
+     </div>
+     <div className="service-content">
+     <p>
         Service: <span className="gray">{props.name}</span>
       </p>
       <p>
@@ -37,6 +40,10 @@ const ServiceCardEl = (props) => {
       <p>
         Description: <span className="gray">{props.description}</span>
       </p>
+      <p>
+        Price/Day: <span className="gray">{props.price}</span>
+      </p>
+     </div>
     </div>
   );
 };

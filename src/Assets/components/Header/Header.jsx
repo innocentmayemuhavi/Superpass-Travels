@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { Notifications} from "../notification/Notification";
 import { Account } from "../Account/Account";
 
-
+import "./index.css"
 
 const Header=()=>{
 const{showNotification,showAccount, setShowaccount}=useContext(AuthContext)
