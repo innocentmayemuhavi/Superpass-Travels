@@ -11,7 +11,7 @@ const Account = () => {
   return (
     <section className="accountsection">
       <img
-        src="./public/images/cancel.png"
+        src="./images/cancel.png"
         className="cancel"
         onClick={() => {
           setShowaccount(false);
