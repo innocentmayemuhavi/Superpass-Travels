@@ -7,7 +7,7 @@ const HeaderNav = () => {
       <Link to={'/'}>
       <Button text="Home" /></Link>
    <Link to='/booking'>
-   <Button text="Booking" />
+    <Button text='Booking'/>
    </Link>
       <Button text="About" />
       <Button text="Contact" />
