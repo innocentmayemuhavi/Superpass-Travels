@@ -24,12 +24,13 @@
   display: flex;
   max-height: 150px;
   align-items: center;
+  object-fit: cover;
 }
 .service:hover {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 1010px) {
+@media only screen and (max-width: 700px) {
   .service-picture {
     width: 100%;
     background-color: #fff;

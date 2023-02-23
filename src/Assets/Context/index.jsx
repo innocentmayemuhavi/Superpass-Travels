@@ -28,7 +28,9 @@ const AuthContext = createContext({
   },
   setCart:()=>{},
   ShowCart:false,
-  setShowCart:()=>{}
+  setShowCart:()=>{},
+  searchval:'',
+  setSearchval:()=>{},
 });
 
 const AuthProvider = ({ children }) => {
@@ -45,12 +47,13 @@ const AuthProvider = ({ children }) => {
   const [booked,setBooked]=useState([{}])
   const [Notification,setNotification]=useState("")
   const [showNotification,setShowNotification]=useState(false)
+  const[searchval,setSearchval]=useState('')
   const  [Cart,setCart]=useState({
     cars: [],
     totalAmount:0,
   },)
 
-  const [ShowCart,setShowCart]=useState(false)
+
 
   useEffect(() => {
     const savedCart =
@@ -91,8 +94,8 @@ if(Cart.cars){
         setShowNotification,
         Cart,
         setCart,
-        ShowCart,
-        setShowCart
+        searchval,
+        setSearchval
 
       }}
     >

@@ -5,3 +5,9 @@ table {
     border-collapse: collapse;
     margin: 12px 0;
   }
+  .order-picture {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 100%;
+  }

@@ -60,11 +60,7 @@ select:focus {
   outline: 1px solid black;
 }
 
-.order-picture {
-  width: 60px;
-  height: 50px;
-  object-fit: fill;
-}
+
 
 .booking > img {
   height: 150px;
@@ -75,8 +71,15 @@ select:focus {
   width: 100%;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  height: 220px;
+ 
 }
 .booking-content {
   margin: 3px 12px;
   padding: 2px;
+}
+
+.dialog-image img{
+  height: 100%;
+  object-fit: cover;
 }

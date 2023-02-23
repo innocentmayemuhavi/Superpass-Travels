@@ -13,7 +13,7 @@ const Content = () => {
       </div>
       <div className="ourservices">
         <div className="card-image">
-          <img src="../../../images/taxi 4 seater.jpg" alt="Image" />
+          <img src="../../../images/vehicle-caio-apache-vip-v-volksbus-17-230-od-euro-v-2022-on-display-at-the-latbus-2022-show-held-in-the-city-of-so-paulo-2K8W9C9.jpg" alt="Image" />
         </div>
         <div>
         <h2>OUR SERVICES</h2>
@@ -34,7 +34,7 @@ const Content = () => {
         <Button text='Expolore' onClick={View} type='button'/>
         </div>
         <div className="card-image">
-          <img src="../../../images/van.jpg" alt="Image" />
+          <img src="../../../images/a-modern-inzar-scania-single-deck-tourism-coach-parked-beside-the-canal-in-devizes-wiltshire-england-uk-MAX008.jpg" alt="Image" />
         </div>
         
       </div>

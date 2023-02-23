@@ -7,11 +7,12 @@ text-align: center;
 .card-image{
     height: 400px;
     width: 100%;
-    object-fit: cover;
+   
 }
 .card-image img{
     height: 100%;
     width: 100%;
+    object-fit: cover;
 }
 hr{
     margin: 2px auto 2px;

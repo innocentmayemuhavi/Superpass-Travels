@@ -10,3 +10,10 @@ button{
 .btn{
     background-color: aliceblue;
 }
+
+button:active{
+    background-color: black;
+    color: white;
+    border: 2px solid #fff;
+    fill: #fff;
+}

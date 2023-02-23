@@ -5,7 +5,7 @@ const QuickNav=()=>{
     return<>
     <section className="navbody fade">
     <div className="nav-card" style={{
-    backgroundImage:`url('../../../images/taxi.jpg')`}}>
+    backgroundImage:`url('../../../images/salo-finland-may-18-2019-black-1940s-oldsmobile-among-ca-450-vintage-cars-gathering-to-salo-market-square-for-salon-maisema-cruising-2019-TA897H.jpg')`}}>
 <div className='card-content'>
     <h1>CAR HIRING</h1>
     <hr/>
@@ -16,7 +16,7 @@ const QuickNav=()=>{
 </div>
 </div>
 <div className="nav-card fade" style={{
-    backgroundImage:`url('../../../images/taxi 4 seater.jpg')`}}>
+    backgroundImage:`url('../../../images/isuzu-grand-toro-intercity-bus-presented-at-the-hannover-iaa-transportation-motor-show-germany-september-20-2022-2K3HXJF.jpg')`}}>
 <div className='card-content'>
     <h1>CAR BOOKING</h1>
     <hr/>
