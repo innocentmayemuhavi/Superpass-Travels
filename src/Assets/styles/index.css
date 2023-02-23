@@ -57,7 +57,14 @@ html body p {
 .cartbtn {
   height: 50px;
   cursor: pointer;
+  width: 100%;
 }
+.cartbtn img{
+  height: 60px;
+  width: 60px;
+  
+}
+.cart
 .user {
   text-align: left;
 }
