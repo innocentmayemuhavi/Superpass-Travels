@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Notifications=()=>{
     const{Notification,setShowNotification}=useContext(AuthContext)
-    return<section className="notification fade">
+    return<section className="notification ">
         <img  src="./images/cancel.png"  onClick={()=>{
             setShowNotification(false)
         }}/>
