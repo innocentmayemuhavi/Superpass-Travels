@@ -1,0 +1,34 @@
+
+.welcome{
+    height: 300px;
+    width: 100%;
+    text-align: center;
+    animation: animate 10s infinite;
+    display: inline-block;
+    padding: 20px;
+    color: white;
+    margin: 0 0 10px 0;
+    box-sizing: border-box;
+  }
+  @keyframes animate{
+
+    0% {
+      background: orange;
+    }
+    20%{
+        background-color: red;
+    }
+    40%{
+        background-color: palegreen;
+    }
+    60% {
+      background: blue;
+    }
+    80%{
+        background-color: blueviolet;
+    }
+    100% {
+      background: green;
+    }
+    
+  }
