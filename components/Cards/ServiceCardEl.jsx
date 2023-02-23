@@ -1,6 +1,6 @@
 
 import { useContext, useEffect } from "react";
-import { AuthContext } from "../../Context";
+import { AuthContext } from "../../src/Assets/Context";
 import "./index.css"
 const ServiceCardEl = (props) => {
   const { setShowBooking, setShowNotification, booked, setBooked } =
@@ -22,7 +22,7 @@ const ServiceCardEl = (props) => {
   useEffect(() => {}, [booked]);
   return (
     <div
-      className="service"
+      className="service fade"
       onClick={() =>
         UpdatingBooked(props.id, props.picture, props.name, props.description,props.price)
       }

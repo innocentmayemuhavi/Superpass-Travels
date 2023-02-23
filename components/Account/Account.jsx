@@ -1,4 +1,4 @@
-import { AuthContext } from "../../Context";
+import { AuthContext } from "../../src/Assets/Context";
 import { useContext} from "react";
 import { Link } from "react-router-dom";
 import "./index.css"

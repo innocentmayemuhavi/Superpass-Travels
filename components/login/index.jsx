@@ -6,8 +6,7 @@ const Login=()=>{
     return<>
     <p>Login</p>
    <Link to={"/"}> <button onClick={()=>{
-        setisLoggedin(true)
-        console.log(isloggedin)
+       
     }
     }>
         Login

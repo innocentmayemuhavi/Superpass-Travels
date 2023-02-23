@@ -34,22 +34,6 @@ html body p {
   box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.23);
 }
 
-button {
-  background-color: rgb(200, 241, 210);
-  padding: 5px 15px;
-  width: fit-content;
-  border-radius: 14px;
-  font-weight: 700;
-  box-shadow: 1px 1px 6px rgb(0, 0, 0, 0.2);
-  bottom: 0;
-  margin: 12px;
-  cursor: pointer;
-}
-button:active {
-  background-color: black;
-  color: rgb(200, 241, 210);
-  border: 0.27em solid blue;
-}
 
 .notification {
   position: fixed;
@@ -107,4 +91,7 @@ svg:hover {
 }
 td {
   align-items: center;
+}
+svg{
+  cursor: pointer;
 }

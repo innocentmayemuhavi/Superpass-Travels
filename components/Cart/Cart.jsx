@@ -1,4 +1,4 @@
-import { AuthContext } from "../../Context";
+import { AuthContext } from "../../src/Assets/Context";
 import "./index.css"
 import { useContext } from "react";
 import { Header } from "../Header/Header";
@@ -46,7 +46,7 @@ setCart(prev=>{
   return (
     <>
       <Header />
-      <section className="Cart">
+      <section className="Cart fade">
     <p>Your Car Orders...</p>
     <p>Total Payout:.Ksh.{Cart.totalAmount}</p>
     <hr/>

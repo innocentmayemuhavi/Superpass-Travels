@@ -1,6 +1,8 @@
 import { useContext } from "react";
-import { AuthContext } from "../../Context";
-import "./index.css"
+import { AuthContext } from "../../src/Assets/Context";
+import "./index.css";
+import * as React from "react";
+
 const Booking = (props) => {
   const {
     booked,
@@ -15,8 +17,8 @@ const Booking = (props) => {
     const Exists = Cart.cars.find((prev) => prev.id === booked.id);
 
     if (Exists) {
-      let filll=Cart.cars.filter(c=>c.id===booked.id)
-console.log(filll[0].id)
+      let filll = Cart.cars.filter((c) => c.id === booked.id);
+      console.log(filll[0].id);
       console.log("its here");
       setNotification((prev) => {
         return (
@@ -67,41 +69,43 @@ console.log(filll[0].id)
   };
 
   return (
-    <div className="dialog">
+    <div className="dialog ">
       <section className="dialog-content">
-       <div className="dialog-image"> <img src={booked.picture} /></div>
-       
-      <div className="booking-content">
-      <p>
-          Service:<span className="gray">{booked.name}</span>
-        </p>
-        <p>
-          Description:<span className="gray">{booked.description}</span>
-        </p>
-        <p>Price/Day:{booked.amount}</p>
-        <label>Days:</label>
-        <select value={booked.days} name="days" onChange={SetDays}>
-          <option value={""}>Select Number Of Dayas</option>
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5}>5</option>
-          <option value={6}>6</option>
-          <option value={7}>7</option>
-        </select>
-        <div>
-          <button
-            onClick={() => {
-              setShowBooking(false);
-            }}
-          >
-            Cancel
-          </button>
-          <button onClick={() => Saving(booked)}>Book</button>
-       </div>
-      </div>
-        
+        <div className="dialog-image">
+          {" "}
+          <img src={booked.picture} />
+        </div>
+
+        <div className="booking-content">
+          <p>
+            Service:<span className="gray">{booked.name}</span>
+          </p>
+          <p>
+            Description:<span className="gray">{booked.description}</span>
+          </p>
+          <p>Price/Day:{booked.amount}</p>
+          <label>Days:</label>
+          <select value={booked.days} name="days" onChange={SetDays}>
+            <option value={""}>Select Number Of Dayas</option>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+            <option value={6}>6</option>
+            <option value={7}>7</option>
+          </select>
+          <div>
+            <button
+              onClick={() => {
+                setShowBooking(false);
+              }}
+            >
+              Cancel
+            </button>
+            <button onClick={() => Saving(booked)}>Book</button>
+          </div>
+        </div>
       </section>
     </div>
   );

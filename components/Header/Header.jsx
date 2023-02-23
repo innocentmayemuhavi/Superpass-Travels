@@ -1,5 +1,5 @@
 
-import { AuthContext } from "../../Context"
+import { AuthContext } from '../../src/Assets/Context'
 import React from 'react';
 import { useContext } from "react";
 import { Notifications} from "../notification/Notification";

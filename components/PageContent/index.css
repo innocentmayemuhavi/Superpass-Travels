@@ -1,0 +1,38 @@
+.ourservices{
+display: grid;
+grid-template-columns: repeat(auto-fill,minmax(50%,1fr));
+align-items: center;
+text-align: center;
+}
+.card-image{
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+}
+.card-image img{
+    height: 100%;
+    width: 100%;
+}
+hr{
+    margin: 2px auto 2px;
+    width: 5%;
+    height: 1px;
+    border: 2px solid black;
+    background-color: black;
+}
+@media only screen and (max-width:1020px) {
+    .ourservices{
+        display: flex;
+        flex-direction: column;
+    }
+    .card-image img{
+        height: 350px;
+    }
+    
+}
+.content{
+    padding: 12px 10%;
+}
+.main{
+    text-align: center;
+}

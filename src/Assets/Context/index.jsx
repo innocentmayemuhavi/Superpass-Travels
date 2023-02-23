@@ -3,8 +3,8 @@ import { createContext, useEffect, useState } from "react";
 const AuthContext = createContext({
   user: {
     id: 401839,
-    name: "Maye",
-    email: "innocentmayemuhavi",
+    name: "Iris Maye",
+    email: "irismaye@gmail.com",
     password: 1234,
   },
   setUser: () => {},
@@ -34,8 +34,8 @@ const AuthContext = createContext({
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({
     id: 401839,
-    name: "Maye",
-    email: "innocentmayemuhavi",
+    name: "Iris Maye",
+    email: "irismaye@gmail.com",
     password: 1234,
   });
   const [isloggedin, setisLoggedin] = useState(false);

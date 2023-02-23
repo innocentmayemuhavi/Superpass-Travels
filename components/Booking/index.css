@@ -20,6 +20,7 @@
   position: relative;
   z-index: 1001;
   overflow: hidden;
+  text-align: center;
 }
 
 .dialog-header,
@@ -69,13 +70,13 @@ select:focus {
   height: 150px;
 }
 
-.dialog-image{
-    background-color: ghostwhite;
-    width: 100%;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
+.dialog-image {
+  background-color: ghostwhite;
+  width: 100%;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
-.booking-content{
-    margin: 3px 12px;
-    padding: 2px;
+.booking-content {
+  margin: 3px 12px;
+  padding: 2px;
 }
