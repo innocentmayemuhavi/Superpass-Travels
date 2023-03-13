@@ -6,12 +6,13 @@ button{
     border-radius: 9px;
     cursor: pointer;
     margin: 4px;
+    transition: 0.8s ease-in-out;
 }
 .btn{
     background-color: aliceblue;
 }
 
-button:active{
+button:hover,button:active{
     background-color: black;
     color: white;
     border: 2px solid #fff;

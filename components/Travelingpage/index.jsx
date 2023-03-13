@@ -8,7 +8,7 @@ const TravellingPage=()=>{
 
     return<main style={{
 textAlign:'center',
-    }}>
+    }} className='fade'>
         <Header/>
     <h1> Travells Page Under Development</h1>
 <p>developing...</p>

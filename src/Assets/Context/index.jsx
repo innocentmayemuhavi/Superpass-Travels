@@ -16,21 +16,23 @@ const AuthContext = createContext({
   setShowaccount: () => {},
   showBooking: false,
   setShowBooking: () => {},
-  booked:[{}],
-  setBooked:()=>{},
-  Notification:"",
-  setNotification:()=>{},
-  showNotification:false,
-  setShowNotification:()=>{},
+  booked: [{}],
+  setBooked: () => {},
+  Notification: "",
+  setNotification: () => {},
+  showNotification: false,
+  setShowNotification: () => {},
   Cart: {
     cars: [],
-    totalAmount:0,
+    totalAmount: 0,
   },
-  setCart:()=>{},
-  ShowCart:false,
-  setShowCart:()=>{},
-  searchval:'',
-  setSearchval:()=>{},
+  setCart: () => {},
+  searchval: "",
+  setSearchval: () => {},
+  showPhoneNav: false,
+  setShowPhoneNav: () => {},
+  showSliderButton: true,
+  setShowSliderButton: () => {},
 });
 
 const AuthProvider = ({ children }) => {
@@ -44,16 +46,16 @@ const AuthProvider = ({ children }) => {
   const [isLoading, setisLoading] = useState(true);
   const [showBooking, setShowBooking] = useState(false);
   const [showAccount, setShowaccount] = useState(false);
-  const [booked,setBooked]=useState([{}])
-  const [Notification,setNotification]=useState("")
-  const [showNotification,setShowNotification]=useState(false)
-  const[searchval,setSearchval]=useState('')
-  const  [Cart,setCart]=useState({
+  const [booked, setBooked] = useState([{}]);
+  const [Notification, setNotification] = useState("");
+  const [showNotification, setShowNotification] = useState(false);
+  const [searchval, setSearchval] = useState("");
+  const [showPhoneNav, setShowPhoneNav] = useState(false);
+  const [showSliderButton, setShowSliderButton] = useState(true);
+  const [Cart, setCart] = useState({
     cars: [],
-    totalAmount:0,
-  },)
-
-
+    totalAmount: 0,
+  });
 
   useEffect(() => {
     const savedCart =
@@ -63,15 +65,14 @@ const AuthProvider = ({ children }) => {
             totalAmount: 0,
           }
         : JSON.parse(localStorage.getItem("Cart1"));
-   setCart(savedCart)
-
+    setCart(savedCart);
   }, []);
 
-  useEffect(()=>{
-if(Cart.cars){
-  localStorage.setItem("Cart1",JSON.stringify(Cart))
-}
-  },[Cart])
+  useEffect(() => {
+    if (Cart.cars) {
+      localStorage.setItem("Cart1", JSON.stringify(Cart));
+    }
+  }, [Cart]);
 
   return (
     <AuthContext.Provider
@@ -95,8 +96,11 @@ if(Cart.cars){
         Cart,
         setCart,
         searchval,
-        setSearchval
-
+        setSearchval,
+        showPhoneNav,
+        setShowPhoneNav,
+        showSliderButton,
+        setShowSliderButton,
       }}
     >
       {children}

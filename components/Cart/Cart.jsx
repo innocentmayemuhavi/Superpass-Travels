@@ -44,9 +44,9 @@ setCart(prev=>{
   });
 
   return (
-    <>
+    <main className="fade">
       <Header />
-      <section className="Cart fade">
+      <section className="Cart  ">
     <p>Your Car Orders...</p>
     <p>Total Payout:.Ksh.{Cart.totalAmount}</p>
     <hr/>
@@ -67,7 +67,7 @@ setCart(prev=>{
         </Link>
       </section>
       <Footer />
-    </>
+    </main>
   );
 };
 

@@ -22,7 +22,7 @@ const ServiceCardEl = (props) => {
   useEffect(() => {}, [booked]);
   return (
     <div
-      className="service fade"
+      className="service"
       onClick={() =>
         UpdatingBooked(props.id, props.picture, props.name, props.description,props.price)
       }

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./index.css";
-
+import { AuthContext } from "../../src/Assets/Context";
 const SliderDet = ({ children }) => {
+  const{showSliderButton}=useContext(AuthContext)
   const [counter, setCounter] = useState(1);
   const [pause, setPause] = useState(false);
   const content = children;
@@ -22,7 +23,7 @@ const SliderDet = ({ children }) => {
     }
   };
 
-  const handlePage = page => {
+  const handlePage = (page) => {
     setCounter(page);
   };
 
@@ -57,7 +58,11 @@ const SliderDet = ({ children }) => {
           </div>
         ))}
 
-        <button className="prev" onClick={handlePre}>
+        <button className="prev" onClick={handlePre} style={
+          {
+            display:showSliderButton?'block':'none'
+          }
+        }>
           &#10094;
         </button>
         <button className="next" onClick={handleNext}>

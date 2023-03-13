@@ -5,19 +5,20 @@ import { Content } from "../PageContent";
 import './index.css'
 
 import { Slider } from "../Slider";
+import { Welcome } from "../Welcome";
 
 const Home = () => {
  
 
   return (
-   <>
+   <main className="fade">
   
    <Header/>
 
    <Slider/>
       <Content/>
    <Footer/>
-  </>
+  </main>
    
   );
 };

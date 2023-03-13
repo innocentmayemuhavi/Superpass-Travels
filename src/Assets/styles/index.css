@@ -34,7 +34,6 @@ html body p {
   box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.23);
 }
 
-
 .notification {
   position: fixed;
   background-color: ghostwhite;
@@ -59,13 +58,11 @@ html body p {
   cursor: pointer;
   width: 100%;
 }
-.cartbtn img{
-  height: 60px;
-  width: 60px;
-  
+.cartbtn img {
+  height: 50px;
+  width: 50px;
 }
-.cart
-.user {
+.cart .user {
   text-align: left;
 }
 
@@ -79,14 +76,15 @@ html body p {
 
 .alert {
   position: absolute;
-  border: 3px solid red;
+  border: 3px solid black;
   border-radius: 100%;
   width: 19px;
   height: 19px;
-  color: red;
+  color: white;
   font-weight: 900;
   right: 100px;
-  background-color: ghostwhite;
+  background-color: black;
+  right: 86px;
 }
 
 .cancel1 {
@@ -99,6 +97,6 @@ svg:hover {
 td {
   align-items: center;
 }
-svg{
+svg {
   cursor: pointer;
 }

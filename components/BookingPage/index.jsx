@@ -18,7 +18,7 @@ const filltered=ServiceData.filter(data=>data.category.toLocaleLowerCase().inclu
   ));
 
   return (
-    <main>
+    <main className="fade">
       <Header />
       <h1
         style={{

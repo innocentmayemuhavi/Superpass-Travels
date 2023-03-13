@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 const Login=()=>{
 
-    return<>
+    return<main className="fade">
     <p>Login</p>
    <Link to={"/"}> <button onClick={()=>{
        
@@ -11,7 +11,7 @@ const Login=()=>{
     }>
         Login
     </button></Link>
-    </>
+    </main>
 
 }
 

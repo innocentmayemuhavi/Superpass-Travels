@@ -7,7 +7,7 @@ const Content = () => {
     console.log("Clicked")
   }
   return (
-    <section className="main fade">
+    <section className="main">
       <div className="content">
         <h1>WELCOME TO SUPERPASS TRAVELS</h1>
       </div>

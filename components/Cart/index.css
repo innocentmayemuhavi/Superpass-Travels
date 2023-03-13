@@ -11,3 +11,12 @@ table {
     object-fit: cover;
     border-radius: 100%;
   }
+  .Cart{
+    padding-top: 2px;
+  }
+  @media only screen and (max-width:1000px) {
+    .Cart{
+      padding-top: 65px;
+    }
+    
+  }
