@@ -5,8 +5,8 @@ import {Cart} from'../Cart/Cart'
 import'./index.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "../login";
-import BookingPage from "../BookingPage";
-import TravellingPage from "../Travelingpage";
+import CarHirePage from "../CarHirePage";
+import CarBookingPage from "../Travelingpage";
 
 const App = () => {
   return  <AuthProvider>
@@ -15,8 +15,8 @@ const App = () => {
   <Route path="/login" element={<Login/>}/>
   <Route path="/" element={<Home/>}/>
   <Route path="/cart" element={<Cart/>}/>
-  <Route path="/booking" element={<BookingPage/>}/>
-  <Route path="/travelling" element={<TravellingPage/>}/>
+  <Route path="/carhire" element={<CarHirePage/>}/>
+  <Route path="/carbooking" element={<CarBookingPage/>}/>
 
 </Routes>
 </BrowserRouter>

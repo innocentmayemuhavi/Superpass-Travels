@@ -29,10 +29,10 @@ const Phonenav = () => {
         <li>Home</li>
         </Link>
         <hr/>
-        <Link to={'/booking'} onClick={()=>setShowPhoneNav(false)}>
+        <Link to={'/carbooking'} onClick={()=>setShowPhoneNav(false)}>
         <li>Car Booking</li></Link>
         <hr/>
-        <Link to={'/travelling'}>
+        <Link to={'/carhire'} onClick={()=>setShowPhoneNav(false)}>
         <li>Car Hire</li></Link>
         <hr/>
         <Link to={'/cart'} onClick={()=>setShowPhoneNav(false)}><li>Cart</li></Link>

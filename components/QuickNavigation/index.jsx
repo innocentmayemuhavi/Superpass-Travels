@@ -14,7 +14,7 @@ const QuickNav = () => {
           <div className="card-content">
             <h1>CAR HIRING</h1>
             <hr />
-            <Link to={"/booking"}>
+            <Link to={"/carhire"}>
               <Button text="Car hiring" type="button" class="btn" />
             </Link>
           </div>
@@ -28,7 +28,7 @@ const QuickNav = () => {
           <div className="card-content">
             <h1>CAR BOOKING</h1>
             <hr />
-            <Link to={"/travelling"}>
+            <Link to={"/carbooking"}>
               <Button text="Car BOOKING" type="button" class="btn" />
             </Link>
           </div>

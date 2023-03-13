@@ -9,7 +9,7 @@ import { Button } from "../Button/Index";
 import { Link } from "react-router-dom";
 import React from "react";
 import "./index.css";
-const BookingPage = () => {
+const CarHirePage = () => {
   const { showBooking,searchval,setSearchval } = useContext(AuthContext);
   const [number, setnumber] = useState(0);
 const filltered=ServiceData.filter(data=>data.category.toLocaleLowerCase().includes(`${searchval.toLocaleLowerCase()}`))
@@ -187,4 +187,4 @@ const filltered=ServiceData.filter(data=>data.category.toLocaleLowerCase().inclu
     </main>
   );
 };
-export default BookingPage;
+export default CarHirePage;

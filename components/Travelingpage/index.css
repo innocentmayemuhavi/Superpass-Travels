@@ -1,0 +1,9 @@
+.hire-page{
+    padding-top: 2px;
+}
+@media only screen and (max-width:1000px){
+    .hire-page{
+        padding-top: 60px;
+    }
+    
+}

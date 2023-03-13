@@ -41,7 +41,7 @@ const ServiceCardEl = (props) => {
         Description: <span className="gray">{props.description}</span>
       </p>
       <p>
-        Price/Day: <span className="gray">{props.price}</span>
+        Price/Day: <span className="gray">{props.price.toLocaleString()}</span>
       </p>
      </div>
     </div>

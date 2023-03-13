@@ -25,7 +25,7 @@ setCart(prev=>{
         <td>{book.name}</td>
         <td>{book.days}</td>
         <td >
-          {book.amount*book.days}{" "}
+          {book.amount *book.days}
         </td>
         <td>
         <svg
@@ -48,7 +48,7 @@ setCart(prev=>{
       <Header />
       <section className="Cart  ">
     <p>Your Car Orders...</p>
-    <p>Total Payout:.Ksh.{Cart.totalAmount}</p>
+    <p>Total Payout:.Ksh.{Cart.totalAmount.toLocaleString()}</p>
     <hr/>
         <table>
           <thead>
@@ -61,7 +61,7 @@ setCart(prev=>{
           <tbody>{render}</tbody>
 
         </table>
-        <p><b>Total Amount:.</b> Ksh. {Cart.totalAmount}</p>
+        <p><b>Total Amount:.</b> Ksh. {Cart.totalAmount.toLocaleString()}</p>
         <Link to={"/"}>
           <button>Close Cart</button>
         </Link>
