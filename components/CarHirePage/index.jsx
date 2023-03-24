@@ -10,9 +10,13 @@ import { Link } from "react-router-dom";
 import React from "react";
 import "./index.css";
 const CarHirePage = () => {
-  const { showBooking,searchval,setSearchval } = useContext(AuthContext);
+  const { showBooking, searchval, setSearchval } = useContext(AuthContext);
   const [number, setnumber] = useState(0);
-const filltered=ServiceData.filter(data=>data.category.toLocaleLowerCase().includes(`${searchval.toLocaleLowerCase()}`))
+  const filltered = ServiceData.filter((data) =>
+    data.category
+      .toLocaleLowerCase()
+      .includes(`${searchval.toLocaleLowerCase()}`)
+  );
   const render = filltered.map((data) => (
     <ServiceCardEl key={data.id} {...data} />
   ));
@@ -37,7 +41,7 @@ const filltered=ServiceData.filter(data=>data.category.toLocaleLowerCase().inclu
         <button
           onClick={() => {
             setnumber(0);
-            setSearchval('')
+            setSearchval("");
           }}
           style={{
             color: number === 0 && "green",
@@ -57,7 +61,7 @@ const filltered=ServiceData.filter(data=>data.category.toLocaleLowerCase().inclu
         <button
           onClick={() => {
             setnumber(1);
-            setSearchval('coach')
+            setSearchval("coach");
           }}
           style={{
             color: number === 1 && "green",
@@ -77,7 +81,7 @@ const filltered=ServiceData.filter(data=>data.category.toLocaleLowerCase().inclu
         <button
           onClick={() => {
             setnumber(2);
-            setSearchval('bike')
+            setSearchval("bike");
           }}
           style={{
             color: number === 2 && "green",
@@ -97,7 +101,7 @@ const filltered=ServiceData.filter(data=>data.category.toLocaleLowerCase().inclu
         <button
           onClick={() => {
             setnumber(3);
-            setSearchval('vintage')
+            setSearchval("vintage");
           }}
           style={{
             color: number === 3 && "green",
@@ -117,7 +121,7 @@ const filltered=ServiceData.filter(data=>data.category.toLocaleLowerCase().inclu
         <button
           onClick={() => {
             setnumber(4);
-            setSearchval('van')
+            setSearchval("van");
           }}
           style={{
             color: number === 4 && "green",
@@ -137,7 +141,7 @@ const filltered=ServiceData.filter(data=>data.category.toLocaleLowerCase().inclu
         <button
           onClick={() => {
             setnumber(5);
-            setSearchval('transist')
+            setSearchval("transist");
           }}
           style={{
             color: number === 5 && "green",
@@ -157,7 +161,7 @@ const filltered=ServiceData.filter(data=>data.category.toLocaleLowerCase().inclu
         <button
           onClick={() => {
             setnumber(6);
-            setSearchval('caravan')
+            setSearchval("caravan");
           }}
           style={{
             color: number === 6 && "green",

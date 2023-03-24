@@ -1,14 +1,12 @@
-import "./index.css"
+import "./index.css";
 
-const Footer=()=>{
+const Footer = () => {
+  return (
+    <footer>
+      <a href="#">Team</a>
+      <p>&copy;2023 copyrights||SuperPass.com||MayeCompanies </p>
+    </footer>
+  );
+};
 
-
-
-    return   <footer>
-    <a href="#">Team</a>
-    <p>&copy;2023 copyrights||SuperPass.com||MayeCompanies </p>
-</footer>
-}
-
-
-export {Footer}
+export { Footer };

@@ -9,8 +9,14 @@ import { HeaderNav } from "../QuickNavigation/Headernav";
 import { Phonenav } from "../QuickNavigation/PhoneNav";
 
 const Header = () => {
-  const { showNotification, showAccount, setShowaccount,showPhoneNav,setShowPhoneNav,setShowSliderButton } =
-    useContext(AuthContext);
+  const {
+    showNotification,
+    showAccount,
+    setShowaccount,
+    showPhoneNav,
+    setShowPhoneNav,
+    setShowSliderButton,
+  } = useContext(AuthContext);
   const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -25,21 +31,26 @@ const Header = () => {
 
   const windowwidth = window.innerWidth;
   return (
-    <header style={{
-      position:windowwidth>1000?'static':'fixed'
-    }}>
-       {showPhoneNav&& windowwidth<=1000&&<Phonenav/>}
+    <header
+      style={{
+        position: windowwidth > 1000 ? "static" : "fixed",
+      }}
+    >
+      {showPhoneNav && windowwidth <= 1000 && <Phonenav />}
       <div className="header">
         {windowwidth > 1000 ? (
           <div className="logo">
             <img src="./images/sp-logo.jpg" />
           </div>
         ) : (
-          <div className="phone-nav-icon" onClick={()=>{
-            setShowPhoneNav(true)
-            setShowSliderButton(false)
-          }}>
-            <img src="../../../images/hamburger.png" ></img>
+          <div
+            className="phone-nav-icon"
+            onClick={() => {
+              setShowPhoneNav(true);
+              setShowSliderButton(false);
+            }}
+          >
+            <img src="../../../images/hamburger.png"></img>
           </div>
         )}
 
@@ -50,7 +61,6 @@ const Header = () => {
             alignItems: "center",
           }}
         >
-         
           <div className="account">
             <img
               src="./images/Account.jpeg"
@@ -65,7 +75,6 @@ const Header = () => {
         {showAccount && <Account />}
       </div>
       {windowwidth > 1000 && <HeaderNav />}
-     
     </header>
   );
 };

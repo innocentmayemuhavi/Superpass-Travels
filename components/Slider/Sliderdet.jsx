@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import "./index.css";
 import { AuthContext } from "../../src/Assets/Context";
 const SliderDet = ({ children }) => {
-  const{showSliderButton}=useContext(AuthContext)
+  const { showSliderButton } = useContext(AuthContext);
   const [counter, setCounter] = useState(1);
   const [pause, setPause] = useState(false);
   const content = children;
@@ -58,11 +58,13 @@ const SliderDet = ({ children }) => {
           </div>
         ))}
 
-        <button className="prev" onClick={handlePre} style={
-          {
-            display:showSliderButton?'block':'none'
-          }
-        }>
+        <button
+          className="prev"
+          onClick={handlePre}
+          style={{
+            display: showSliderButton ? "block" : "none",
+          }}
+        >
           &#10094;
         </button>
         <button className="next" onClick={handleNext}>
