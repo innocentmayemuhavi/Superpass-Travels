@@ -25,7 +25,7 @@ const filltered=ServiceData.filter(data=>data.category.toLocaleLowerCase().inclu
           textAlign: "center",
         }}
       >
-        Car Booking Services
+        Car Hiring Services
       </h1>
       <hr></hr>
       <div
