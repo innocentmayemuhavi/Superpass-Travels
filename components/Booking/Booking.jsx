@@ -103,7 +103,7 @@ const Booking = (props) => {
             >
               Cancel
             </button>
-            <button onClick={() => Saving(booked)}>Book</button>
+            <button onClick={() => Saving(booked)}>Hire</button>
           </div>
         </div>
       </section>
