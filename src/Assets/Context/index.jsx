@@ -33,8 +33,8 @@ const AuthContext = createContext({
   setShowPhoneNav: () => {},
   showSliderButton: true,
   setShowSliderButton: () => {},
-  tabnumber:1,
-  settabnumber:()=>{}
+  tabnumber: 1,
+  settabnumber: () => {},
 });
 
 const AuthProvider = ({ children }) => {
@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
   const [searchval, setSearchval] = useState("");
   const [showPhoneNav, setShowPhoneNav] = useState(false);
   const [showSliderButton, setShowSliderButton] = useState(true);
-  const[tabnumber,settabnumber]=useState(1)
+  const [tabnumber, settabnumber] = useState(1);
   const [Cart, setCart] = useState({
     cars: [],
     totalAmount: 0,
@@ -105,7 +105,7 @@ const AuthProvider = ({ children }) => {
         showSliderButton,
         setShowSliderButton,
         tabnumber,
-        settabnumber
+        settabnumber,
       }}
     >
       {children}

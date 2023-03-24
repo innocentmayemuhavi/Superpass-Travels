@@ -2,6 +2,7 @@ import { AuthContext } from "../../src/Assets/Context";
 import { useContext} from "react";
 import { Link } from "react-router-dom";
 import "./index.css"
+import { Button } from "../Button/Index";
 
 const Account = () => {
   const { setShowaccount,Cart,user } = useContext(AuthContext);
@@ -33,7 +34,7 @@ const Account = () => {
         /></Link>
        
       </div> <Link to={'/login'}>
-        <button>Logout</button>
+      <Button text='Log out' class=''/>
         </Link>
     </section>
   );

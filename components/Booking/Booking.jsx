@@ -17,13 +17,13 @@ const Booking = (props) => {
     const Exists = Cart.cars.find((prev) => prev.id === booked.id);
 
     if (Exists) {
-      let filll = Cart.cars.filter((c) => c.id === booked.id);
+      let filll = Cart.cars.filter((data) => data.id === booked.id);
       console.log(filll[0].id);
       console.log("its here");
       setNotification((prev) => {
         return (
           <p>
-            you have already booked <b> {filll[0].name} </b> for{" "}
+            You have already booked <b> {filll[0].name} </b> for{" "}
             <b>{filll[0].days}</b> day
             {filll[0].days > 1 ? "s" : ""}
           </p>
@@ -86,7 +86,7 @@ const Booking = (props) => {
           <p>Price/Day:{booked.amount}</p>
           <label>Days:</label>
           <select value={booked.days} name="days" onChange={SetDays}>
-            <option value={""}>Select Number Of Dayas</option>
+            <option value={""}>Select Number Of Days</option>
             <option value={1}>1</option>
             <option value={2}>2</option>
             <option value={3}>3</option>

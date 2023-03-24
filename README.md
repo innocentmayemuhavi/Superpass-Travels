@@ -9,3 +9,10 @@ We currently have 6 types of services
 {Types}
 
 
+
+# files
+dist--distribution,
+components--app components
+context-all globaly needed variables
+
+
