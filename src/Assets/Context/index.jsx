@@ -13,11 +13,6 @@ const AuthContext = createContext({
   isloggedin: false,
   setisLoggedin: () => {},
   showAccount: false,
-  setShowaccount: () => {},
-  showBooking: false,
-  setShowBooking: () => {},
-  booked: [{}],
-  setBooked: () => {},
   Notification: "",
   setNotification: () => {},
   showNotification: false,
@@ -35,6 +30,8 @@ const AuthContext = createContext({
   setShowSliderButton: () => {},
   tabnumber: 1,
   settabnumber: () => {},
+  productData: {},
+  setProductData: () => {},
 });
 
 const AuthProvider = ({ children }) => {
@@ -46,9 +43,7 @@ const AuthProvider = ({ children }) => {
   });
   const [isloggedin, setisLoggedin] = useState(false);
   const [isLoading, setisLoading] = useState(true);
-  const [showBooking, setShowBooking] = useState(false);
   const [showAccount, setShowaccount] = useState(false);
-  const [booked, setBooked] = useState([{}]);
   const [Notification, setNotification] = useState("");
   const [showNotification, setShowNotification] = useState(false);
   const [searchval, setSearchval] = useState("");
@@ -59,10 +54,10 @@ const AuthProvider = ({ children }) => {
     cars: [],
     totalAmount: 0,
   });
-
+  const [productData, setProductData] = useState({});
   useEffect(() => {
     const savedCart =
-      localStorage.getItem("Cart") === "undefined"
+      localStorage.getItem("Cart1") === "undefined"
         ? {
             cars: [],
             totalAmount: 0,
@@ -77,6 +72,20 @@ const AuthProvider = ({ children }) => {
     }
   }, [Cart]);
 
+  useEffect(() => {
+    const savedData =
+      localStorage.getItem("prod") === "undefined"
+        ? {}
+        : JSON.parse(localStorage.getItem("prod"));
+    setProductData(savedData);
+  }, []);
+
+  useEffect(() => {
+    if (productData) {
+      localStorage.setItem("prod", JSON.stringify(productData));
+    }
+  }, [productData]);
+
   return (
     <AuthContext.Provider
       value={{
@@ -88,10 +97,6 @@ const AuthProvider = ({ children }) => {
         setisLoggedin,
         showAccount,
         setShowaccount,
-        showBooking,
-        setShowBooking,
-        booked,
-        setBooked,
         Notification,
         setNotification,
         showNotification,
@@ -106,6 +111,8 @@ const AuthProvider = ({ children }) => {
         setShowSliderButton,
         tabnumber,
         settabnumber,
+        productData,
+        setProductData,
       }}
     >
       {children}

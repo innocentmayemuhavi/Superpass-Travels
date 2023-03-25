@@ -21,70 +21,12 @@ html body p {
   color: gray;
 }
 
-.booking {
-  background-color: ghostwhite;
-  height: 40%;
-
-  text-align: center;
-  padding: 1px;
-  position: fixed;
-  bottom: 2px;
-  font-size: 13px;
-  width: 99%;
-  box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.23);
-}
-
-.notification {
-  position: fixed;
-  background-color: ghostwhite;
-  width: 45%;
-  right: 2px;
-  top: 10%;
-
-  box-shadow: 2px 2px 8px rgb(0, 0, 0, 0.3);
-  border-radius: 17px;
-  padding: 5px;
-  font-size: 15px;
-}
-.notification > img {
-  height: 12px;
-  position: absolute;
-  right: 7px;
-  top: 7px;
-  cursor: pointer;
-}
-.cartbtn {
-  height: 50px;
-  cursor: pointer;
-  width: 100%;
-}
-.cartbtn img {
-  height: 50px;
-  width: 50px;
-}
-.cart .user {
-  text-align: left;
-}
-
 .cancel {
   max-height: 15px;
   position: absolute;
   right: 7px;
   top: 7px;
   cursor: pointer;
-}
-
-.alert {
-  position: absolute;
-  border: 3px solid black;
-  border-radius: 100%;
-  width: 19px;
-  height: 19px;
-  color: white;
-  font-weight: 900;
-  right: 100px;
-  background-color: black;
-  right: 86px;
 }
 
 .cancel1 {
@@ -99,4 +41,11 @@ td {
 }
 svg {
   cursor: pointer;
+}
+a{
+  color: black;
+
+}
+a:hover,a:focus,a:active{
+  font-weight: 600;
 }

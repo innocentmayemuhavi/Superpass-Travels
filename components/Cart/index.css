@@ -1,22 +1,66 @@
-
 table {
-    width: 100%;
-    text-align: center;
-    border-collapse: collapse;
-    margin: 12px 0;
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  margin: 12px 0;
+}
+.order-picture {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.amt-operation svg:hover {
+  fill: #fff;
+}
+.Cart {
+  padding-top: 2px;
+}
+
+.cartbtn {
+  height: 50px;
+  cursor: pointer;
+  width: 100%;
+}
+.cartbtn img {
+  height: 50px;
+  width: 50px;
+}
+.cart .user {
+  text-align: left;
+}
+.alert {
+  position: absolute;
+  border: 3px solid black;
+  border-radius: 100%;
+  width: 19px;
+  height: 19px;
+  color: white;
+  font-weight: 900;
+  right: 100px;
+  background-color: black;
+  right: 86px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .Cart {
+    padding-top: 65px;
   }
-  .order-picture {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 100%;
+  .amt-operation {
+    padding: 7px;
+    margin: 5px;
   }
-  .Cart{
-    padding-top: 2px;
+}
+@media only screen and (max-width: 700px) {
+  .Cart {
+    padding-top: 65px;
   }
-  @media only screen and (max-width:1000px) {
-    .Cart{
-      padding-top: 65px;
-    }
-    
+  .amt-operation {
+    padding: 3px;
+    margin: 2px;
   }
+  .amt-operation svg:hover {
+    fill: #fff;
+  }
+}

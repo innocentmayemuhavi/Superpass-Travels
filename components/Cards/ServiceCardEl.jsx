@@ -1,39 +1,32 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
 import "./index.css";
 const ServiceCardEl = (props) => {
-  const { setShowBooking, setShowNotification, booked, setBooked } =
+  const {  setProductData } =
     useContext(AuthContext);
 
-  const UpdatingBooked = (id, picture, name, description, price) => {
-    setBooked({
-      id: id,
-      picture: picture,
-      name: name,
-      description: description,
-      days: 1,
-      amount: price,
-    });
-    setShowBooking(true);
-    setShowNotification(false);
-  };
 
-  useEffect(() => {}, [booked]);
+ 
   return (
     <div
       className="service"
       onClick={() =>
-        UpdatingBooked(
-          props.id,
-          props.picture,
-          props.name,
-          props.description,
-          props.price
+        setProductData(
+          {
+            id: props.id,
+            picture: props.picture,
+            name: props.name,
+            description: props.description,
+            days:1,
+            amount:props.price
+           
+          }
         )
       }
     >
       <div className="service-picture">
-        <img src={props.picture} alt="Picture" />
+        <Link to={'/service'}><img src={props.picture} alt="Picture" /></Link>
       </div>
       <div className="service-content">
         <p>

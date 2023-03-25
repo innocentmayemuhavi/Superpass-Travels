@@ -2,22 +2,24 @@ import { useContext } from "react";
 import { AuthContext } from "../../src/Assets/Context";
 import "./index.css";
 import * as React from "react";
+import { Header } from "../Header/Header";
+import { useNavigate } from "react-router-dom";
 
 const Booking = (props) => {
   const {
-    booked,
-    setBooked,
-    setShowBooking,
     setShowNotification,
     setNotification,
     Cart,
     setCart,
+    productData,
+    setProductData
   } = useContext(AuthContext);
-  const Saving = (id, picture, name, days) => {
-    const Exists = Cart.cars.find((prev) => prev.id === booked.id);
+  const navigate=useNavigate()
+  const Saving = (id) => {
+    const Exists = Cart.cars.find((prev) => prev.id === id);
 
     if (Exists) {
-      let filll = Cart.cars.filter((data) => data.id === booked.id);
+      let filll = Cart.cars.filter((data) => data.id === id);
       console.log(filll[0].id);
       console.log("its here");
       setNotification((prev) => {
@@ -29,13 +31,13 @@ const Booking = (props) => {
           </p>
         );
       });
-      setShowBooking(false);
+    
       setShowNotification(true);
     } else {
       console.log("not here");
       const newOrder = Cart.cars;
       console.log(newOrder);
-      newOrder.push(booked);
+      newOrder.push(productData);
       console.log(newOrder);
       setCart((prev) => {
         return {
@@ -50,12 +52,12 @@ const Booking = (props) => {
       setNotification((prev) => {
         return (
           <p>
-            You Have Booked <b> {booked.name}</b> for <b>{booked.days}</b> day
-            {booked.days > 1 ? "s" : ""} Succesfully
+            You Have Booked <b> {productData.name}</b> for <b>{productData.days}</b> day
+            {productData.days > 1 ? "s" : ""} Succesfully
           </p>
         );
       });
-      setShowBooking(false);
+     
       setShowNotification(true);
     }
   };
@@ -63,50 +65,52 @@ const Booking = (props) => {
   const SetDays = (event) => {
     const { name, value } = event.target;
 
-    setBooked((prev) => {
-      return { ...prev, [name]: value };
+    setProductData((prev) => {
+      return { ...prev, [name]: value * 1 };
     });
   };
 
   return (
-    <div className="dialog ">
-      <section className="dialog-content">
-        <div className="dialog-image">
-          {" "}
-          <img src={booked.picture} />
-        </div>
+    <div className=" product fade">
+      <Header />
+      <div className="product-body">
 
-        <div className="booking-content">
-          <p>
-            Service:<span className="gray">{booked.name}</span>
-          </p>
-          <p>
-            Description:<span className="gray">{booked.description}</span>
-          </p>
-          <p>Price/Day:{booked.amount}</p>
-          <label>Days:</label>
-          <select value={booked.days} name="days" onChange={SetDays}>
-            <option value={""}>Select Number Of Days</option>
-            <option value={1}>1</option>
-            <option value={2}>2</option>
-            <option value={3}>3</option>
-            <option value={4}>4</option>
-            <option value={5}>5</option>
-            <option value={6}>6</option>
-            <option value={7}>7</option>
-          </select>
-          <div>
-            <button
-              onClick={() => {
-                setShowBooking(false);
-              }}
-            >
-              Cancel
-            </button>
-            <button onClick={() => Saving(booked)}>Book</button>
-          </div>
+
+        <div className="product-image">
+          {" "}
+          <img src={productData.picture} />
         </div>
-      </section>
+        <section className="product-content">
+          <div className="booking-content">
+            <p>
+              Service:<span className="gray">{productData.name}</span>
+            </p>
+            <p>
+              Description:<span className="gray">{productData.description}</span>
+            </p>
+            <p>Price/Day:{productData.amount}</p>
+          <div className="page-input">  <label>Days:</label>
+            <select value={productData.days} name="days" onChange={SetDays}>
+              <option value={""}>Select Number Of Days</option>
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+              <option value={6}>6</option>
+              <option value={7}>7</option>
+            </select></div>
+            <div className="product-buttons">
+              <button
+               onClick={()=>navigate(-1)}
+              >
+                Cancel
+              </button>
+              <button onClick={() => Saving(productData.id)}>HIRE</button>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };
