@@ -12,9 +12,9 @@ const Booking = (props) => {
     Cart,
     setCart,
     productData,
-    setProductData
+    setProductData,
   } = useContext(AuthContext);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const Saving = (id) => {
     const Exists = Cart.cars.find((prev) => prev.id === id);
 
@@ -31,7 +31,7 @@ const Booking = (props) => {
           </p>
         );
       });
-    
+
       setShowNotification(true);
     } else {
       console.log("not here");
@@ -52,12 +52,13 @@ const Booking = (props) => {
       setNotification((prev) => {
         return (
           <p>
-            You Have Booked <b> {productData.name}</b> for <b>{productData.days}</b> day
+            You Have Booked <b> {productData.name}</b> for{" "}
+            <b>{productData.days}</b> day
             {productData.days > 1 ? "s" : ""} Succesfully
           </p>
         );
       });
-     
+
       setShowNotification(true);
     }
   };
@@ -74,47 +75,43 @@ const Booking = (props) => {
     <div className=" product fade">
       <Header />
       <div className="product-body">
-
-
         <div className="product-image">
           {" "}
           <img src={productData.picture} />
         </div>
 
-      
         <section className="product-content">
           <div className="booking-content">
             <p>
               Service:<span className="gray">{productData.name}</span>
             </p>
             <p>
-              Description:<span className="gray">{productData.description}</span>
+              Description:
+              <span className="gray">{productData.description}</span>
             </p>
             <p>Price/Day:{productData.amount}</p>
-          <div className="page-input">  <label>Days:</label>
-            <select value={productData.days} name="days" onChange={SetDays}>
-              <option value={""}>Select Number Of Days</option>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-              <option value={6}>6</option>
-              <option value={7}>7</option>
-            </select></div>
+            <div className="page-input">
+              {" "}
+              <label>Days:</label>
+              <select value={productData.days} name="days" onChange={SetDays}>
+                <option value={""}>Select Number Of Days</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+                <option value={6}>6</option>
+                <option value={7}>7</option>
+              </select>
+            </div>
             <div className="product-buttons">
-              <button
-               onClick={()=>navigate(-1)}
-              >
-                Cancel
-              </button>
+              <button onClick={() => navigate(-1)}>Cancel</button>
               <button onClick={() => Saving(productData.id)}>HIRE</button>
             </div>
           </div>
         </section>
       </div>
     </div>
-    
   );
 };
 
