@@ -25,7 +25,7 @@ const Booking = (props) => {
       setNotification((prev) => {
         return (
           <p>
-            You have already booked <b> {filll[0].name} </b> for{" "}
+            You have already <strong>Hired</strong> <b> {filll[0].name} </b> for{" "}
             <b>{filll[0].days}</b> day
             {filll[0].days > 1 ? "s" : ""}
           </p>
@@ -52,7 +52,7 @@ const Booking = (props) => {
       setNotification((prev) => {
         return (
           <p>
-            You Have Booked <b> {productData.name}</b> for{" "}
+            You Have Hired <b> {productData.name}</b> for{" "}
             <b>{productData.days}</b> day
             {productData.days > 1 ? "s" : ""} Succesfully
           </p>

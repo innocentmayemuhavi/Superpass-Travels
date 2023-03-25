@@ -51,6 +51,7 @@ select {
   padding: 10px 20px;
   font-weight: 600;
   height: 50px;
+  background-color: #fff;
 }
 select:focus {
   cursor: pointer;
