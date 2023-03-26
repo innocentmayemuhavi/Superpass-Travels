@@ -39,9 +39,9 @@
   padding: 1px 10px;
   align-items: center;
 }
-.c-d span{
-    text-decoration: line-through;
-    color: gray;
+.c-d span {
+  text-decoration: line-through;
+  color: gray;
 }
 .book-btn {
   width: 100%;
@@ -76,6 +76,6 @@
     gap: 20px;
   }
   .book-btn button {
-    margin: 0 6px;
+    margin: 3px 2px;
   }
 }
