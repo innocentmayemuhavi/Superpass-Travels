@@ -40,6 +40,7 @@
   width: 100%;
   gap: 10px;
   background-color: #fff;
+  margin: 10px 1px;
 }
 
 select {
@@ -81,6 +82,23 @@ select:focus {
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+.inactive{
+  fill: #d1d1d1;
+  border: 2px solid gray;
+  background-color: gray;
+}
+.inactive:hover{
+  background-color: gray;
+  border: 2px solid gray;
+  fill: #d1d1d1;
+}
+
+
+.inactive svg:hover,.inactive svg:focus{
+  fill: #d1d1d1;
+  color: gray;
+  background-color: gray;
 }
 
 @media only screen and (max-width: 1000px) {

@@ -37,7 +37,7 @@
   border-radius: 47x;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1000px) {
   .notification {
     bottom: 0%;
 

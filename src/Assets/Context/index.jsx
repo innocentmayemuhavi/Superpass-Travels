@@ -19,6 +19,9 @@ const AuthContext = createContext({
   setShowNotification: () => {},
   Cart: {
     cars: [],
+    bookings: [],
+    hireAmount: 0,
+    bookingsAmount: 0,
     totalAmount: 0,
   },
   setCart: () => {},
@@ -32,6 +35,8 @@ const AuthContext = createContext({
   settabnumber: () => {},
   productData: {},
   setProductData: () => {},
+  serviceData: {},
+  setServiceData: () => {},
 });
 
 const AuthProvider = ({ children }) => {
@@ -52,14 +57,21 @@ const AuthProvider = ({ children }) => {
   const [tabnumber, settabnumber] = useState(1);
   const [Cart, setCart] = useState({
     cars: [],
+    bookings: [],
+    hireAmount: 0,
+    bookingsAmount: 0,
     totalAmount: 0,
   });
   const [productData, setProductData] = useState({});
+  const [serviceData, setServiceData] = useState({});
   useEffect(() => {
     const savedCart =
       localStorage.getItem("Cart1") === "undefined"
         ? {
             cars: [],
+            bookings: [],
+            hireAmount: 0,
+            bookingsAmount: 0,
             totalAmount: 0,
           }
         : JSON.parse(localStorage.getItem("Cart1"));
@@ -67,7 +79,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (Cart.cars) {
+    if (Cart) {
       localStorage.setItem("Cart1", JSON.stringify(Cart));
     }
   }, [Cart]);
@@ -85,6 +97,20 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem("prod", JSON.stringify(productData));
     }
   }, [productData]);
+
+  useEffect(() => {
+    const savedData1 =
+      localStorage.getItem("serv") === "undefined"
+        ? {}
+        : JSON.parse(localStorage.getItem("serv"));
+    setServiceData(savedData1);
+  }, []);
+
+  useEffect(() => {
+    if (serviceData) {
+      localStorage.setItem("serv", JSON.stringify(serviceData));
+    }
+  }, [serviceData]);
 
   return (
     <AuthContext.Provider
@@ -113,6 +139,8 @@ const AuthProvider = ({ children }) => {
         settabnumber,
         productData,
         setProductData,
+        serviceData,
+        setServiceData,
       }}
     >
       {children}

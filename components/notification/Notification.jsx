@@ -1,13 +1,13 @@
 import { AuthContext } from "../../src/Assets/Context";
 import React, { useEffect } from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./index.css";
 
 const Notifications = () => {
   const { Notification, setShowNotification, showNotification } =
     useContext(AuthContext);
-
+const navigate=useNavigate()
   useEffect(() => {
     setTimeout(() => {
       setShowNotification(false);
@@ -35,20 +35,23 @@ const Notifications = () => {
           <button
             onClick={() => {
               setShowNotification(false);
+              navigate(-2)
             }}
           >
            Cancel
           </button>
         </Link>
-        <Link to={"/cart"}>
+        
+          <Link to={'/cart'}>
           <button
             onClick={() => {
               setShowNotification(false);
+            
             }}
           >
             View Cart
-          </button>
-        </Link>
+          </button></Link>
+       
       </div>
     </section>
   );

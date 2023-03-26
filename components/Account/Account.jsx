@@ -27,7 +27,7 @@ const Account = () => {
         </p>
       </div>
       <div className="cartbtn">
-      {Cart.cars.length>0?  <div className="alert">{Cart.cars.length}</div>:""}
+      {<div className="alert">{Cart.cars.length+Cart.bookings.length}</div>}
       <Link to={'/cart'}> <img
       className="cartbtn"
           src="/images/cart.png"

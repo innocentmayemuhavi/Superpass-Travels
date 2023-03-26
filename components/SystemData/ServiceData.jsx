@@ -1,247 +1,283 @@
- export default [
-
-{
-   picture:"./images/vehicle-caio-apache-vip-v-volksbus-17-230-od-euro-v-2022-on-display-at-the-latbus-2022-show-held-in-the-city-of-so-paulo-2K8W9C9.jpg",
-    id:1,
-   name:"Volks Bus",
-   description:"Volks Bus 2014 Electric ",
-   available:30,
-   price:40000,
-   category:'coach'
-},
-{
-    picture:"./images/taxi 4 seater.jpg",
-    id:2,
-    name:"Taxi four seater",
-    description:"Taxis Painted Yellow With Our Companies logo",
-    available:30,
-    price:8500,
-    category:'cab'
- },
- {
-    picture:"./images/minivan.jpg",
-    id:3,
-    name:"Mini-Van",
-    description:"Taxis Painted Yellow With Our Companies logo",
-    available:30,
-    price:10000,
-    category:'van'
- },
- {
-    picture:"./images/van.jpg",
-    id:4,
-    name:"Matatu-Van",
-    description:"Taxis Painted Yellow With Our Companies logo",
-    available:30,
-    price:15000,
-    category:'van'
- },
- {
-    picture:"./images/motorbike.jpg",
-    id:5,
-    name:"Motor-Bike",
-    description:"Maceedece Bike 2019",
-    available:30,
-    price:3500,
-    category:'bike'
- },
- {
-    picture:"./images/3d-image-of-an-orange-modern-motorbike-EC9NH3.jpg",
-    id:6,
-    name:"Modern Bike",
-    description:"orange-modern-motorbike-EC9NH3",
-    available:30,
-    price:23000,
-    category:'bike'
- },
- {
-   picture:"./images/2014-mercedes-benz-sprinter-516-cdi-executive-mini-bus-travel-mercedes-benz-21cdi-516-sprinter-travelling-on-the-m6-motorway-uk-2JT01NX.jpg",
-   id:7,
-   name:"mercedes-benz-21cdi-516-sprinter",
-   description:"mercedes-benz-21cdi-516-sprinter-travelling-on-the-m6-motorway-uk-2JT01NX",
-   available:30,
-   price:13000,
-   category:'van'
-},
-{
-   picture:"./images/a-modern-inzar-scania-single-deck-tourism-coach-parked-beside-the-canal-in-devizes-wiltshire-england-uk-MAX008.jpg",
-   id:9,
-   name:"Modern-inzar-scania-single-deck",
-   description:"A-modern-inzar-scania-single-deck-tourism-coach",
-   available:30,
-   price:43000,
-   category:'coach'
-},
-{
-   picture:"./images/a-us-made-victory-motorbike-BD8EWY.jpg",
-   id:10,
-   name:"Victory-motorbike",
-   description:"Victory-motorbike",
-   available:30,
-   price:6500,
-   category:'bike'
-},
-{
-   picture:"./images/campsite.jpg",
-   id:11,
-   name:"Campsite Old School Van",
-   description:"Wish 2003 model gray",
-   available:30,
-   price:9500,
-   category:'vintage'
-},
-{
-   picture:"./images/beautiful-green-ford-f1-v8-pickup-truck-early-1950s-and-people-enjoying-the-ride-on-salon-maisema-cruising-2019-salo-finland-may-18-2019-2DC7H11.jpg",
-   id:12,
-   name:"Ford-F1-v8-pickup-truck",
-   description:"beautiful-green-ford-f1-v8-pickup-truck",
-   available:30,
-   price:35000,
-   category:'vintage'
-},
-{
-   picture:"./images/black-pontiac-bonneville-4-door-hardtop-mid-1960s-and-people-enjoying-the-ride-on-salon-maisema-cruising-2019-salo-finland-may-18-2019-2DC39PJ.jpg",
-   id:13,
-   name:"pontiac-bonneville-4-door",
-   description:"black-pontiac-bonneville-4-door",
-   available:30,
-   price:35700,
-   category:'vintage'
-},
-{
-   picture:"./images/compact-minibus-isolated-on-white-background-H4NXJ4 (1).jpg",
-   id:14,
-   name:"Compact-minibus",
-   description:"compact-minibus-20-seater",
-   available:30,
-   price:43500,
-   category:'van'
-},
-{
-   picture:"./images/dark-blue-minibus-isolated-on-white-background-HACEH9.jpg",
-   id:15,
-   name:"Compact-minibus",
-   description:"Dark-blue-minibus",
-   available:30,
-   price:41300,
-   category:'van'
-},
-{
-   picture:"./images/isuzu-grand-toro-intercity-bus-presented-at-the-hannover-iaa-transportation-motor-show-germany-september-20-2022-2K3HXJF.jpg",
-   id:16,
-   name:"isuzu-grand-toro-intercity-bus",
-   description:"isuzu-grand-toro-intercity-bus",
-   available:30,
-   price:50900,
-   category:'coach'
-},
-{
-   picture:"./images/jokioinen-finland-december-3-2016-white-mercedes-benz-sprinter-minibus-HTXRP2.jpg",
-   id:17,
-   name:"Compact-minibus",
-   description:"compact-minibus-22-seater",
-   available:30,
-   price:43400,
-   category:'van'
-},
-{
-   picture:"./images/new-bmw-concept-e-bike-e-bike-electric-scooter-on-the-iaa-2011-international-C79PYB.jpg",
-   id:18,
-   name:"Bmw-concept-e-bike",
-   description:"new-bmw-concept-e-bike-e-bike-electric-scooter",
-   available:30,
-   price:13400,
-   category:'bike'
-},
-{
-   picture:"./images/paimio-finland-august-19-2016-white-neoplan-tourliner-coach-bus-moves-HXT3H3.jpg",
-   id:19,
-   name:"White-neoplan-tourliner-coach-bus",
-   description:"White-neoplan-tourliner-coach-bus",
-   available:30,
-   price:53400,
-   category:'coach'
-},
-{
-   picture:"./images/paimio-finland-august-19-2016-white-renault-trucks-t-semi-hauls-schmitz-HXX3M7.jpg",
-   id:20,
-   name:"white-renault-trucks-t-semi-hauls-schmitz",
-   description:"white-renault-trucks-t-semi-hauls-schmitz",
-   available:30,
-   price:30400,
-   category:'transist'
-},
-{
-   picture:"./images/red-motorbike-isolated-on-white-background-rear-view-H5247N.jpg",
-   id:21,
-   name:"red-motorbike",
-   description:"red-motorbike-scooter",
-   available:30,
-   price:7400,
-   category:'bike'
-},
-{
-   picture:"./images/salo-finland-june-14-2014-black-mercedes-benz-travego-bus-stops-at-KYRF9N.jpg",
-   id:22,
-   name:"black-mercedes-benz",
-   description:"black-mercedes-benz",
-   available:30,
-   price:33400,
-   category:'coach'
-},
-{
-   picture:"./images/salo-finland-may-18-2019-black-1940s-oldsmobile-among-ca-450-vintage-cars-gathering-to-salo-market-square-for-salon-maisema-cruising-2019-TA897H.jpg",
-   id:23,
-   name:"vintage-cars-voxy",
-   description:"vintage-cars-voxy",
-   available:30,
-   price:20400,
-   category:'vintage'
-},
-{
-   picture:"./images/setra-coach-electric-vehicle-on-charge-in-southampton-city-centre-2GD80Y7.jpg",
-   id:24,
-   name:"setra-coach-electric-vehicle",
-   description:"setra-coach-electric-vehicle",
-   available:30,
-   price:38700,
-   category:'coach'
-},
-{
-   picture:"./images/white-coach-bus-on-the-road-at-summer-KNM886 (1).jpg",
-   id:25,
-   name:"white-coach-bus",
-   description:"white-coach-bus-52-seater",
-   available:30,
-   price:34200,
-   category:'coach'
-},
-{
-   picture:"./images/turku-finland-march-18-2017-modern-hobby-excellent-camper-caravans-HWHHB9.jpg",
-   id:26,
-   name:"modern-hobby-excellent-camper-caravans",
-   description:"modern-hobby-excellent-camper-caravans",
-   available:30,
-   price:10720,
-   category:'caravan'
-},
-{
-   picture:"./images/white-coach-bus-travelling-along-rural-highway-in-winter-snowfall-2AXP0EJ.jpg",
-   id:27,
-   name:"white-coach-bus-electric-vehicle",
-   description:"white-coach-bus-electric-vehicle-64-seater",
-   available:30,
-   price:38700,
-   category:'coach'
-},
-{
-   picture:"./images/white-coach-bus-travels-along-highway-at-sunset-time-in-the-summer-2CD07T8.jpg",
-   id:28,
-   name:"white-coach",
-   description:"white-coach-bus-vehicle-56-seater",
-   available:30,
-   price:40000,
-   category:'coach'
-},
- 
- ]
+export default [
+  {
+    picture:
+      "./images/vehicle-caio-apache-vip-v-volksbus-17-230-od-euro-v-2022-on-display-at-the-latbus-2022-show-held-in-the-city-of-so-paulo-2K8W9C9.jpg",
+    id: 1,
+    name: "Volks Bus",
+    description: "Volks Bus 2014 Electric ",
+    available: 30,
+    price: 40000,
+    category: "coach",
+    trips: 2,
+    offer: 12,
+  },
+  {
+    picture: "./images/taxi 4 seater.jpg",
+    id: 2,
+    name: "Taxi four seater",
+    description: "Taxis Painted Yellow With Our Companies logo",
+    available: 30,
+    price: 8500,
+    category: "cab",
+  },
+  {
+    picture: "./images/minivan.jpg",
+    id: 3,
+    name: "Mini-Van",
+    description: "Taxis Painted Yellow With Our Companies logo",
+    available: 30,
+    price: 10000,
+    category: "van",
+  },
+  {
+    picture: "./images/van.jpg",
+    id: 4,
+    name: "Matatu-Van",
+    description: "Taxis Painted Yellow With Our Companies logo",
+    available: 30,
+    price: 15000,
+    category: "van",
+  },
+  {
+    picture: "./images/motorbike.jpg",
+    id: 5,
+    name: "Motor-Bike",
+    description: "Maceedece Bike 2019",
+    available: 30,
+    price: 3500,
+    category: "bike",
+  },
+  {
+    picture: "./images/3d-image-of-an-orange-modern-motorbike-EC9NH3.jpg",
+    id: 6,
+    name: "Modern Bike",
+    description: "orange-modern-motorbike-EC9NH3",
+    available: 30,
+    price: 23000,
+    category: "bike",
+  },
+  {
+    picture:
+      "./images/2014-mercedes-benz-sprinter-516-cdi-executive-mini-bus-travel-mercedes-benz-21cdi-516-sprinter-travelling-on-the-m6-motorway-uk-2JT01NX.jpg",
+    id: 7,
+    name: "mercedes-benz-21cdi-516-sprinter",
+    description:
+      "mercedes-benz-21cdi-516-sprinter-travelling-on-the-m6-motorway-uk-2JT01NX",
+    available: 30,
+    price: 13000,
+    category: "van",
+  },
+  {
+    picture:
+      "./images/a-modern-inzar-scania-single-deck-tourism-coach-parked-beside-the-canal-in-devizes-wiltshire-england-uk-MAX008.jpg",
+    id: 9,
+    name: "Modern-inzar-scania-single-deck",
+    description: "A-modern-inzar-scania-single-deck-tourism-coach",
+    available: 30,
+    price: 43000,
+    category: "coach",
+    trips: 3,
+    offer: 7,
+  },
+  {
+    picture: "./images/a-us-made-victory-motorbike-BD8EWY.jpg",
+    id: 10,
+    name: "Victory-motorbike",
+    description: "Victory-motorbike",
+    available: 30,
+    price: 6500,
+    category: "bike",
+  },
+  {
+    picture: "./images/campsite.jpg",
+    id: 11,
+    name: "Campsite Old School Van",
+    description: "Wish 2003 model gray",
+    available: 30,
+    price: 9500,
+    category: "vintage",
+  },
+  {
+    picture:
+      "./images/beautiful-green-ford-f1-v8-pickup-truck-early-1950s-and-people-enjoying-the-ride-on-salon-maisema-cruising-2019-salo-finland-may-18-2019-2DC7H11.jpg",
+    id: 12,
+    name: "Ford-F1-v8-pickup-truck",
+    description: "beautiful-green-ford-f1-v8-pickup-truck",
+    available: 30,
+    price: 35000,
+    category: "vintage",
+  },
+  {
+    picture:
+      "./images/black-pontiac-bonneville-4-door-hardtop-mid-1960s-and-people-enjoying-the-ride-on-salon-maisema-cruising-2019-salo-finland-may-18-2019-2DC39PJ.jpg",
+    id: 13,
+    name: "pontiac-bonneville-4-door",
+    description: "black-pontiac-bonneville-4-door",
+    available: 30,
+    price: 35700,
+    category: "vintage",
+  },
+  {
+    picture:
+      "./images/compact-minibus-isolated-on-white-background-H4NXJ4 (1).jpg",
+    id: 14,
+    name: "Compact-minibus",
+    description: "compact-minibus-20-seater",
+    available: 30,
+    price: 43500,
+    category: "van",
+  },
+  {
+    picture:
+      "./images/dark-blue-minibus-isolated-on-white-background-HACEH9.jpg",
+    id: 15,
+    name: "Compact-minibus",
+    description: "Dark-blue-minibus",
+    available: 30,
+    price: 41300,
+    category: "van",
+  },
+  {
+    picture:
+      "./images/isuzu-grand-toro-intercity-bus-presented-at-the-hannover-iaa-transportation-motor-show-germany-september-20-2022-2K3HXJF.jpg",
+    id: 16,
+    name: "isuzu-grand-toro-intercity-bus",
+    description: "isuzu-grand-toro-intercity-bus",
+    available: 30,
+    price: 50900,
+    category: "coach",
+    trips: 3,
+    offer: 12,
+  },
+  {
+    picture:
+      "./images/jokioinen-finland-december-3-2016-white-mercedes-benz-sprinter-minibus-HTXRP2.jpg",
+    id: 17,
+    name: "Compact-minibus",
+    description: "compact-minibus-22-seater",
+    available: 30,
+    price: 43400,
+    category: "van",
+  },
+  {
+    picture:
+      "./images/new-bmw-concept-e-bike-e-bike-electric-scooter-on-the-iaa-2011-international-C79PYB.jpg",
+    id: 18,
+    name: "Bmw-concept-e-bike",
+    description: "new-bmw-concept-e-bike-e-bike-electric-scooter",
+    available: 30,
+    price: 13400,
+    category: "bike",
+  },
+  {
+    picture:
+      "./images/paimio-finland-august-19-2016-white-neoplan-tourliner-coach-bus-moves-HXT3H3.jpg",
+    id: 19,
+    name: "White-neoplan-tourliner-coach-bus",
+    description: "White-neoplan-tourliner-coach-bus",
+    available: 30,
+    price: 53400,
+    category: "coach",
+    trips: 1,
+    offer: 5,
+  },
+  {
+    picture:
+      "./images/paimio-finland-august-19-2016-white-renault-trucks-t-semi-hauls-schmitz-HXX3M7.jpg",
+    id: 20,
+    name: "white-renault-trucks-t-semi-hauls-schmitz",
+    description: "white-renault-trucks-t-semi-hauls-schmitz",
+    available: 30,
+    price: 30400,
+    category: "transist",
+  },
+  {
+    picture:
+      "./images/red-motorbike-isolated-on-white-background-rear-view-H5247N.jpg",
+    id: 21,
+    name: "red-motorbike",
+    description: "red-motorbike-scooter",
+    available: 30,
+    price: 7400,
+    category: "bike",
+  },
+  {
+    picture:
+      "./images/salo-finland-june-14-2014-black-mercedes-benz-travego-bus-stops-at-KYRF9N.jpg",
+    id: 22,
+    name: "black-mercedes-benz",
+    description: "black-mercedes-benz",
+    available: 30,
+    price: 33400,
+    category: "coach",
+    trips: 3,
+    offer: 17,
+  },
+  {
+    picture:
+      "./images/salo-finland-may-18-2019-black-1940s-oldsmobile-among-ca-450-vintage-cars-gathering-to-salo-market-square-for-salon-maisema-cruising-2019-TA897H.jpg",
+    id: 23,
+    name: "vintage-cars-voxy",
+    description: "vintage-cars-voxy",
+    available: 30,
+    price: 20400,
+    category: "vintage",
+  },
+  {
+    picture:
+      "./images/setra-coach-electric-vehicle-on-charge-in-southampton-city-centre-2GD80Y7.jpg",
+    id: 24,
+    name: "setra-coach-electric-vehicle",
+    description: "setra-coach-electric-vehicle",
+    available: 30,
+    price: 38700,
+    category: "coach",
+    trips: 3,
+    offer: 11,
+  },
+  {
+    picture: "./images/white-coach-bus-on-the-road-at-summer-KNM886 (1).jpg",
+    id: 25,
+    name: "white-coach-bus",
+    description: "white-coach-bus-52-seater",
+    available: 30,
+    price: 34200,
+    category: "coach",
+    trips: 3,
+    offer: 20,
+  },
+  {
+    picture:
+      "./images/turku-finland-march-18-2017-modern-hobby-excellent-camper-caravans-HWHHB9.jpg",
+    id: 26,
+    name: "modern-hobby-excellent-camper-caravans",
+    description: "modern-hobby-excellent-camper-caravans",
+    available: 30,
+    price: 10720,
+    category: "caravan",
+  },
+  {
+    picture:
+      "./images/white-coach-bus-travelling-along-rural-highway-in-winter-snowfall-2AXP0EJ.jpg",
+    id: 27,
+    name: "white-coach-bus-electric-vehicle",
+    description: "white-coach-bus-electric-vehicle-64-seater",
+    available: 30,
+    price: 38700,
+    category: "coach",
+    trips: 3,
+    offer: 15,
+  },
+  {
+    picture:
+      "./images/white-coach-bus-travels-along-highway-at-sunset-time-in-the-summer-2CD07T8.jpg",
+    id: 28,
+    name: "white-coach",
+    description: "white-coach-bus-vehicle-56-seater",
+    available: 30,
+    price: 40000,
+    category: "coach",
+    trips: 2,
+    offer: 10,
+  },
+];

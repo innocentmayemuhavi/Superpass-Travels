@@ -43,6 +43,7 @@ const ServiceCardEl = (props) => {
           <span className="gray">{props.price.toLocaleString()}</span>
         </p>
       </div>
+
     </div>
   );
 };

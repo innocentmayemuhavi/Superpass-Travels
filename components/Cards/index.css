@@ -30,6 +30,60 @@
   cursor: pointer;
 }
 
+.booking-card {
+  max-height: 300px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.23);
+  cursor: pointer;
+
+ 
+}
+.booking-card-image {
+  height: 230px;
+  width: 100%;
+  background-color: #fff;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.booking-card-image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.booking-card-data h3 {
+  font-size: 20px;
+  text-transform: capitalize;
+}
+.offer-tag{
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  background-color:#fff ;
+  box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.4);
+  padding: 3px 10px;
+  height: 30px;
+  line-height: 1;
+  border-radius: 10px;
+}
+
+.trips-tag{
+  
+
+  background-color:#fff ;
+  box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.4);
+  padding: 3px 10px;
+  height: 30px;
+  line-height: 1;
+  border-radius: 10px;
+}
+.offer-tag p,.trips-tag p{
+  font-weight: 700;
+  color: green;
+  margin: 1px;
+  font-size: 16px;
+}
 @media only screen and (max-width: 700px) {
   .service-picture {
     width: 100%;

@@ -14,10 +14,25 @@ const Booking = (props) => {
     productData,
     setProductData,
   } = useContext(AuthContext);
+  const systemDataUpdata = () => {
+    setCart((prev) => {
+      return {
+        ...prev,
+        cars: prev.cars,
+        bookingsAmount: prev.bookings.reduce((prev, current) => {
+          return prev + current.toBePaid;
+        }, 0),
+        hireAmount: prev.cars.reduce((prev, current) => {
+          return prev + current.days * current.amount;
+        }, 0),
+        totalAmount: prev.hireAmount + prev.bookingsAmount,
+      };
+    });
+  };
   const navigate = useNavigate();
   const Saving = (id) => {
     const Exists = Cart.cars.find((prev) => prev.id === id);
-
+    systemDataUpdata();
     if (Exists) {
       let filll = Cart.cars.filter((data) => data.id === id);
       console.log(filll[0].id);
@@ -31,7 +46,7 @@ const Booking = (props) => {
           </p>
         );
       });
-
+      systemDataUpdata();
       setShowNotification(true);
     } else {
       console.log("not here");
@@ -43,11 +58,12 @@ const Booking = (props) => {
         return {
           ...prev,
           cars: newOrder,
-          totalAmount: newOrder.reduce((prev, current) => {
+          hireAmount: newOrder.reduce((prev, current) => {
             return prev + current.amount * current.days;
           }, 0),
         };
       });
+      systemDataUpdata();
       console.log(Cart);
       setNotification((prev) => {
         return (
@@ -58,9 +74,10 @@ const Booking = (props) => {
           </p>
         );
       });
-
+      systemDataUpdata();
       setShowNotification(true);
     }
+    systemDataUpdata();
   };
 
   const SetDays = (event) => {

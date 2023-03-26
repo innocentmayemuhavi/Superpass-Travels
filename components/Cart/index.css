@@ -4,6 +4,9 @@ table {
   border-collapse: collapse;
   margin: 12px 0;
 }
+td{
+ 
+}
 .order-picture {
   width: 60px;
   height: 60px;
@@ -42,7 +45,20 @@ table {
   background-color: black;
   right: 86px;
 }
-
+.cart-header{
+  width: 100%;
+  text-align: center;
+}
+.c-footer{
+  text-align: right;
+  width: 100%;
+  padding: 1px 10%;
+}
+.booking-cart{
+  padding: 1px 10px;
+ 
+  transition: 2s;
+}
 @media only screen and (max-width: 1000px) {
   .Cart {
     padding-top: 65px;
@@ -50,6 +66,9 @@ table {
   .amt-operation {
     padding: 7px;
     margin: 5px;
+  }
+  .booking-cart{
+    padding: 1px 2px;
   }
 }
 @media only screen and (max-width: 700px) {
@@ -62,5 +81,8 @@ table {
   }
   .amt-operation svg:hover {
     fill: #fff;
+  }
+  td{
+    font-size: 13px;
   }
 }
