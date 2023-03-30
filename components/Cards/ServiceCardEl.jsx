@@ -26,7 +26,7 @@ const ServiceCardEl = (props) => {
       }
     >
       <div className="service-picture">
-        <Link to={'/service'}><img src={props.picture} alt="Picture" /></Link>
+        <Link to={'/service'}><img src={props.picture} alt="Picture"  /></Link>
       </div>
       <div className="service-content">
         <p>

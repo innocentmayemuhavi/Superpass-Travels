@@ -1,5 +1,5 @@
 import { updateLocale } from "moment/moment";
-import { useContext } from "react";
+import { lazy, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
 
@@ -29,7 +29,7 @@ const BookingCard = (props) => {
         updatedata()
     }}>
       <div className="booking-card-image">
-        <Link to={'/servicepage'}><img src={props.picture}></img></Link>
+        <Link to={'/servicepage'}><img src={props.picture} loading={lazy}></img></Link>
       </div>
 
       <div className="booking-card-data">

@@ -128,7 +128,7 @@ const Cart = () => {
     return (
       <tr key={data.id}>
         <td>
-          <img className="order-picture" src={data.picture}></img>
+          <img className="order-picture" src={data.picture} ></img>
         </td>
         <td>
           <Link to={"/service"} onClick={() => setProductData({ ...data })}>
@@ -184,7 +184,7 @@ const Cart = () => {
     return (
       <tr key={data.id}>
         <td>
-          <img className="order-picture" src={data.picture}></img>
+          <img className="order-picture" src={data.picture} ></img>
         </td>
         <td>
           <Link to={"/servicepage"} onClick={() => setServiceData({ ...data })}>

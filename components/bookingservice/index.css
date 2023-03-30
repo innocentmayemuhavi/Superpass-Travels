@@ -51,7 +51,7 @@
 }
 .book-btn button {
   min-width: 140px;
-  margin: 1px 17px;
+  margin: 1px 12px;
 }
 
 @media only screen and (max-width: 1000px) {

@@ -6,6 +6,8 @@ import { Cart } from "../Cart/Cart";
 import { Route, Routes } from "react-router-dom";
 import { Booking } from "../Booking/Booking";
 import BookingService from "../bookingservice";
+import ContactPage from "../ContactPage";
+import About from "../AboutPage";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -16,7 +18,8 @@ const AppRoutes = () => {
       <Route path="/carbooking" element={<CarBookingPage />} />
       <Route path="/service" element={<Booking />} />
       <Route path="/servicepage" element={<BookingService />} />
-      
+      <Route path="/contact" element={<ContactPage/>} />
+      <Route path="/about" element={<About/>} />
     </Routes>
   );
 };
