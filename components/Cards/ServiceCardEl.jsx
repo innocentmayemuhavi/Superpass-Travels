@@ -3,30 +3,26 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
 import "./index.css";
 const ServiceCardEl = (props) => {
-  const {  setProductData } =
-    useContext(AuthContext);
+  const { setProductData, isloggedin } = useContext(AuthContext);
 
-
- 
   return (
     <div
       className="service"
       onClick={() =>
-        setProductData(
-          {
-            id: props.id,
-            picture: props.picture,
-            name: props.name,
-            description: props.description,
-            days:1,
-            amount:props.price
-           
-          }
-        )
+        setProductData({
+          id: props.id,
+          picture: props.picture,
+          name: props.name,
+          description: props.description,
+          days: 1,
+          amount: props.price,
+        })
       }
     >
       <div className="service-picture">
-        <Link to={'/service'}><img src={props.picture} alt="Picture"  /></Link>
+        <Link to={isloggedin ? "/service" : "/login"}>
+          <img src={props.picture} alt="Picture" />
+        </Link>
       </div>
       <div className="service-content">
         <p>
@@ -43,7 +39,6 @@ const ServiceCardEl = (props) => {
           <span className="gray">{props.price.toLocaleString()}</span>
         </p>
       </div>
-
     </div>
   );
 };

@@ -2,9 +2,9 @@ import { createContext, useEffect, useState } from "react";
 
 const AuthContext = createContext({
   user: {
-    id: 401839,
-    name: "Iris Maye",
-    email: "irismaye@gmail.com",
+    id: 0,
+    name: "",
+    email: "",
     password: 1234,
   },
   setUser: () => {},
@@ -37,13 +37,17 @@ const AuthContext = createContext({
   setProductData: () => {},
   serviceData: {},
   setServiceData: () => {},
+  systemUsers: {
+    customers:[]
+  },
+  setSystemUsers: () => {},
 });
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({
-    id: 401839,
-    name: "Iris Maye",
-    email: "irismaye@gmail.com",
+    id: 0,
+    name: "",
+    email: "",
     password: 1234,
   });
   const [isloggedin, setisLoggedin] = useState(false);
@@ -64,6 +68,8 @@ const AuthProvider = ({ children }) => {
   });
   const [productData, setProductData] = useState({});
   const [serviceData, setServiceData] = useState({});
+  const [systemUsers, setSystemUsers] = useState( {customers:[]});
+
   useEffect(() => {
     const savedCart =
       localStorage.getItem("Cart1") === "undefined"
@@ -83,6 +89,21 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem("Cart1", JSON.stringify(Cart));
     }
   }, [Cart]);
+
+  
+  useEffect(() => {
+    const savedusers =
+      localStorage.getItem("cust") === "undefined"
+        ? {}
+        : JSON.parse(localStorage.getItem("cust"));
+    setSystemUsers(savedusers);
+  }, []);
+
+  useEffect(() => {
+    if (systemUsers) {
+      localStorage.setItem("cust", JSON.stringify(systemUsers));
+    }
+  }, [systemUsers]);
 
   useEffect(() => {
     const savedData =
@@ -141,6 +162,8 @@ const AuthProvider = ({ children }) => {
         setProductData,
         serviceData,
         setServiceData,
+       systemUsers,
+       setSystemUsers
       }}
     >
       {children}

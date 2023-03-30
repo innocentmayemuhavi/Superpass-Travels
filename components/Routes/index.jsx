@@ -8,11 +8,13 @@ import { Booking } from "../Booking/Booking";
 import BookingService from "../bookingservice";
 import ContactPage from "../ContactPage";
 import About from "../AboutPage";
+import { SignUp } from "../signup";
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/carhire" element={<CarHirePage />} />
       <Route path="/carbooking" element={<CarBookingPage />} />

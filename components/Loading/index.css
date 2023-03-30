@@ -1,0 +1,9 @@
+.loading-page {
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+}
+.loading-box{
+    align-self: center;
+}

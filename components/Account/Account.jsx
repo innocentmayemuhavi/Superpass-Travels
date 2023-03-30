@@ -5,7 +5,7 @@ import "./index.css"
 import { Button } from "../Button/Index";
 
 const Account = () => {
-  const { setShowaccount,Cart,user } = useContext(AuthContext);
+  const { setShowaccount,Cart,user,isloggedin } = useContext(AuthContext);
 
 
 
@@ -34,7 +34,7 @@ const Account = () => {
         /></Link>
        
       </div> <Link to={'/login'}>
-      <Button text='Log out' class=''/>
+      <Button text={isloggedin?'Log Out':'Login'} class=''/>
         </Link>
     </section>
   );

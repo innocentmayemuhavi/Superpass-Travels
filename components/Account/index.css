@@ -1,5 +1,5 @@
 
-.account > img {
+.account > svg {
     height: 50px;
     width: 50px;
     border-radius: 100%;
@@ -7,6 +7,9 @@
     cursor: pointer;
   }
   
+  .account svg:hover{
+    fill: black;
+  }
 .accountsection {
     position: fixed;
     background-color: ghostwhite;
@@ -19,6 +22,7 @@
     box-shadow: 2px 2px 8px rgb(0, 0, 0, 0.3);
     overflow-y: auto;
     transition: 2s;
+    width: 220px;
  
   }
   .cancel{
