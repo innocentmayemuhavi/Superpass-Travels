@@ -267,7 +267,7 @@ const Cart = () => {
           <p>
             <b>Total Amount:.</b> Ksh. {Math.round(Cart.totalAmount).toLocaleString()}
           </p>
-          <div><Button text="Close Cart" onClick={() => navigate(-2)} />
+          <div><Button text="Close Cart" onClick={() => navigate('/')} />
           <Button text="Checkout" onClick={() => navigate(-2)} /></div>
         </div>
       </section>

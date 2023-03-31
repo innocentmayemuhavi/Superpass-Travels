@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     if (document.readyState === "complete") {
       console.log("loaded");
-      setInterval(()=>setisLoading(false),2000)
+      setInterval(() => setisLoading(false), 2000);
     } else {
       console.log("loading");
       setisLoading(true);

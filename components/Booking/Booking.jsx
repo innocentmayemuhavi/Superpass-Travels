@@ -13,6 +13,7 @@ const Booking = (props) => {
     setCart,
     productData,
     setProductData,
+    user
   } = useContext(AuthContext);
   const systemDataUpdata = () => {
     setCart((prev) => {
@@ -84,7 +85,10 @@ const Booking = (props) => {
     const { name, value } = event.target;
 
     setProductData((prev) => {
-      return { ...prev, [name]: value * 1 };
+      return { ...prev, 
+        [name]: value * 1 ,
+        user:user.email
+      };
     });
   };
 

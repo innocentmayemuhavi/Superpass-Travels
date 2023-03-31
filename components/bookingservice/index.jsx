@@ -14,6 +14,7 @@ const BookingService = () => {
     setNotification,
     setShowNotification,
     showNotification,
+    user,
   } = useContext(AuthContext);
   const navigate = useNavigate();
   const systemDataUpdata = () => {
@@ -45,6 +46,7 @@ const BookingService = () => {
           return {
             ...prev,
             [name]: value,
+            user: user.email,
           };
         });
       }

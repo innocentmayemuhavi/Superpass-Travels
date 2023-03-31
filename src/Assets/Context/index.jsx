@@ -38,7 +38,7 @@ const AuthContext = createContext({
   serviceData: {},
   setServiceData: () => {},
   systemUsers: {
-    customers:[]
+    customers: [],
   },
   setSystemUsers: () => {},
 });
@@ -68,7 +68,7 @@ const AuthProvider = ({ children }) => {
   });
   const [productData, setProductData] = useState({});
   const [serviceData, setServiceData] = useState({});
-  const [systemUsers, setSystemUsers] = useState( {customers:[]});
+  const [systemUsers, setSystemUsers] = useState({ customers: [] });
 
   useEffect(() => {
     const savedCart =
@@ -90,7 +90,6 @@ const AuthProvider = ({ children }) => {
     }
   }, [Cart]);
 
-  
   useEffect(() => {
     const savedusers =
       localStorage.getItem("cust") === "undefined"
@@ -105,6 +104,33 @@ const AuthProvider = ({ children }) => {
     }
   }, [systemUsers]);
 
+  useEffect(() => {
+    const saveduser =
+      localStorage.getItem("userdata") === "undefined"
+        ? {}
+        : JSON.parse(localStorage.getItem("userdata"));
+    setUser(saveduser);
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("userdata", JSON.stringify(user));
+    }
+  }, [user]);
+
+  useEffect(() => {
+    const save =
+      localStorage.getItem("loggedin") === "undefined"
+        ? [false]
+        : JSON.parse(localStorage.getItem("loggedin"));
+    setisLoggedin(save);
+  }, []);
+
+  useEffect(() => {
+    if (isloggedin) {
+      localStorage.setItem("loggedin", JSON.stringify(isloggedin));
+    }
+  }, [isloggedin]);
   useEffect(() => {
     const savedData =
       localStorage.getItem("prod") === "undefined"
@@ -162,8 +188,8 @@ const AuthProvider = ({ children }) => {
         setProductData,
         serviceData,
         setServiceData,
-       systemUsers,
-       setSystemUsers
+        systemUsers,
+        setSystemUsers,
       }}
     >
       {children}
