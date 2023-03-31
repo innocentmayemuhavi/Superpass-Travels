@@ -33,7 +33,9 @@ const Account = () => {
         </div>
       )}
       <div className="cartbtn">
-        {<div className="alert">{Cart.cars.length + Cart.bookings.length}</div>}
+        {isloggedin && (
+          <div className="alert">{Cart.cars.length + Cart.bookings.length}</div>
+        )}
         <Link to={isloggedin ? "/cart" : "/login"}>
           {" "}
           <img className="cartbtn" src="/images/cart.png" />
