@@ -32,7 +32,8 @@ const ServiceCardEl = (props) => {
           Available: <span className="gray">{props.available}</span>
         </p>
         <p>
-          Description: <span className="gray">{props.description}</span>
+          Description:{" "}
+          <span className="gray">{props.description.slice(0, 17) + "..."}</span>
         </p>
         <p>
           Price/Day:{" "}

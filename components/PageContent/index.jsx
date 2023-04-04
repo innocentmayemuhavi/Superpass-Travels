@@ -1,9 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../Button/Index";
 import { QuickNav } from "../QuickNavigation";
 import "./index.css";
 const Content = () => {
+
+  const navigate=useNavigate()
   const View = () => {
     console.log("Clicked");
+    navigate('/whatwedo')
   };
   return (
     <section className="main">
@@ -25,7 +29,7 @@ const Content = () => {
             travelling services.
           </p>
           <p>It also provides delivery services.</p>
-          <Button text="View Services" onClick={View} />
+          <Button text="View Services" onClick={()=>navigate('/ourservices')} />
         </div>
       </div>
       <div className="ourservices">
@@ -39,7 +43,7 @@ const Content = () => {
           <p>We offer different services to users at a convinient cost.</p>
           <p>some of the services are...</p>
 
-          <Button text="Expolore" onClick={View} type="button" />
+          <Button text="Expolore"  onClick={()=>navigate('/whatwedo')} type="button" />
         </div>
         <div className="card-image">
           <img

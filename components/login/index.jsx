@@ -4,8 +4,14 @@ import { AuthContext } from "../../src/Assets/Context";
 import "./index.css";
 
 const Login = () => {
-  const { setisLoading, setisLoggedin, setUser, user, systemUsers,setShowaccount } =
-    useContext(AuthContext);
+  const {
+    setisLoading,
+    setisLoggedin,
+    setUser,
+    user,
+    systemUsers,
+    setShowaccount,
+  } = useContext(AuthContext);
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -19,18 +25,18 @@ const Login = () => {
     );
 
     if (exist) {
-
-        const fill=systemUsers.customers.filter(data1=>data1.password===data.password)
-        console.log(systemUsers.customers)
-        console.log(fill[0])
+      const fill = systemUsers.customers.filter(
+        (data1) => data1.email === data.email
+      );
+      console.log(systemUsers.customers);
+      console.log(fill[0]);
       if (fill[0].password === data.password) {
-        setUser(fill[0])
-        setisLoggedin(true)
-        setUser(fill[0])
+        setUser(fill[0]);
+        setisLoggedin(true);
+        setUser(fill[0]);
         navigate("/");
-        setWarning('')
-        setShowaccount(false)
-
+        setWarning("");
+        setShowaccount(false);
       } else {
         setWarning("Wrong Email Or Password");
       }
@@ -67,7 +73,6 @@ const Login = () => {
           type={"password"}
           placeholder="Password"
           required={true}
-         
           name="password"
           value={data.password}
           onChange={handleData}

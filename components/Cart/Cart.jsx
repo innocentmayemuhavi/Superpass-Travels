@@ -6,9 +6,10 @@ import { Footer } from "../footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../Button/Index";
 const Cart = () => {
-  const { Cart, setCart, setProductData, setServiceData } =
+  const { Cart, setCart, setProductData,cloudData } =
     useContext(AuthContext);
   const navigate = useNavigate();
+  console.log(cloudData)
   const systemDataUpdata1 = () => {
     setCart((prev) => {
       return {

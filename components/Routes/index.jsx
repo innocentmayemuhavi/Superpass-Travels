@@ -9,6 +9,8 @@ import BookingService from "../bookingservice";
 import ContactPage from "../ContactPage";
 import About from "../AboutPage";
 import { SignUp } from "../signup";
+import { WhatWeDo } from "../Whatwedo";
+import { OurServices } from "../OurServices";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -20,8 +22,10 @@ const AppRoutes = () => {
       <Route path="/carbooking" element={<CarBookingPage />} />
       <Route path="/service" element={<Booking />} />
       <Route path="/servicepage" element={<BookingService />} />
-      <Route path="/contact" element={<ContactPage/>} />
-      <Route path="/about" element={<About/>} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/whatwedo" element={<WhatWeDo />} />
+      <Route path="/ourservices" element={<OurServices />} />
     </Routes>
   );
 };

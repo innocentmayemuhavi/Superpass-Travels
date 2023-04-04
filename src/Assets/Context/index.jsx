@@ -1,4 +1,22 @@
 import { createContext, useEffect, useState } from "react";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+import {
+  getDatabase,
+  ref,
+  onValue,
+  update,
+  set,
+} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+
+const appSettings = {
+  databaseUrl: "https://superpasstravels-default-rtdb.firebaseio.com/",
+  projectId: "superpasstravels",
+};
+
+const app = initializeApp(appSettings);
+const dB = getDatabase(app);
+
+const dataList = ref(dB, "data");
 
 const AuthContext = createContext({
   user: {
@@ -25,6 +43,14 @@ const AuthContext = createContext({
     totalAmount: 0,
   },
   setCart: () => {},
+  cloudData: {
+    cars: [],
+    bookings: [],
+    hireAmount: 0,
+    bookingsAmount: 0,
+    totalAmount: 0,
+  },
+  setCloudData: () => {},
   searchval: "",
   setSearchval: () => {},
   showPhoneNav: false,
@@ -69,8 +95,28 @@ const AuthProvider = ({ children }) => {
   const [productData, setProductData] = useState({});
   const [serviceData, setServiceData] = useState({});
   const [systemUsers, setSystemUsers] = useState({ customers: [] });
+  const [cloudData, setCloudData] = useState({
+    cars: [],
+    bookings: [],
+    hireAmount: 0,
+    bookingsAmount: 0,
+    totalAmount: 0,
+  });
 
   useEffect(() => {
+    onValue(dataList, (snapshot) => {
+      const onlinedata = Object.keys(snapshot.val());
+      console.log(onlinedata);
+      onlinedata === "undefined" || null || undefined
+        ? set(dataList, {
+            cars: [{}],
+            bookings: [{}],
+            hireAmount: 0,
+            bookingsAmount: 0,
+            totalAmount: 0,
+          })
+        : setCloudData(Object.values(snapshot.val()));
+    });
     const savedCart =
       localStorage.getItem("Cart1") === "undefined"
         ? {
@@ -81,13 +127,22 @@ const AuthProvider = ({ children }) => {
             totalAmount: 0,
           }
         : JSON.parse(localStorage.getItem("Cart1"));
+
     setCart(savedCart);
+    onValue(dataList, (snapshot) => {
+      const onlinedata = Object.keys(snapshot.val());
+      console.log(onlinedata);
+    });
+   
   }, []);
 
   useEffect(() => {
     if (Cart) {
       localStorage.setItem("Cart1", JSON.stringify(Cart));
+      update(dataList, Cart);
     }
+  
+
   }, [Cart]);
 
   useEffect(() => {
@@ -190,6 +245,7 @@ const AuthProvider = ({ children }) => {
         setServiceData,
         systemUsers,
         setSystemUsers,
+        cloudData,
       }}
     >
       {children}

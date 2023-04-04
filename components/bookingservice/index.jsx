@@ -85,7 +85,6 @@ const BookingService = () => {
             return prev + current.toBePaid;
           }, 0),
           totalAmount: prev.bookingsAmount + prev.hireAmount,
-          tap: 2,
         };
       });
       systemDataUpdata();
