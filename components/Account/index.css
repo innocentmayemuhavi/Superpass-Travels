@@ -1,32 +1,28 @@
-
 .account > svg {
-    height: 50px;
-    width: 50px;
-    border-radius: 100%;
-    object-fit: cover;
-    cursor: pointer;
-  }
-  
-  .account svg:hover{
-    fill: black;
-  }
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.account svg:hover {
+  fill: black;
+}
 .accountsection {
-    position: fixed;
-    background-color: ghostwhite;
-    padding: 10px;
-    right: 5px;
-    height: 20%;
-    top: 1px;
-    text-align: center;
-    border-radius: 12px;
-    box-shadow: 2px 2px 8px rgb(0, 0, 0, 0.3);
-    overflow-y: auto;
-    transition: 2s;
-    width: 220px;
- 
-  }
-  .cancel{
-    width: 15px;
-   
-  }
-  
+  position: fixed;
+  background-color: ghostwhite;
+  padding: 10px;
+  right: 5px;
+  height: 20%;
+  top: 1px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 2px 2px 8px rgb(0, 0, 0, 0.3);
+  overflow-y: auto;
+  transition: 2s;
+  width: 220px;
+}
+.cancel {
+  width: 15px;
+}

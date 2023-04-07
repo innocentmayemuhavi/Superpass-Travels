@@ -5,7 +5,7 @@ import * as React from "react";
 import { Header } from "../Header/Header";
 import { useNavigate } from "react-router-dom";
 
-const Booking = (props) => {
+const HireService = (props) => {
   const {
     setShowNotification,
     setNotification,
@@ -13,7 +13,7 @@ const Booking = (props) => {
     setCart,
     productData,
     setProductData,
-    user
+    user,
   } = useContext(AuthContext);
   const systemDataUpdata = () => {
     setCart((prev) => {
@@ -55,15 +55,19 @@ const Booking = (props) => {
       console.log(newOrder);
       newOrder.push(productData);
       console.log(newOrder);
-      setCart((prev) => {
-        return {
-          ...prev,
-          cars: newOrder,
-          hireAmount: newOrder.reduce((prev, current) => {
-            return prev + current.amount * current.days;
-          }, 0),
-        };
-      });
+      if (user.isLicenseAuthenticated === true) {
+        setCart((prev) => {
+          return {
+            ...prev,
+            cars: newOrder,
+            hireAmount: newOrder.reduce((prev, current) => {
+              return prev + current.amount * current.days;
+            }, 0),
+          };
+        });
+      } else {
+        navigate("/lisenceverification");
+      }
       systemDataUpdata();
       console.log(Cart);
       setNotification((prev) => {
@@ -85,10 +89,7 @@ const Booking = (props) => {
     const { name, value } = event.target;
 
     setProductData((prev) => {
-      return { ...prev, 
-        [name]: value * 1 ,
-        user:user.email
-      };
+      return { ...prev, [name]: value, user: user.email };
     });
   };
 
@@ -125,6 +126,36 @@ const Booking = (props) => {
                 <option value={7}>7</option>
               </select>
             </div>
+            <div className="page-input">
+              {" "}
+              <label>Drop-Point:</label>
+              <select
+                value={productData.drop_point}
+                name="drop_point"
+                onChange={SetDays}
+              >
+                <option value={""}>Select Drop Point</option>
+                <option value={"Kencom Point"}>Kencom Point</option>
+                <option value={"The Hub-Karen"}>The Hub-Karen</option>
+                <option value={"Kapsabet-The Office"}>
+                  Kapsabet-The Office
+                </option>
+                <option value={"Kisumu-Office"}>Kisumu-Office</option>
+                <option value={"Eldoret-Point"}>Eldoret-Point</option>
+                <option value={"Thika Arcade"}>Thika Arcade</option>
+                <option value={"Moi University-Point"}>
+                  Moi University-Point
+                </option>
+                <option value={"Eldoret-Point"}>Eldoret-Point</option>
+                <option value={"South-B"}>South-B</option>
+                <option value={"Lesoss"}>Lesoss</option>
+                <option value={"Eldoret-Point"}>Eldoret-Point</option>
+                <option value={"Nakuru-near Green Garden"}>
+                  Nakuru-near Green Garden
+                </option>
+                <option value={"Hill-View"}>Hill-View</option>
+              </select>
+            </div>
             <div className="product-buttons">
               <button onClick={() => navigate(-1)}>Cancel</button>
               <button onClick={() => Saving(productData.id)}>HIRE</button>
@@ -136,4 +167,4 @@ const Booking = (props) => {
   );
 };
 
-export { Booking };
+export { HireService };

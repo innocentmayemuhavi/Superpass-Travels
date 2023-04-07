@@ -6,10 +6,9 @@ import { Footer } from "../footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../Button/Index";
 const Cart = () => {
-  const { Cart, setCart, setProductData,cloudData } =
-    useContext(AuthContext);
+  const { Cart, setCart, setProductData, cloudData } = useContext(AuthContext);
   const navigate = useNavigate();
-  console.log(cloudData)
+  console.log(cloudData);
   const systemDataUpdata1 = () => {
     setCart((prev) => {
       return {
@@ -31,7 +30,7 @@ const Cart = () => {
         ...prev,
         cars: prev.cars,
         hireAmount: prev.cars.reduce((prev, current) => {
-          return prev + current.days * current.amount;
+          return prev + current.days * 1 * current.amount;
         }, 0),
         bookingsAmount: prev.bookings.reduce((prev, current) => {
           return prev + current.toBePaid;
@@ -129,13 +128,14 @@ const Cart = () => {
     return (
       <tr key={data.id}>
         <td>
-          <img className="order-picture" src={data.picture} ></img>
+          <img className="order-picture" src={data.picture}></img>
         </td>
         <td>
           <Link to={"/service"} onClick={() => setProductData({ ...data })}>
             {data.name}
           </Link>
         </td>
+        <td>{data.drop_point}</td>
         <td>
           <button className="amt-operation" onClick={() => Minus(data.id)}>
             <svg
@@ -185,7 +185,7 @@ const Cart = () => {
     return (
       <tr key={data.id}>
         <td>
-          <img className="order-picture" src={data.picture} ></img>
+          <img className="order-picture" src={data.picture}></img>
         </td>
         <td>
           <Link to={"/servicepage"} onClick={() => setServiceData({ ...data })}>
@@ -225,17 +225,32 @@ const Cart = () => {
         {Cart.cars.length > 0 && (
           <div className="hire-cart">
             <h2>Hired Cars</h2>
+           
+           <div className="car-notice">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                width="16"
+                height="16"
+              >
+                <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
+              </svg>
+              <p>
+                {" "}
+               Car Will Be Picked and Returned To Drop Point
+              </p>
+           
+           </div>
             <table>
-              
               <thead>
                 <th>Car Image</th>
                 <th>Name</th>
+                <th>Drop point</th>
                 <th>Days</th>
                 <th>Cost</th>
               </thead>
 
               <tbody>{render}</tbody>
-             
             </table>
             <p>
               <b>Payout Amount:.</b> Ksh. {Cart.hireAmount.toLocaleString()}
@@ -256,20 +271,21 @@ const Cart = () => {
               </thead>
 
               <tbody>{renderbooking}</tbody>
-             
             </table>
             <p>
-                <b>Payout Amount:.</b> Ksh.{" "}
-                {(Cart.bookingsAmount).toLocaleString()}
-              </p>
+              <b>Payout Amount:.</b> Ksh. {Cart.bookingsAmount.toLocaleString()}
+            </p>
           </div>
         )}
-        <div  className="c-footer">
+        <div className="c-footer">
           <p>
-            <b>Total Amount:.</b> Ksh. {Math.round(Cart.totalAmount).toLocaleString()}
+            <b>Total Amount:.</b> Ksh.{" "}
+            {Math.round(Cart.totalAmount).toLocaleString()}
           </p>
-          <div><Button text="Close Cart" onClick={() => navigate('/')} />
-          <Button text="Checkout" onClick={() => navigate(-2)} /></div>
+          <div>
+            <Button text="Close Cart" onClick={() => navigate("/")} />
+            <Button text="Checkout" onClick={() => navigate(-2)} />
+          </div>
         </div>
       </section>
       <Footer />

@@ -16,6 +16,7 @@ const ServiceCardEl = (props) => {
           description: props.description,
           days: 1,
           amount: props.price,
+          drop_point: "Kencom Point",
         })
       }
     >

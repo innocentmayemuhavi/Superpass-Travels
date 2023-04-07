@@ -57,6 +57,22 @@ table {
 
   transition: 2s;
 }
+.car-notice {
+  width: 50%;
+  padding: 7px;
+  border: 2px solid #d5d5d5d5;
+  padding: 2px;
+  border-radius: 9px;
+  background-color: rgb(227, 115, 94);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  justify-content: center;
+  margin: 2px 25%;
+}
+.car-notice p{
+  margin: 9px;
+}
 @media only screen and (max-width: 1000px) {
   .Cart {
     padding-top: 65px;
@@ -67,6 +83,11 @@ table {
   }
   .booking-cart {
     padding: 1px 2px;
+  }
+  .car-notice{
+    width: 100%;
+    font-size: 13px;
+    margin: 0px;
   }
 }
 @media only screen and (max-width: 700px) {

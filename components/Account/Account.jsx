@@ -9,7 +9,18 @@ const Account = () => {
     useContext(AuthContext);
   const setPage = () => {
     setisLoggedin(false);
-    setUser({});
+    setUser((prev) => {
+      return {
+        isLicenseAuthenticated: false,
+        license: {
+          id: 0,
+          exp_date: "",
+          category: "",
+          license_number: "",
+        },
+      };
+    });
+    setisLoggedin(false);
     console.log("clicked");
   };
 

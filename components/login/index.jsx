@@ -28,10 +28,16 @@ const Login = () => {
       const fill = systemUsers.customers.filter(
         (data1) => data1.email === data.email
       );
+      const e_data = fill[0];
       console.log(systemUsers.customers);
       console.log(fill[0]);
       if (fill[0].password === data.password) {
-        setUser(fill[0]);
+        setUser((prev) => {
+          return {
+            ...prev,
+            e_data,
+          };
+        });
         setisLoggedin(true);
         setUser(fill[0]);
         navigate("/");

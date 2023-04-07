@@ -24,7 +24,15 @@ const AuthContext = createContext({
     name: "",
     email: "",
     password: 1234,
+    isLicenseAuthenticated: false,
+    license: {
+      id: 0,
+      exp_date: "",
+      category: "",
+      license_number: "",
+    },
   },
+
   setUser: () => {},
   isLoading: true,
   setisLoading: () => {},
@@ -75,6 +83,13 @@ const AuthProvider = ({ children }) => {
     name: "",
     email: "",
     password: 1234,
+    isLicenseAuthenticated: false,
+    license: {
+      id: 0,
+      exp_date: "",
+      category: "",
+      license_number: "",
+    },
   });
   const [isloggedin, setisLoggedin] = useState(false);
   const [isLoading, setisLoading] = useState(true);
@@ -133,7 +148,6 @@ const AuthProvider = ({ children }) => {
       const onlinedata = Object.keys(snapshot.val());
       console.log(onlinedata);
     });
-   
   }, []);
 
   useEffect(() => {
@@ -141,8 +155,6 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem("Cart1", JSON.stringify(Cart));
       update(dataList, Cart);
     }
-  
-
   }, [Cart]);
 
   useEffect(() => {
@@ -162,7 +174,19 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const saveduser =
       localStorage.getItem("userdata") === "undefined"
-        ? {}
+        ? {
+            id: 0,
+            name: "",
+            email: "",
+            password: 1234,
+            isLicenseAuthenticated: false,
+            license: {
+              id: 0,
+              exp_date: "",
+              category: "",
+              license_number: "",
+            },
+          }
         : JSON.parse(localStorage.getItem("userdata"));
     setUser(saveduser);
   }, []);
@@ -182,9 +206,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    if (isloggedin) {
-      localStorage.setItem("loggedin", JSON.stringify(isloggedin));
-    }
+    localStorage.setItem("loggedin", JSON.stringify(isloggedin));
   }, [isloggedin]);
   useEffect(() => {
     const savedData =
