@@ -69,6 +69,7 @@ const Checkout = () => {
             </Link>
 
             <section className="checkout-modal">
+              <p> Form Data Is Not Submitted App On Demo</p>
               <fieldset>
                 <legend>Order Summary</legend>
 
