@@ -1,14 +1,14 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
 import "./index.css";
 const ServiceCardEl = (props) => {
   const { setProductData, isloggedin } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   return (
     <div
       className="service"
-      onClick={() =>
+      onClick={() => {
         setProductData({
           id: props.id,
           picture: props.picture,
@@ -17,8 +17,9 @@ const ServiceCardEl = (props) => {
           days: 1,
           amount: props.price,
           drop_point: "Kencom Point",
-        })
-      }
+        });
+        navigate(isloggedin ? "/service" : "/login");
+      }}
     >
       <div className="service-picture">
         <Link to={isloggedin ? "/service" : "/login"}>

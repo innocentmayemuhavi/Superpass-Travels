@@ -1,0 +1,98 @@
+.checkout-header {
+  text-align: center;
+  font-weight: 900;
+}
+
+.checkout-page {
+  padding-top: 2px;
+}
+.checkout-method-select {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+.checkout-method-select button {
+  width: 40%;
+}
+.visa {
+  border-radius: 0px;
+  margin: 0px;
+  border: none;
+}
+.mobile-money {
+  border-radius: 0px;
+  margin: 0px;
+  border: none;
+}
+.visa:hover,
+.mobile-money:hover,
+.visa:focus,
+.mobile-money:focus {
+  background-color: #efefef;
+  border: none;
+  color: black;
+  border-bottom: 2px solid black;
+}
+
+.payment-modal {
+  padding: 12px 3px;
+}
+.payment-modal hr {
+  margin: 0px;
+  width: 100%;
+  border: 1px solid #d3d3d3;
+}
+.active-btn {
+  background-color: #efefef;
+  border-bottom: 2px solid black;
+}
+.payment-modal-input {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10%;
+}
+.payment-modal input {
+  padding: 4px;
+  margin: 2px 4px;
+  border-radius: 9px;
+}
+.payment-modal button {
+  width: 130px;
+}
+.form-button {
+  text-align: center;
+  align-items: center;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.summary-product-image {
+  width: 40px;
+  border-radius: 100%;
+  height: 40px;
+  object-fit: cover;
+}
+.deliverydata {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(49%, 1fr));
+  gap: 10px;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1000px) {
+  .checkout-page {
+    padding-top: 60px;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .deliverydata {
+    display: flex;
+    flex-direction: column;
+  }
+}

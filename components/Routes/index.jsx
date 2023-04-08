@@ -13,6 +13,7 @@ import { WhatWeDo } from "../Whatwedo";
 import { OurServices } from "../OurServices";
 import { HireService} from "../HireService";
 import { LisencePage } from "../lisence";
+import { Checkout } from "../Checkout/Index";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -29,6 +30,7 @@ const AppRoutes = () => {
       <Route path="/whatwedo" element={<WhatWeDo />} />
       <Route path="/ourservices" element={<OurServices />} />
       <Route path="/lisenceverification" element={<LisencePage />} />
+      <Route path="/checkout" element={<Checkout />} />
     </Routes>
   );
 };
