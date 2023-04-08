@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Pay_By_Mpesa = () => {
-  const [Details, setdetails] = useState({
-  });
-
+  const [Details, setdetails] = useState({});
+  const navigate = useNavigate();
   const Check = (event) => {
     const { name, value } = event.target;
     setdetails((prev) => {
@@ -14,6 +14,7 @@ const Pay_By_Mpesa = () => {
   const submit = (event) => {
     event.preventDefault();
     console.log(Details);
+    navigate("/receipt");
   };
 
   return (
@@ -50,8 +51,8 @@ const Pay_By_Mpesa = () => {
         </fieldset>
       </section>
       <div className="form-button">
-   <button>Submit</button>
-   </div>
+        <button>Submit</button>
+      </div>
     </form>
   );
 };

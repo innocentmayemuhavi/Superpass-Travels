@@ -5,16 +5,12 @@ import { Footer } from "../footer/Footer";
 import { Header } from "../Header/Header";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
- 
-  faPhoneVolume,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPhoneVolume } from "@fortawesome/free-solid-svg-icons";
 
 import "./index.css";
 import {
   faFacebookF,
   faGoogle,
-
   faTiktok,
   faTwitter,
   faWhatsapp,
@@ -57,32 +53,45 @@ const About = () => {
               deliver its services safely to the users.
             </p>
             <p>
-                Below are the various platforms where you can easily contact us...
+              Below are the various platforms where you can easily contact us...
             </p>
             <div className="contact-icon-div">
             <div className="icon-div">
               {" "}
-              <FontAwesomeIcon className="icon" icon={faPhoneVolume} />
+             <a  href={`tel:${+254745933527}`}>
+             <FontAwesomeIcon className="icon" icon={faPhoneVolume} />
+             </a>
             </div>
-            <div className="icon-div">
-              {" "}
-              <FontAwesomeIcon className="icon" icon={faFacebookF} />
-            </div>
-            <div className="icon-div">
-              <FontAwesomeIcon className="icon" icon={faWhatsapp} />
-            </div>
-            <div className="icon-div">
-              <FontAwesomeIcon className="icon" icon={faGoogle} />
-            </div>
-            <div className="icon-div">
-              <FontAwesomeIcon className="icon" icon={faTwitter} />
-            </div>
+              <div className="icon-div">
+                {" "}
+                <a href="https://www.facebook.com/iris.maye.10" target="_blank">
+                  <FontAwesomeIcon className="icon" icon={faFacebookF} />
+                </a>
+              </div>
+              <div className="icon-div">
+                <a
+                  href={`https://wa.me/+254745933527?text=${encodeURIComponent(
+                    `Hello🖐️ I Have Checked Services Of Superpass Travels and i would like to be one of your customers thank you.`
+                  )}`}
+                  target="_blank"
+                >
+                  <FontAwesomeIcon className="icon" icon={faWhatsapp} />
+                </a>
+              </div>
+              <div className="icon-div">
+                <a target="_blank" href="https://superpass-fdeeb.web.app/">
+                  <FontAwesomeIcon className="icon" icon={faGoogle} />
+                </a>
+              </div>
+              <div className="icon-div">
+                <FontAwesomeIcon className="icon" icon={faTwitter} />
+              </div>
 
-            <div className="icon-div">
-              <FontAwesomeIcon className="icon" icon={faTiktok} />
+              <div className="icon-div">
+                <FontAwesomeIcon className="icon" icon={faTiktok} />
+              </div>
             </div>
-          </div>
-          <p>Below are some of the servises we offer...</p>
+            <p>Below are some of the servises we offer...</p>
             <Link to="/carhire">
               <Button text="Car Hire" />
             </Link>
@@ -93,15 +102,14 @@ const About = () => {
           <div>
             <div>
               <div className="about-images">
-                <img src={images[index]} ></img>
+                <img src={images[index]}></img>
                 <button
                   onClick={() => {
                     index >= 1 && setindex((prev) => prev - 1);
 
                     console.log(images.length, index);
                   }}
-
-                  className={ index <1 &&'inactive'}
+                  className={index < 1 && "inactive"}
                 >
                   prev
                 </button>
@@ -111,7 +119,7 @@ const About = () => {
 
                     console.log(images.length, index);
                   }}
-                  className={ index >=images.length - 1 &&'inactive'}
+                  className={index >= images.length - 1 && "inactive"}
                 >
                   next
                 </button>

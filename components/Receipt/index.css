@@ -1,0 +1,27 @@
+.sign {
+  display: flex;
+}
+.receipt{
+    border: 2px solid #d3d3d3;
+    margin: 2px 7%;
+    padding: 4px;
+}
+.sign input {
+  width: 50%;
+  border: none;
+  border-bottom: 2px solid rgb(26, 21, 21);
+  max-width: 300px;
+  margin: 10px;
+  outline: none;
+}
+.receipt button{
+    width: 120px;
+}
+
+
+@media screen and (max-width: 1000px) {
+   .receipt{
+    margin: 2px;
+   }
+  }
+  

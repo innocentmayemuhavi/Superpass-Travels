@@ -1,8 +1,9 @@
-import {useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Pay_By_Card = () => {
   const [Details, setdetails] = useState({});
-
+const navigate=useNavigate()
   const Check = (event) => {
     const { name, value } = event.target;
     setdetails((prev) => {
@@ -13,6 +14,7 @@ const Pay_By_Card = () => {
   const submit = (event) => {
     event.preventDefault();
     console.log(Details);
+    navigate('/receipt')
   };
 
   return (
@@ -55,9 +57,9 @@ const Pay_By_Card = () => {
           />
         </fieldset>
       </section>
-   <div className="form-button">
-   <button>Submit</button>
-   </div>
+      <div className="form-button">
+        <button>Submit</button>
+      </div>
     </form>
   );
 };

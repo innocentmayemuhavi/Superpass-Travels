@@ -14,8 +14,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 const WhatWeDo = () => {
-
-  const navigation=useNavigate()
+  const navigation = useNavigate();
   return (
     <main className="fade">
       <Header />
@@ -33,14 +32,18 @@ const WhatWeDo = () => {
           <div className="contact-icon-div">
             <div className="icon-div">
               {" "}
-              <FontAwesomeIcon className="icon" icon={faPhoneVolume} />
+              <a href={`tel:${+254745933527}`}>
+                <FontAwesomeIcon className="icon" icon={faPhoneVolume} />
+              </a>
             </div>
             <div className="icon-div">
               {" "}
-              <FontAwesomeIcon className="icon" icon={faFacebookF} />
+              <a href="https://www.facebook.com/iris.maye.10" target="_blank">
+                <FontAwesomeIcon className="icon" icon={faFacebookF} />
+              </a>
             </div>
             <div className="icon-div">
-            <a
+              <a
                 href={`https://wa.me/+254796094399?text=${encodeURIComponent(
                   `Hello🖐️ I Have Checked Services Of Superpass Travels and i would like to be one of your customers thank you.`
                 )}`}
@@ -69,7 +72,9 @@ const WhatWeDo = () => {
             className="card"
           >
             <div className="c-content">
-              <button onClick={()=>navigation('/carbooking')}>Car Booking</button>
+              <button onClick={() => navigation("/carbooking")}>
+                Car Booking
+              </button>
             </div>
           </div>
           <div
@@ -79,7 +84,7 @@ const WhatWeDo = () => {
             className="card"
           >
             <div className="c-content">
-              <button onClick={()=>navigation('/carhire')}> Car Hire</button>
+              <button onClick={() => navigation("/carhire")}> Car Hire</button>
             </div>
           </div>
         </div>

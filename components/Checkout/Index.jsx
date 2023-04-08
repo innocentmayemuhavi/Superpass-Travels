@@ -22,6 +22,7 @@ const Checkout = () => {
       return window.removeEventListener("load", console.log("loading"));
     }
   }, []);
+
   const renderbooking = Cart.bookings.map((data) => {
     return (
       <tr key={data.id}>
@@ -56,6 +57,7 @@ const Checkout = () => {
       </tr>
     );
   });
+
   return (
     <>
       {isLoading ? (
