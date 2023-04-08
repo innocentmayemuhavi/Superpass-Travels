@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import "./index.css";
 import { AuthContext } from "../../src/Assets/Context";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Receipt = () => {
   const { Cart, user } = useContext(AuthContext);
-
+const navigate=useNavigate()
   const renderbooking = Cart.bookings.map((data) => {
     return (
       <tr key={data.id}>
@@ -23,6 +23,8 @@ const Receipt = () => {
   });
   const save=()=>{
     window.print()
+    alert('Receipt Printed select save as pdf to save to device... Transaction complete..')
+    navigate('/')
   }
 
   const render = Cart.cars.map((data) => {

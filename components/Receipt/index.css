@@ -1,10 +1,10 @@
 .sign {
   display: flex;
 }
-.receipt{
-    border: 2px solid #d3d3d3;
-    margin: 2px 7%;
-    padding: 4px;
+.receipt {
+  border: 2px solid #d3d3d3;
+  margin: 2px 3%;
+  padding: 4px;
 }
 .sign input {
   width: 50%;
@@ -14,14 +14,12 @@
   margin: 10px;
   outline: none;
 }
-.receipt button{
-    width: 120px;
+.receipt button {
+  width: 120px;
 }
 
-
 @media screen and (max-width: 1000px) {
-   .receipt{
+  .receipt {
     margin: 2px;
-   }
   }
-  
+}
