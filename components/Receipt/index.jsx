@@ -24,9 +24,6 @@ const Receipt = () => {
   const save = () => {
     window.print();
 
-    
-       
-  
     setInterval(() => navigate("/"), 10000);
   };
 
@@ -42,6 +39,7 @@ const Receipt = () => {
           </Link>
         </td>
         <td>{data.drop_point}</td>
+        <td>{data.pick_up}</td>
         <td>{data.days}</td>
         <td>{Math.round(data.amount * data.days).toLocaleString()}</td>
       </tr>
@@ -104,6 +102,7 @@ const Receipt = () => {
                   <th>Image</th>
                   <th>Name</th>
                   <th>Drop point</th>
+                  <th>Pick-Up Date</th>
                   <th>Days</th>
                   <th>Cost</th>
                 </thead>
