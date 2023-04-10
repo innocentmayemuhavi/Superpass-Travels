@@ -4,7 +4,7 @@ import { AuthContext } from "../../src/Assets/Context";
 import { Link, useNavigate } from "react-router-dom";
 const Receipt = () => {
   const { Cart, user } = useContext(AuthContext);
-const navigate=useNavigate()
+  const navigate = useNavigate();
   const renderbooking = Cart.bookings.map((data) => {
     return (
       <tr key={data.id}>
@@ -21,11 +21,13 @@ const navigate=useNavigate()
       </tr>
     );
   });
-  const save=()=>{
-    window.print()
-    alert('Receipt Printed select save as pdf to save to device... Transaction complete..')
-    navigate('/')
-  }
+  const save = () => {
+    window.print();
+    alert(
+      "Receipt Printed select save as pdf to save to device... Transaction complete.."
+    );
+    setInterval(() => navigate("/"), 2000);
+  };
 
   const render = Cart.cars.map((data) => {
     return (
@@ -131,7 +133,7 @@ const navigate=useNavigate()
           <p>Your Cart Is Empty!!</p>
         )}
       </fieldset>
-     
+
       <fieldset>
         <legend>Confirmation</legend>
         <fieldset className="sign">
