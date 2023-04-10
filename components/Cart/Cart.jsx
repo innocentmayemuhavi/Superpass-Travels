@@ -137,7 +137,9 @@ const Cart = () => {
             {data.name}
           </Link>
         </td>
+
         <td>{data.drop_point}</td>
+        <td>{data.pick_up}</td>
         <td>
           <button className="amt-operation" onClick={() => Minus(data.id)}>
             <svg
@@ -260,6 +262,7 @@ const Cart = () => {
                     <th>Car Image</th>
                     <th>Name</th>
                     <th>Drop point</th>
+                    <th>Pick-Up Date</th>
                     <th>Days</th>
                     <th>Cost</th>
                   </thead>

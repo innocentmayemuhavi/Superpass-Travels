@@ -42,6 +42,13 @@
   background-color: #fff;
   margin: 10px 1px;
 }
+.page-input input{
+  width: 100%;
+  outline: none;
+  border:none;
+  padding: 15px;
+  cursor: pointer;
+}
 .page-input label{
   width: 150px;
 }

@@ -92,7 +92,7 @@ const HireService = (props) => {
       return { ...prev, [name]: value, user: user.email };
     });
   };
-
+  console.log();
   return (
     <div className=" product fade">
       <Header />
@@ -155,6 +155,15 @@ const HireService = (props) => {
                 </option>
                 <option value={"Hill-View"}>Hill-View</option>
               </select>
+            </div>
+            <div className="page-input">
+              <label>Pick Up Date:</label>
+              <input
+                type="date"
+                name="pick_up"
+                value={productData.pick_up}
+                onChange={SetDays}
+              />
             </div>
             <div className="product-buttons">
               <button onClick={() => navigate(-1)}>Cancel</button>
