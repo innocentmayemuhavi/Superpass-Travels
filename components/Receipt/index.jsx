@@ -23,10 +23,11 @@ const Receipt = () => {
   });
   const save = () => {
     window.print();
-    alert(
-      "Receipt Printed select save as pdf to save to device... Transaction complete.."
-    );
-    setInterval(() => navigate("/"), 2000);
+
+    
+       
+  
+    setInterval(() => navigate("/"), 10000);
   };
 
   const render = Cart.cars.map((data) => {
