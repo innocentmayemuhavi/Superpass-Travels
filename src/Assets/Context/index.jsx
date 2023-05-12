@@ -122,7 +122,7 @@ const AuthProvider = ({ children }) => {
     onValue(dataList, (snapshot) => {
       const onlinedata = Object.keys(snapshot.val());
       console.log(onlinedata);
-      onlinedata === "undefined" || null || undefined
+      onlinedata === null || null || undefined
         ? set(dataList, {
             cars: [{}],
             bookings: [{}],
@@ -133,7 +133,7 @@ const AuthProvider = ({ children }) => {
         : setCloudData(Object.values(snapshot.val()));
     });
     const savedCart =
-      localStorage.getItem("Cart1") === "undefined"
+      localStorage.getItem("Cart1") === null
         ? {
             cars: [],
             bookings: [],
@@ -159,7 +159,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const savedusers =
-      localStorage.getItem("cust") === "undefined"
+      localStorage.getItem("cust") === null
         ? {}
         : JSON.parse(localStorage.getItem("cust"));
     setSystemUsers(savedusers);
@@ -173,7 +173,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const saveduser =
-      localStorage.getItem("userdata") === "undefined"
+      localStorage.getItem("userdata") === null
         ? {
             id: 0,
             name: "",
@@ -199,7 +199,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const save =
-      localStorage.getItem("loggedin") === "undefined"
+      localStorage.getItem("loggedin") === null
         ? [false]
         : JSON.parse(localStorage.getItem("loggedin"));
     setisLoggedin(save);
@@ -210,7 +210,7 @@ const AuthProvider = ({ children }) => {
   }, [isloggedin]);
   useEffect(() => {
     const savedData =
-      localStorage.getItem("prod") === "undefined"
+      localStorage.getItem("prod") === null
         ? {}
         : JSON.parse(localStorage.getItem("prod"));
     setProductData(savedData);
@@ -224,7 +224,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const savedData1 =
-      localStorage.getItem("serv") === "undefined"
+      localStorage.getItem("serv") === null
         ? {}
         : JSON.parse(localStorage.getItem("serv"));
     setServiceData(savedData1);
