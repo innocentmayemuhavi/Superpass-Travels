@@ -7,9 +7,11 @@ import { Pay_By_Mpesa } from "./Pay_by_m_pesa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
 import Loading from "../Loading";
+import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 const Checkout = () => {
   const [showvisa, setshowvisa] = useState(true);
-  const { user, Cart, isLoading, setisLoading } = useContext(AuthContext);
+  const { isLoading, setisLoading } = useContext(AuthContext);
+  const { user, Cart } = useContext(FirebaseContext);
   useEffect(() => {
     if (document.readyState === "complete") {
       console.log("loaded");
@@ -140,16 +142,16 @@ const Checkout = () => {
                   >
                     <legend>Customer Details And Address</legend>
                     <p>
-                      User Name:<span className="grey">{user.name}</span>
+                      User Name:<span className="grey">{user.displayName}</span>
                     </p>
                     <p>
                       {" "}
                       Email:<span className="grey">{user.email}</span>
                     </p>
-                    <p>
+                    {/* <p>
                       {" "}
                       Phone:<span className="grey">{user.phone}</span>
-                    </p>
+                    </p> */}
                   </fieldset>
                   <div className="checkout-method-select">
                     <button

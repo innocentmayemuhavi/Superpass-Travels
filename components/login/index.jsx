@@ -1,54 +1,41 @@
-import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
+import Loading from "../Loading";
 import "./index.css";
+import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 
 const Login = () => {
-  const {
-    setisLoading,
-    setisLoggedin,
-    setUser,
-    user,
-    systemUsers,
-    setShowaccount,
-  } = useContext(AuthContext);
+  const { setisLoading, isLoading } = useContext(AuthContext);
+  const { signin, user, error, warning } = useContext(FirebaseContext);
   const [data, setData] = useState({
     email: "",
     password: "",
   });
-  const navigate = useNavigate();
-  const [warning, setWarning] = useState("");
-  const submit = (event) => {
-    event.preventDefault();
-    const exist = systemUsers.customers.filter(
-      (prev) => prev.email === data.email
-    );
 
-    if (exist) {
-      const fill = systemUsers.customers.filter(
-        (data1) => data1.email === data.email
-      );
-      const e_data = fill[0];
-      console.log(systemUsers.customers);
-      console.log(fill[0]);
-      if (fill[0].password === data.password) {
-        setUser((prev) => {
-          return {
-            ...prev,
-            e_data,
-          };
-        });
-        setisLoggedin(true);
-        setUser(fill[0]);
-        navigate("/");
-        setWarning("");
-        setShowaccount(false);
-      } else {
-        setWarning("Wrong Email Or Password");
-      }
+  useEffect(() => {
+    if (document.readyState === "complete") {
+      console.log("loaded");
+      setInterval(() => setisLoading(false), 1000);
     } else {
-      setWarning(`User Doesn't Exist!!`);
+      console.log("loading");
+      setisLoading(true);
+      window.addEventListener("load", console.log("loading"), false);
+
+      return window.removeEventListener("load", console.log("loading"));
     }
+  }, []);
+
+  const submit = async (event) => {
+    event.preventDefault();
+    setisLoading(true)
+    try {
+     
+      await signin(data.email, data.password);
+    } catch (error) {
+      setWarning(error.code);
+    }
+    setisLoading(false)
   };
   const handleData = (event) => {
     const { name, value } = event.target;
@@ -60,41 +47,49 @@ const Login = () => {
       };
     });
   };
-  return (
-    <main className="fade login-page">
-      <form className="login-form" onSubmit={submit}>
-        <h3>Login</h3>
-        <hr />
-        <p className="warning">{warning}</p>
-        <input
-          type={"email"}
-          placeholder="Enter Email"
-          required={true}
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-          name="email"
-          value={data.email}
-          onChange={handleData}
-        />
-        <input
-          type={"password"}
-          placeholder="Password"
-          required={true}
-          name="password"
-          value={data.password}
-          onChange={handleData}
-        />
-        <p>
-          Don't have account? Click <Link to={"/signup"}>here</Link>
-        </p>
+  return user ? (
+    <Navigate to="/" />
+  ) : (
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <main className="fade login-page">
+          <form className="login-form" onSubmit={submit}>
+            <h3>Login</h3>
+            <hr />
+            <p className="warning">{warning}</p>
+            <input
+              type={"email"}
+              placeholder="Enter Email"
+              required={true}
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              name="email"
+              value={data.email}
+              onChange={handleData}
+            />
+            <input
+              type={"password"}
+              placeholder="Password"
+              required={true}
+              name="password"
+              value={data.password}
+              onChange={handleData}
+            />
+            <p>
+              Don't have account? Click <Link to={"/signup"}>here</Link>
+            </p>
 
-        <button>Login</button>
+            <button>Login</button>
 
-        <Link to={"/"}>
-          {" "}
-          <p>Forgot Password?</p>
-        </Link>
-      </form>
-    </main>
+            <Link to={"/"}>
+              {" "}
+              <p>Forgot Password?</p>
+            </Link>
+          </form>
+        </main>
+      )}
+    </>
   );
 };
 

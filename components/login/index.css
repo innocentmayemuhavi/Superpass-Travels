@@ -41,4 +41,6 @@
 .warning {
   color: red;
   margin: 4px;
+  text-transform: capitalize;
+  text-align: center;
 }

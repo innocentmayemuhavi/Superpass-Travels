@@ -1,22 +1,34 @@
 import { createContext, useEffect, useState } from "react";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-import {
-  getDatabase,
-  ref,
-  onValue,
-  update,
-  set,
-} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
 
-const appSettings = {
-  databaseUrl: "https://superpasstravels-default-rtdb.firebaseio.com/",
-  projectId: "superpasstravels",
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import {
+  getFirestore,
+  doc,
+  updateDoc,
+  getDoc,
+  setDoc,
+} from "firebase/firestore";
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCKKDgFMvxvI6PogJBEoUUaJpEWVRVdv5Q",
+  authDomain: "superpass-fdeeb.firebaseapp.com",
+  databaseURL: "https://superpass-fdeeb-default-rtdb.firebaseio.com",
+  projectId: "superpass-fdeeb",
+  storageBucket: "superpass-fdeeb.appspot.com",
+  messagingSenderId: "648988901889",
+  appId: "1:648988901889:web:f24a9a0a703a693f627600",
+  measurementId: "G-H5K80682K8",
 };
 
-const app = initializeApp(appSettings);
-const dB = getDatabase(app);
-
-const dataList = ref(dB, "data");
+initializeApp(firebaseConfig);
+const database = getFirestore();
+const auth = getAuth();
 
 const AuthContext = createContext({
   user: {
@@ -71,27 +83,10 @@ const AuthContext = createContext({
   setProductData: () => {},
   serviceData: {},
   setServiceData: () => {},
-  systemUsers: {
-    customers: [],
-  },
   setSystemUsers: () => {},
 });
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState({
-    id: 0,
-    name: "",
-    email: "",
-    password: 1234,
-    isLicenseAuthenticated: false,
-    license: {
-      id: 0,
-      exp_date: "",
-      category: "",
-      license_number: "",
-    },
-  });
-  const [isloggedin, setisLoggedin] = useState(false);
   const [isLoading, setisLoading] = useState(true);
   const [showAccount, setShowaccount] = useState(false);
   const [Notification, setNotification] = useState("");
@@ -109,112 +104,6 @@ const AuthProvider = ({ children }) => {
   });
   const [productData, setProductData] = useState({});
   const [serviceData, setServiceData] = useState({});
-  const [systemUsers, setSystemUsers] = useState({ customers: [] });
-  const [cloudData, setCloudData] = useState({
-    cars: [],
-    bookings: [],
-    hireAmount: 0,
-    bookingsAmount: 0,
-    totalAmount: 0,
-  });
-
-  useEffect(() => {
-    onValue(dataList, (snapshot) => {
-      const onlinedata = Object.keys(snapshot.val());
-      console.log(onlinedata);
-      onlinedata === null || null || undefined
-        ? set(dataList, {
-            cars: [{}],
-            bookings: [{}],
-            hireAmount: 0,
-            bookingsAmount: 0,
-            totalAmount: 0,
-          })
-        : setCloudData(Object.values(snapshot.val()));
-    });
-    const savedCart =
-      localStorage.getItem("Cart1") === null
-        ? {
-            cars: [],
-            bookings: [],
-            hireAmount: 0,
-            bookingsAmount: 0,
-            totalAmount: 0,
-          }
-        : JSON.parse(localStorage.getItem("Cart1"));
-
-    setCart(savedCart);
-    onValue(dataList, (snapshot) => {
-      const onlinedata = Object.keys(snapshot.val());
-      console.log(onlinedata);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (Cart) {
-      localStorage.setItem("Cart1", JSON.stringify(Cart));
-      update(dataList, Cart);
-    }
-  }, [Cart]);
-
-  useEffect(() => {
-    const savedusers =
-      localStorage.getItem("cust") === null
-        ? {}
-        : JSON.parse(localStorage.getItem("cust"));
-    setSystemUsers(savedusers);
-  }, []);
-
-  useEffect(() => {
-    if (systemUsers) {
-      localStorage.setItem("cust", JSON.stringify(systemUsers));
-    }
-  }, [systemUsers]);
-
-  useEffect(() => {
-    const saveduser =
-      localStorage.getItem("userdata") === null
-        ? {
-            id: 0,
-            name: "",
-            email: "",
-            password: 1234,
-            isLicenseAuthenticated: false,
-            license: {
-              id: 0,
-              exp_date: "",
-              category: "",
-              license_number: "",
-            },
-          }
-        : JSON.parse(localStorage.getItem("userdata"));
-    setUser(saveduser);
-  }, []);
-
-  useEffect(() => {
-    if (user) {
-      localStorage.setItem("userdata", JSON.stringify(user));
-    }
-  }, [user]);
-
-  useEffect(() => {
-    const save =
-      localStorage.getItem("loggedin") === null
-        ? [false]
-        : JSON.parse(localStorage.getItem("loggedin"));
-    setisLoggedin(save);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("loggedin", JSON.stringify(isloggedin));
-  }, [isloggedin]);
-  useEffect(() => {
-    const savedData =
-      localStorage.getItem("prod") === null
-        ? {}
-        : JSON.parse(localStorage.getItem("prod"));
-    setProductData(savedData);
-  }, []);
 
   useEffect(() => {
     if (productData) {
@@ -239,12 +128,8 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        user,
-        setUser,
         isLoading,
         setisLoading,
-        isloggedin,
-        setisLoggedin,
         showAccount,
         setShowaccount,
         Notification,
@@ -265,9 +150,6 @@ const AuthProvider = ({ children }) => {
         setProductData,
         serviceData,
         setServiceData,
-        systemUsers,
-        setSystemUsers,
-        cloudData,
       }}
     >
       {children}

@@ -73,6 +73,14 @@ table {
 .car-notice p{
   margin: 9px;
 }
+
+td a{
+  text-decoration: underline;
+  font-weight: 400;
+}
+td a:hover{
+  font-weight: 700;
+}
 @media only screen and (max-width: 1000px) {
   .Cart {
     padding-top: 65px;

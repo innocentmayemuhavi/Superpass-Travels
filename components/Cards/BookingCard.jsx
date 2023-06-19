@@ -1,9 +1,10 @@
 import { lazy, useContext } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
 
 const BookingCard = (props) => {
-  const { setServiceData, isloggedin } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { setServiceData } = useContext(AuthContext);
 
   const updatedata = () => {
     setServiceData((prev) => {
@@ -18,19 +19,18 @@ const BookingCard = (props) => {
       };
     });
   };
-  
+
   return (
     <section
       className="booking-card"
       onClick={() => {
         setServiceData({ ...props });
         updatedata();
+        navigate("/servicepage");
       }}
     >
       <div className="booking-card-image">
-        <Link to={isloggedin ? "/servicepage" : "/login"}>
-          <img src={props.picture} loading={lazy}></img>
-        </Link>
+        <img src={props.picture} loading={lazy}></img>
       </div>
 
       <div className="booking-card-data">

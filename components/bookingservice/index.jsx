@@ -4,21 +4,22 @@ import { AuthContext } from "../../src/Assets/Context";
 import { Notifications } from "../notification/Notification";
 
 import "./index.css";
+import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 
 const BookingService = () => {
   const {
     serviceData,
     setServiceData,
-    Cart,
-    setCart,
+
     setNotification,
     setShowNotification,
     showNotification,
-    user,
   } = useContext(AuthContext);
+
+  const { Cart, updateData, setCart } = useContext(FirebaseContext);
   const navigate = useNavigate();
-  const systemDataUpdata = () => {
-    setCart((prev) => {
+  const systemDataUpdata2 = async () => {
+    await setCart((prev) => {
       return {
         ...prev,
         cars: prev.cars,
@@ -31,6 +32,44 @@ const BookingService = () => {
         totalAmount: prev.hireAmount + prev.bookingsAmount,
       };
     });
+
+    await updateData();
+  };
+
+  const systemDataUpdata1 = async () => {
+    await setCart((prev) => {
+      return {
+        ...prev,
+        cars: prev.cars,
+        bookingsAmount: prev.bookings.reduce((prev, current) => {
+          return prev + current.toBePaid;
+        }, 0),
+        hireAmount: prev.cars.reduce((prev, current) => {
+          return prev + current.days * current.amount;
+        }, 0),
+        totalAmount: prev.hireAmount + prev.bookingsAmount,
+      };
+    });
+
+    await updateData();
+    systemDataUpdata2();
+  };
+  const systemDataUpdata = async () => {
+    await setCart((prev) => {
+      return {
+        ...prev,
+        cars: prev.cars,
+        hireAmount: prev.cars.reduce((prev, current) => {
+          return prev + current.days * 1 * current.amount;
+        }, 0),
+        bookingsAmount: prev.bookings.reduce((prev, current) => {
+          return prev + current.toBePaid;
+        }, 0),
+        totalAmount: prev.hireAmount + prev.bookingsAmount,
+      };
+    });
+
+    await updateData();
   };
 
   const updatedata = (event, data) => {
@@ -46,19 +85,20 @@ const BookingService = () => {
           return {
             ...prev,
             [name]: value,
-            user: user.email,
           };
         });
       }
     }
   };
 
-  const Book = (id) => {
+  const Book = async (id) => {
     const Exists = Cart.bookings.find((data) => data.id === id);
 
     if (Exists) {
       console.log("here");
-      systemDataUpdata();
+      await systemDataUpdata();
+      
+      await updateData();
       let filll = Cart.bookings.filter((data) => data.id === id);
       console.log(filll[0].id);
       console.log("its here");
@@ -74,9 +114,12 @@ const BookingService = () => {
 
       setShowNotification(true);
     } else {
+      await systemDataUpdata();
+      await systemDataUpdata1();
+      await updateData();
       const newData = Cart.bookings;
       newData.push(serviceData);
-      setCart((prev) => {
+      await setCart((prev) => {
         return {
           ...prev,
           cars: prev.cars,
@@ -87,7 +130,9 @@ const BookingService = () => {
           totalAmount: prev.bookingsAmount + prev.hireAmount,
         };
       });
-      systemDataUpdata();
+      await systemDataUpdata();
+      await systemDataUpdata1();
+      await updateData();
       let filll = Cart.bookings.filter((data) => data.id === id);
       console.log(filll[0].id);
       console.log("its here");
@@ -99,9 +144,14 @@ const BookingService = () => {
           </p>
         );
       });
+      await systemDataUpdata();
+      await systemDataUpdata1();
 
       setShowNotification(true);
     }
+    await systemDataUpdata();
+    await systemDataUpdata1();
+    await updateData();
   };
   return (
     <main className="service-page">

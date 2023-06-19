@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import "./index.css";
-import { AuthContext } from "../../src/Assets/Context";
+
 import { Link, useNavigate } from "react-router-dom";
+import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 const Receipt = () => {
-  const { Cart, user } = useContext(AuthContext);
+  const { Cart, user } = useContext(FirebaseContext);
   const navigate = useNavigate();
   const renderbooking = Cart.bookings.map((data) => {
     return (
@@ -23,7 +24,6 @@ const Receipt = () => {
   });
   const save = () => {
     window.print();
-
     setInterval(() => navigate("/"), 10000);
   };
 

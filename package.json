@@ -14,7 +14,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "firebase": "^9.19.1",
+    "firebase": "^9.22.2",
     "moment": "^2.29.4",
     "nanoid": "^4.0.2",
     "react": "^18.2.0",

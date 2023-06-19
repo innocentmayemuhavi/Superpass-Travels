@@ -4,19 +4,20 @@ import "./index.css";
 import * as React from "react";
 import { Header } from "../Header/Header";
 import { useNavigate } from "react-router-dom";
+import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 
 const HireService = (props) => {
   const {
     setShowNotification,
     setNotification,
-    Cart,
-    setCart,
+
     productData,
     setProductData,
-    user,
   } = useContext(AuthContext);
-  const systemDataUpdata = () => {
-    setCart((prev) => {
+
+  const { Cart, setCart, updateData } = useContext(FirebaseContext);
+  const systemDataUpdata = async () => {
+    await setCart((prev) => {
       return {
         ...prev,
         cars: prev.cars,
@@ -29,9 +30,10 @@ const HireService = (props) => {
         totalAmount: prev.hireAmount + prev.bookingsAmount,
       };
     });
+    await updateData();
   };
   const navigate = useNavigate();
-  const Saving = (id) => {
+  const Saving = async (id) => {
     const Exists = Cart.cars.find((prev) => prev.id === id);
     systemDataUpdata();
     if (Exists) {
@@ -47,7 +49,7 @@ const HireService = (props) => {
           </p>
         );
       });
-      systemDataUpdata();
+      await systemDataUpdata();
       setShowNotification(true);
     } else {
       console.log("not here");
@@ -55,20 +57,18 @@ const HireService = (props) => {
       console.log(newOrder);
       newOrder.push(productData);
       console.log(newOrder);
-      if (user.isLicenseAuthenticated === true) {
-        setCart((prev) => {
-          return {
-            ...prev,
-            cars: newOrder,
-            hireAmount: newOrder.reduce((prev, current) => {
-              return prev + current.amount * current.days;
-            }, 0),
-          };
-        });
-      } else {
-        navigate("/lisenceverification");
-      }
-      systemDataUpdata();
+
+      await setCart((prev) => {
+        return {
+          ...prev,
+          cars: newOrder,
+          hireAmount: newOrder.reduce((prev, current) => {
+            return prev + current.amount * current.days;
+          }, 0),
+        };
+      });
+
+      await systemDataUpdata();
       console.log(Cart);
       setNotification((prev) => {
         return (
@@ -79,17 +79,17 @@ const HireService = (props) => {
           </p>
         );
       });
-      systemDataUpdata();
+      await systemDataUpdata();
       setShowNotification(true);
     }
-    systemDataUpdata();
+    await systemDataUpdata();
   };
 
   const SetDays = (event) => {
     const { name, value } = event.target;
 
     setProductData((prev) => {
-      return { ...prev, [name]: value, user: user.email };
+      return { ...prev, [name]: value };
     });
   };
   console.log();

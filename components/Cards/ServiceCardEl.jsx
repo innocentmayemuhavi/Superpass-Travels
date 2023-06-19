@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
 import "./index.css";
 const ServiceCardEl = (props) => {
-  const { setProductData, isloggedin } = useContext(AuthContext);
+  const { setProductData } = useContext(AuthContext);
   const navigate = useNavigate();
   return (
     <div
@@ -18,13 +18,15 @@ const ServiceCardEl = (props) => {
           amount: props.price,
           drop_point: "Kencom Point",
         });
-        navigate(isloggedin ? "/service" : "/login");
+        navigate("/service");
       }}
     >
       <div className="service-picture">
-        <Link to={isloggedin ? "/service" : "/login"}>
-          <img src={props.picture} alt="Picture" />
-        </Link>
+        <img
+          src={props.picture}
+          alt="Picture"
+          onClick={() => navigate("/service")}
+        />
       </div>
       <div className="service-content">
         <p>

@@ -3,16 +3,18 @@ import "./index.css";
 import { useContext, useEffect } from "react";
 import { Header } from "../Header/Header";
 import { Footer } from "../footer/Footer";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../Button/Index";
 import Loading from "../Loading";
+import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 const Cart = () => {
-  const { Cart, setCart, setProductData, cloudData, isLoading, setisLoading } =
+  const { setProductData, isLoading, setisLoading, setServiceData } =
     useContext(AuthContext);
+
+  const { Cart, setCart, updateData } = useContext(FirebaseContext);
   const navigate = useNavigate();
-  console.log(cloudData);
-  const systemDataUpdata1 = () => {
-    setCart((prev) => {
+  const systemDataUpdata2 = async () => {
+    await setCart((prev) => {
       return {
         ...prev,
         cars: prev.cars,
@@ -25,9 +27,30 @@ const Cart = () => {
         totalAmount: prev.hireAmount + prev.bookingsAmount,
       };
     });
+
+    await updateData();
   };
-  const systemDataUpdata = () => {
-    setCart((prev) => {
+
+  const systemDataUpdata1 = async () => {
+    await setCart((prev) => {
+      return {
+        ...prev,
+        cars: prev.cars,
+        bookingsAmount: prev.bookings.reduce((prev, current) => {
+          return prev + current.toBePaid;
+        }, 0),
+        hireAmount: prev.cars.reduce((prev, current) => {
+          return prev + current.days * current.amount;
+        }, 0),
+        totalAmount: prev.hireAmount + prev.bookingsAmount,
+      };
+    });
+
+    await updateData();
+    systemDataUpdata2();
+  };
+  const systemDataUpdata = async () => {
+    await setCart((prev) => {
       return {
         ...prev,
         cars: prev.cars,
@@ -40,10 +63,12 @@ const Cart = () => {
         totalAmount: prev.hireAmount + prev.bookingsAmount,
       };
     });
+
+    await updateData();
   };
-  const DeletingFromCart = (id) => {
+  const DeletingFromCart = async (id) => {
     const fill = Cart.cars.filter((cars) => cars.id !== id);
-    setCart((prev) => {
+    await setCart((prev) => {
       return {
         ...prev,
         cars: fill,
@@ -56,12 +81,13 @@ const Cart = () => {
         totalAmount: prev.hireAmount + prev.bookingsAmount,
       };
     });
-    systemDataUpdata();
-    systemDataUpdata1();
+    await systemDataUpdata();
+    await systemDataUpdata1();
+    await updateData();
   };
-  const DeletingFromBooking = (id) => {
+  const DeletingFromBooking = async (id) => {
     const fill = Cart.bookings.filter((cars) => cars.id !== id);
-    setCart((prev) => {
+    await setCart((prev) => {
       return {
         ...prev,
         bookings: fill,
@@ -74,13 +100,14 @@ const Cart = () => {
         totalAmount: prev.hireAmount + prev.bookingsAmount,
       };
     });
-    systemDataUpdata();
-    systemDataUpdata1();
+    await systemDataUpdata();
+    await systemDataUpdata1();
+    await updateData();
   };
-  const Add = (id) => {
+  const Add = async (id) => {
     const fill = Cart.cars.filter((cars) => cars.id === id);
     if (fill[0].days <= 6) {
-      setCart((prev) => {
+      await setCart((prev) => {
         return {
           ...prev,
           cars: prev.cars.map((prev) => {
@@ -96,15 +123,15 @@ const Cart = () => {
         };
       });
     }
-    systemDataUpdata();
-    systemDataUpdata1();
+    await systemDataUpdata();
+    await systemDataUpdata1();
   };
 
-  const Minus = (id) => {
+  const Minus = async (id) => {
     const fill = Cart.cars.filter((cars) => cars.id === id);
     console.log(fill);
     if (fill[0].days > 1) {
-      setCart((prev) => {
+      await setCart((prev) => {
         return {
           ...prev,
           cars: prev.cars.map((prev) => {
@@ -120,10 +147,10 @@ const Cart = () => {
         };
       });
     } else {
-      DeletingFromCart(id);
+      await DeletingFromCart(id);
     }
-    systemDataUpdata();
-    systemDataUpdata1();
+    await systemDataUpdata();
+    await systemDataUpdata1();
   };
 
   const render = Cart.cars.map((data) => {
@@ -133,9 +160,16 @@ const Cart = () => {
           <img className="order-picture" src={data.picture}></img>
         </td>
         <td>
-          <Link to={"/service"} onClick={() => setProductData({ ...data })}>
-            {data.name}
-          </Link>
+          <a>
+            <p
+              onClick={() => {
+                setProductData({ ...data });
+                navigate("/service");
+              }}
+            >
+              {data.name}
+            </p>
+          </a>
         </td>
 
         <td>{data.drop_point}</td>
@@ -192,9 +226,14 @@ const Cart = () => {
           <img className="order-picture" src={data.picture}></img>
         </td>
         <td>
-          <Link to={"/servicepage"} onClick={() => setServiceData({ ...data })}>
+          <a
+            onClick={() => {
+              setServiceData({ ...data });
+              navigate("/servicepage");
+            }}
+          >
             {data.name}
-          </Link>
+          </a>
         </td>
         <td>{data.time}</td>
         <td>{data.from}</td>
