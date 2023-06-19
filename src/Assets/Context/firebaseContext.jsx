@@ -231,7 +231,9 @@ const FirebaseProvider = ({ children }) => {
         }
       }
     } catch (e) {
-      console.log(e.message);
+      const w1 = e.code.split("auth/").join("");
+      const w2 = w1.split("-").join(" ");
+      setWarning(w2);
     }
   };
 

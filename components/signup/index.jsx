@@ -40,10 +40,12 @@ const SignUp = () => {
   };
   const submit = async (event) => {
     event.preventDefault();
+    setisLoading(true);
     try {
       await signup(data.email, data.password, data.name, data.phone);
 
       navigate("/login");
+      setisLoading(false);
     } catch (e) {
       console.log(e.code);
     }
