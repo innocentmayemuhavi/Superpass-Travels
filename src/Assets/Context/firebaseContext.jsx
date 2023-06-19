@@ -141,6 +141,7 @@ const FirebaseProvider = ({ children }) => {
       const data = userData;
       await updateDoc(docRef, {
         userdata: {
+          phoneNumber: user.phone,
           lisence: {
             email: data.email,
             id: data.id,
