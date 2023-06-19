@@ -10,7 +10,7 @@ const HireService = (props) => {
   const { setShowNotification, setNotification, productData, setProductData } =
     useContext(AuthContext);
 
-  const { Cart, setCart, updateData } = useContext(FirebaseContext);
+  const { Cart, setCart, user } = useContext(FirebaseContext);
   // const systemDataUpdata1 = async () => {
   //   await setCart((prev) => {
   //     return {
@@ -68,18 +68,24 @@ const HireService = (props) => {
       newOrder.push(productData);
       console.log(newOrder);
 
-      await setCart((prev) => {
-        return {
-          ...prev,
-          cars: newOrder,
-          hireAmount: newOrder.reduce((prev, current) => {
-            return prev + current.amount * current.days;
-          }, 0),
-        };
-      });
+      console.log(user)
+
+      if (user.isLisenceAuthenticated) {
+        await setCart((prev) => {
+          return {
+            ...prev,
+            cars: newOrder,
+            hireAmount: newOrder.reduce((prev, current) => {
+              return prev + current.amount * current.days;
+            }, 0),
+          };
+        });
+      } else {
+        navigate("/lisenceverification");
+      }
 
       await systemDataUpdata();
-      console.log(Cart);
+
       setNotification((prev) => {
         return (
           <p>
@@ -127,13 +133,13 @@ const HireService = (props) => {
               <label>Days:</label>
               <select value={productData.days} name="days" onChange={SetDays}>
                 <option value={""}>Select Number Of Days</option>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-                <option value={3}>3</option>
-                <option value={4}>4</option>
-                <option value={5}>5</option>
-                <option value={6}>6</option>
-                <option value={7}>7</option>
+                <option value={1 * 1}>1</option>
+                <option value={2 * 1}>2</option>
+                <option value={3 * 1}>3</option>
+                <option value={4 * 1}>4</option>
+                <option value={5 * 1}>5</option>
+                <option value={6 * 1}>6</option>
+                <option value={7 * 1}>7</option>
               </select>
             </div>
             <div className="page-input">

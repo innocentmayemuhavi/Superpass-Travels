@@ -63,10 +63,14 @@ const FirebaseProvider = ({ children }) => {
             await setCart({
               ...doc.data().cart,
             });
+
             await setUser((prev) => {
               return {
                 ...prev,
                 phone: doc.data().userdata.phoneNumber,
+                lisence: doc.data().userdata.lisence,
+                isLisenceAuthenticated:
+                  doc.data().userdata.isLisenceAuthenticated,
               };
             });
             console.log("done loading user data on database", doc.data());
@@ -75,6 +79,12 @@ const FirebaseProvider = ({ children }) => {
             console.log(doc.data());
             await setCart({
               ...doc.data().cart,
+            });
+            await setUser((prev) => {
+              return {
+                ...prev,
+                ...doc.data.userdata,
+              };
             });
           });
         }
@@ -117,7 +127,44 @@ const FirebaseProvider = ({ children }) => {
       await updateDoc(docRef, {
         cart: Cart,
       });
+
       console.log("Database updated successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const updateUser = async (userData) => {
+    const uid = auth.currentUser.uid;
+
+    try {
+      const docRef = doc(database, "users", uid);
+      const data = userData;
+      await updateDoc(docRef, {
+        userdata: {
+          lisence: {
+            email: data.email,
+            id: data.id,
+            license_number: data.license_number,
+            exp_date: data.exp_date,
+            category: data.category,
+          },
+          isLisenceAuthenticated: true,
+        },
+      });
+      setUser((prev) => {
+        return {
+          ...prev,
+          lisence: {
+            email: data.email,
+            id: data.id,
+            license_number: data.license_number,
+            exp_date: data.exp_date,
+            category: data.category,
+          },
+          isLisenceAuthenticated: true,
+        };
+      });
+      console.log("Database user data updated successfully");
     } catch (error) {
       console.log(error);
     }
@@ -158,7 +205,7 @@ const FirebaseProvider = ({ children }) => {
         password
       );
 
-      updateProfile(auth.currentUser, {
+      await updateProfile(auth.currentUser, {
         displayName: name,
       });
 
@@ -169,6 +216,8 @@ const FirebaseProvider = ({ children }) => {
           await setDoc(doc(database, "users", userData.user.uid), {
             userdata: {
               phoneNumber: phone,
+              lisence: {},
+              isLisenceAuthenticated: false,
             },
             cart: {
               cars: [],
@@ -211,11 +260,8 @@ const FirebaseProvider = ({ children }) => {
         warning,
         Cart,
         setCart,
-        database,
-        auth,
-        doc,
-        updateDoc,
-        updateData,
+        setUser,
+        updateUser,
       }}
     >
       {children}

@@ -1,13 +1,15 @@
 import { useContext, useState } from "react";
 import "./index.css";
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
 import Loading from "../Loading";
+import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 const LisencePage = () => {
   const navigate = useNavigate();
   const [data, setsdata] = useState({});
-
+  const { isLoading, setisLoading } = useContext(AuthContext);
+  const { updateUser } = useContext(FirebaseContext);
   useEffect(() => {
     if (document.readyState === "complete") {
       console.log("loaded");
@@ -20,16 +22,11 @@ const LisencePage = () => {
       return window.removeEventListener("load", console.log("loading"));
     }
   }, []);
-  const { setUser, isLoading, setisLoading } = useContext(AuthContext);
-  const submit = (event) => {
+
+  const submit = async (event) => {
     event.preventDefault();
-    setUser((prev) => {
-      return {
-        ...prev,
-        license: data,
-        isLicenseAuthenticated: true,
-      };
-    });
+
+    await updateUser(data);
     navigate(-1);
   };
   const handleData = (event) => {

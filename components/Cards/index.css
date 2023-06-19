@@ -84,20 +84,20 @@
   margin: 1px;
   font-size: 16px;
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
   .service-picture {
     width: 100%;
     background-color: #fff;
     margin: 0;
     padding: 0;
-    height: 250px;
+    height: 170px;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
   }
   .service-picture img {
     width: 100%;
     display: flex;
-    max-height: 250px;
+    max-height: 170px;
     align-items: center;
   }
   .service {
@@ -105,7 +105,7 @@
     text-overflow: ellipsis;
     box-shadow: 1px 1px 8px rgb(0, 0, 0, 0.23);
     background-color: ghostwhite;
-    height: 400px;
+    height: 320px;
     border-radius: 12px;
     font-size: 13px;
   }

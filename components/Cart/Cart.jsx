@@ -95,7 +95,7 @@ const Cart = () => {
         return {
           ...prev,
           cars: prev.cars.map((prev) => {
-            return prev.id === id ? { ...prev, days: prev.days + 1 } : prev;
+            return prev.id === id ? { ...prev, days: prev.days * 1 + 1 } : prev;
           }),
           bookingsAmount,
           hireAmount,
@@ -116,7 +116,7 @@ const Cart = () => {
         return {
           ...prev,
           cars: prev.cars.map((prev) => {
-            return prev.id === id ? { ...prev, days: prev.days - 1 } : prev;
+            return prev.id === id ? { ...prev, days: prev.days * 1 - 1 } : prev;
           }),
           hireAmount: prev.cars.reduce((prev, current) => {
             return prev + current.days * current.amount;

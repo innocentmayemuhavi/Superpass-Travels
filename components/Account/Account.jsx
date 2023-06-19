@@ -41,7 +41,9 @@ const Account = () => {
       )}
 
       <div className="cartbtn">
-        <div className="alert">{Cart.cars.length + Cart.bookings.length}</div>
+        {user && (
+          <div className="alert">{Cart.cars.length + Cart.bookings.length}</div>
+        )}
 
         <img
           onClick={() => {

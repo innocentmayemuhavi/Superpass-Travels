@@ -10,50 +10,30 @@ const BookingService = () => {
   const {
     serviceData,
     setServiceData,
-
     setNotification,
     setShowNotification,
     showNotification,
   } = useContext(AuthContext);
 
-  const { Cart, updateData, setCart } = useContext(FirebaseContext);
+  const { Cart, setCart } = useContext(FirebaseContext);
   const navigate = useNavigate();
-  const systemDataUpdata2 = async () => {
-    await setCart((prev) => {
-      return {
-        ...prev,
-        cars: prev.cars,
-        bookingsAmount: prev.bookings.reduce((prev, current) => {
-          return prev + current.toBePaid;
-        }, 0),
-        hireAmount: prev.cars.reduce((prev, current) => {
-          return prev + current.days * current.amount;
-        }, 0),
-        totalAmount: prev.hireAmount + prev.bookingsAmount,
-      };
-    });
+  // const systemDataUpdata2 = async () => {
+  //   await setCart((prev) => {
+  //     return {
+  //       ...prev,
+  //       cars: prev.cars,
+  //       bookingsAmount: prev.bookings.reduce((prev, current) => {
+  //         return prev + current.toBePaid;
+  //       }, 0),
+  //       hireAmount: prev.cars.reduce((prev, current) => {
+  //         return prev + current.days * current.amount;
+  //       }, 0),
+  //       totalAmount: prev.hireAmount + prev.bookingsAmount,
+  //     };
+  //   });
 
-    await updateData();
-  };
+  // };
 
-  const systemDataUpdata1 = async () => {
-    await setCart((prev) => {
-      return {
-        ...prev,
-        cars: prev.cars,
-        bookingsAmount: prev.bookings.reduce((prev, current) => {
-          return prev + current.toBePaid;
-        }, 0),
-        hireAmount: prev.cars.reduce((prev, current) => {
-          return prev + current.days * current.amount;
-        }, 0),
-        totalAmount: prev.hireAmount + prev.bookingsAmount,
-      };
-    });
-
-    await updateData();
-    systemDataUpdata2();
-  };
   const systemDataUpdata = async () => {
     await setCart((prev) => {
       return {
@@ -68,8 +48,6 @@ const BookingService = () => {
         totalAmount: prev.hireAmount + prev.bookingsAmount,
       };
     });
-
-    await updateData();
   };
 
   const updatedata = (event, data) => {
@@ -97,8 +75,6 @@ const BookingService = () => {
     if (Exists) {
       console.log("here");
       await systemDataUpdata();
-      
-      await updateData();
       let filll = Cart.bookings.filter((data) => data.id === id);
       console.log(filll[0].id);
       console.log("its here");
@@ -115,8 +91,7 @@ const BookingService = () => {
       setShowNotification(true);
     } else {
       await systemDataUpdata();
-      await systemDataUpdata1();
-      await updateData();
+
       const newData = Cart.bookings;
       newData.push(serviceData);
       await setCart((prev) => {
@@ -131,8 +106,7 @@ const BookingService = () => {
         };
       });
       await systemDataUpdata();
-      await systemDataUpdata1();
-      await updateData();
+
       let filll = Cart.bookings.filter((data) => data.id === id);
       console.log(filll[0].id);
       console.log("its here");
@@ -145,13 +119,10 @@ const BookingService = () => {
         );
       });
       await systemDataUpdata();
-      await systemDataUpdata1();
 
       setShowNotification(true);
     }
     await systemDataUpdata();
-    await systemDataUpdata1();
-    await updateData();
   };
   return (
     <main className="service-page">
@@ -266,6 +237,11 @@ const BookingService = () => {
               <option value={"7b"}>7b</option>
               <option value={"7c"}>7c</option>
               <option value={"7d"}>7d</option>
+
+              <option value={"8a"}>8a</option>
+              <option value={"8b"}>8b</option>
+              <option value={"8c"}>8c</option>
+              <option value={"8d"}>8d</option>
 
               <option value={"9a"}>9a</option>
               <option value={"9b"}>9b</option>
