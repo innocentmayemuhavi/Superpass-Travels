@@ -7,9 +7,7 @@ import {
   createUserWithEmailAndPassword,
   getAdditionalUserInfo,
   updateProfile,
-  updatePhoneNumber,
   signOut,
-  updateCurrentUser,
 } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import {
@@ -19,7 +17,6 @@ import {
   getDoc,
   setDoc,
   onSnapshot,
-  addDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -35,8 +32,8 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 const database = getFirestore();
-const auth = getAuth();
 
+const auth = getAuth();
 const FirebaseContext = createContext();
 
 const FirebaseProvider = ({ children }) => {
@@ -54,9 +51,8 @@ const FirebaseProvider = ({ children }) => {
     totalAmount: 0,
   });
 
-  useEffect(() => {
+  useEffect(async () => {
     const unsubscribe = onAuthStateChanged(auth, async (userData) => {
-      var data = {};
       try {
         await setUser(userData);
 
@@ -67,11 +63,19 @@ const FirebaseProvider = ({ children }) => {
             await setCart({
               ...doc.data().cart,
             });
-
+            await setUser((prev) => {
+              return {
+                ...prev,
+                phone: doc.data().userdata.phoneNumber,
+              };
+            });
             console.log("done loading user data on database", doc.data());
           });
-          onSnapshot(docref, (doc) => {
+          onSnapshot(docref, async (doc) => {
             console.log(doc.data());
+            await setCart({
+              ...doc.data().cart,
+            });
           });
         }
       } catch (error) {
@@ -90,48 +94,57 @@ const FirebaseProvider = ({ children }) => {
       const w1 = e.code.split("auth/").join("");
       const w2 = w1.split("-").join(" ");
       setWarning(w2);
-      console.log(warning);
+    }
+  };
+
+  // useEffect(() => {
+  //   return async () => {
+  //     const uid = await auth.currentUser.uid;
+
+  //     if (uid) {
+  //       const docref = await doc(database, "users", uid);
+  //       getDoc(docref).then(async (doc) => {
+  //         // await console.log("Dataii", doc.data());
+  //       });
+
+  //       // console.log(Cart);
+  //     }
+  //   };
+  // }, [Cart]);
+  const updateData = async () => {
+    try {
+      const docRef = doc(database, "users", auth.currentUser.uid);
+      await updateDoc(docRef, {
+        cart: Cart,
+      });
+      console.log("Database updated successfully");
+    } catch (error) {
+      console.log(error);
     }
   };
 
   useEffect(() => {
-    return async () => {
-      const uid = await auth.currentUser.uid;
-      const docref = doc(database, "users", uid);
-      getDoc(docref).then(async (doc) => {
-        await console.log("DAta", doc.data());
-      });
-    };
-  }, []);
+    // const process = async () => {
+    //   const uid = await auth.currentUser;
+    //   if (uid) {
+    //     console.log("Cart changed");
+    //     console.log("changed cart", Cart);
+    //     try {
+    //       const docRef = doc(database, "users", auth.currentUser.uid);
+    //       updateDoc(docRef, {
+    //         cart: Cart,
+    //       });
+    //       console.log("Database updated successfully");
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    //   }
+    // };
 
-  useEffect(() => {
-    return async () => {
-      const uid = await auth.currentUser.uid;
+    // return () => process();
 
-      if (uid) {
-        const docref = await doc(database, "users", uid);
-        getDoc(docref).then(async (doc) => {
-          await console.log("Dataii", doc.data());
-        });
-
-        console.log(Cart);
-      }
-    };
+    updateData();
   }, [Cart]);
-
-  const updateData = async () => {
-    const docRef = await doc(database, "users", auth.currentUser.uid);
-    updateDoc(docRef, {
-      cart: Cart,
-    })
-      .then((docRef) => {
-        console.log("dtb updated succesfully");
-      })
-      .catch((e) => {
-        console.log(e.code);
-      });
-    console.log(Cart);
-  };
 
   const signup = async (email, password, name, phone) => {
     try {
@@ -144,11 +157,11 @@ const FirebaseProvider = ({ children }) => {
         email,
         password
       );
-      await updateProfile(auth.currentUser, {
+
+      updateProfile(auth.currentUser, {
         displayName: name,
       });
 
-      console.log("disp name:", auth.currentUser.displayName);
       if (userData) {
         const isNewUser = getAdditionalUserInfo(userData).isNewUser;
 
@@ -175,6 +188,13 @@ const FirebaseProvider = ({ children }) => {
   const signout = async () => {
     try {
       await signOut(auth);
+      await setCart({
+        cars: [],
+        bookings: [],
+        hireAmount: 0,
+        bookingsAmount: 0,
+        totalAmount: 0,
+      });
     } catch (e) {
       console.log(e.code);
     }
@@ -191,6 +211,10 @@ const FirebaseProvider = ({ children }) => {
         warning,
         Cart,
         setCart,
+        database,
+        auth,
+        doc,
+        updateDoc,
         updateData,
       }}
     >

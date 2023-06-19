@@ -7,15 +7,26 @@ import { useNavigate } from "react-router-dom";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 
 const HireService = (props) => {
-  const {
-    setShowNotification,
-    setNotification,
-
-    productData,
-    setProductData,
-  } = useContext(AuthContext);
+  const { setShowNotification, setNotification, productData, setProductData } =
+    useContext(AuthContext);
 
   const { Cart, setCart, updateData } = useContext(FirebaseContext);
+  // const systemDataUpdata1 = async () => {
+  //   await setCart((prev) => {
+  //     return {
+  //       ...prev,
+  //       cars: prev.cars,
+  //       bookingsAmount: prev.bookings.reduce((prev, current) => {
+  //         return prev + current.toBePaid;
+  //       }, 0),
+  //       hireAmount: prev.cars.reduce((prev, current) => {
+  //         return prev + current.days * current.amount;
+  //       }, 0),
+  //       totalAmount: prev.hireAmount + prev.bookingsAmount,
+  //     };
+  //   });
+
+  // };
   const systemDataUpdata = async () => {
     await setCart((prev) => {
       return {
@@ -30,7 +41,6 @@ const HireService = (props) => {
         totalAmount: prev.hireAmount + prev.bookingsAmount,
       };
     });
-    await updateData();
   };
   const navigate = useNavigate();
   const Saving = async (id) => {

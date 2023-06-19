@@ -4,7 +4,7 @@ import { Header } from "../Header/Header";
 import "./index.css";
 import { Pay_By_Card } from "./Pay_by_card";
 import { Pay_By_Mpesa } from "./Pay_by_m_pesa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../src/Assets/Context";
 import Loading from "../Loading";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
@@ -12,6 +12,7 @@ const Checkout = () => {
   const [showvisa, setshowvisa] = useState(true);
   const { isLoading, setisLoading } = useContext(AuthContext);
   const { user, Cart } = useContext(FirebaseContext);
+  const navigate = useNavigate();
   useEffect(() => {
     if (document.readyState === "complete") {
       console.log("loaded");
@@ -69,9 +70,9 @@ const Checkout = () => {
         <main>
           <Header />
           <div className="checkout-page">
-            <Link to={"/cart"}>
-              <button className="checkout-btn">Close Check-Out</button>
-            </Link>
+            <button className="checkout-btn" onClick={() => navigate("/cart")}>
+              Close Check-Out
+            </button>
 
             <section className="checkout-modal">
               <p> Form Data Is Not Submitted App On Demo</p>
@@ -148,10 +149,10 @@ const Checkout = () => {
                       {" "}
                       Email:<span className="grey">{user.email}</span>
                     </p>
-                    {/* <p>
+                    <p>
                       {" "}
                       Phone:<span className="grey">{user.phone}</span>
-                    </p> */}
+                    </p>
                   </fieldset>
                   <div className="checkout-method-select">
                     <button

@@ -1,95 +1,69 @@
-import { AuthContext } from "../../src/Assets/Context";
-import "./index.css";
 import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../src/Assets/Context";
+import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 import { Header } from "../Header/Header";
 import { Footer } from "../footer/Footer";
-import { useNavigate } from "react-router-dom";
 import { Button } from "../Button/Index";
 import Loading from "../Loading";
-import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
+import "./index.css";
+
 const Cart = () => {
   const { setProductData, isLoading, setisLoading, setServiceData } =
     useContext(AuthContext);
-
-  const { Cart, setCart, updateData } = useContext(FirebaseContext);
+  const { Cart, setCart } = useContext(FirebaseContext);
   const navigate = useNavigate();
-  const systemDataUpdata2 = async () => {
+
+  const systemDataUpdate = async () => {
     await setCart((prev) => {
+      const bookingsAmount = prev.bookings.reduce((prev, current) => {
+        return prev + current.toBePaid;
+      }, 0);
+      const hireAmount = prev.cars.reduce((prev, current) => {
+        return prev + current.days * current.amount;
+      }, 0);
+
       return {
         ...prev,
-        cars: prev.cars,
-        bookingsAmount: prev.bookings.reduce((prev, current) => {
-          return prev + current.toBePaid;
-        }, 0),
-        hireAmount: prev.cars.reduce((prev, current) => {
-          return prev + current.days * current.amount;
-        }, 0),
-        totalAmount: prev.hireAmount + prev.bookingsAmount,
+        bookingsAmount,
+        hireAmount,
+        totalAmount: hireAmount + bookingsAmount,
       };
     });
-
-    await updateData();
   };
 
-  const systemDataUpdata1 = async () => {
-    await setCart((prev) => {
-      return {
-        ...prev,
-        cars: prev.cars,
-        bookingsAmount: prev.bookings.reduce((prev, current) => {
-          return prev + current.toBePaid;
-        }, 0),
-        hireAmount: prev.cars.reduce((prev, current) => {
-          return prev + current.days * current.amount;
-        }, 0),
-        totalAmount: prev.hireAmount + prev.bookingsAmount,
-      };
-    });
-
-    await updateData();
-    systemDataUpdata2();
-  };
-  const systemDataUpdata = async () => {
-    await setCart((prev) => {
-      return {
-        ...prev,
-        cars: prev.cars,
-        hireAmount: prev.cars.reduce((prev, current) => {
-          return prev + current.days * 1 * current.amount;
-        }, 0),
-        bookingsAmount: prev.bookings.reduce((prev, current) => {
-          return prev + current.toBePaid;
-        }, 0),
-        totalAmount: prev.hireAmount + prev.bookingsAmount,
-      };
-    });
-
-    await updateData();
-  };
   const DeletingFromCart = async (id) => {
-    const fill = Cart.cars.filter((cars) => cars.id !== id);
-    await setCart((prev) => {
-      return {
-        ...prev,
-        cars: fill,
-        bookingsAmount: prev.bookings.reduce((prev, current) => {
-          return prev + current.toBePaid;
-        }, 0),
-        hireAmount: fill.reduce((prev, current) => {
-          return prev + current.days * current.amount;
-        }, 0),
-        totalAmount: prev.hireAmount + prev.bookingsAmount,
-      };
-    });
-    await systemDataUpdata();
-    await systemDataUpdata1();
-    await updateData();
+    const updatedCars = Cart.cars.filter((car) => car.id !== id);
+
+    const bookingsAmount = Cart.bookings.reduce((prev, current) => {
+      return prev + current.toBePaid;
+    }, 0);
+
+    const hireAmount = updatedCars.reduce((prev, current) => {
+      return prev + current.days * current.amount;
+    }, 0);
+
+    const updatedCart = {
+      ...Cart,
+      cars: updatedCars,
+      bookingsAmount,
+      hireAmount,
+      totalAmount: hireAmount + bookingsAmount,
+    };
+
+    await setCart(updatedCart);
+
+    await systemDataUpdate();
+    //await updateData();
   };
+
   const DeletingFromBooking = async (id) => {
     const fill = Cart.bookings.filter((cars) => cars.id !== id);
+
+    console.log("This is fill", fill);
     await setCart((prev) => {
       return {
-        ...prev,
+        cars: prev.cars,
         bookings: fill,
         bookingsAmount: fill.reduce((prev, current) => {
           return prev + current.toBePaid;
@@ -100,31 +74,38 @@ const Cart = () => {
         totalAmount: prev.hireAmount + prev.bookingsAmount,
       };
     });
-    await systemDataUpdata();
-    await systemDataUpdata1();
-    await updateData();
+
+    console.log(Cart);
+
+    await systemDataUpdate();
+    // await updateData(Cart);
   };
+
   const Add = async (id) => {
     const fill = Cart.cars.filter((cars) => cars.id === id);
     if (fill[0].days <= 6) {
       await setCart((prev) => {
+        const bookingsAmount = prev.bookings.reduce((prev, current) => {
+          return prev + current.toBePaid;
+        }, 0);
+        const hireAmount = prev.cars.reduce((prev, current) => {
+          return prev + current.days * current.amount;
+        }, 0);
+
         return {
           ...prev,
           cars: prev.cars.map((prev) => {
             return prev.id === id ? { ...prev, days: prev.days + 1 } : prev;
           }),
-          bookingsAmount: prev.bookings.reduce((prev, current) => {
-            return prev + current.toBePaid;
-          }, 0),
-          hireAmount: prev.cars.reduce((prev, current) => {
-            return prev + current.days * current.amount;
-          }, 0),
-          totalAmount: prev.hireAmount + prev.bookingsAmount,
+          bookingsAmount,
+          hireAmount,
+          totalAmount: hireAmount + bookingsAmount,
         };
       });
     }
-    await systemDataUpdata();
-    await systemDataUpdata1();
+
+    await systemDataUpdate();
+    //await updateData(Cart);
   };
 
   const Minus = async (id) => {
@@ -149,8 +130,9 @@ const Cart = () => {
     } else {
       await DeletingFromCart(id);
     }
-    await systemDataUpdata();
-    await systemDataUpdata1();
+
+    await systemDataUpdate();
+    //await updateData(Cart);
   };
 
   const render = Cart.cars.map((data) => {
