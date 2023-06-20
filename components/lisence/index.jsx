@@ -10,6 +10,7 @@ const LisencePage = () => {
   const [data, setsdata] = useState({});
   const { isLoading, setisLoading } = useContext(AuthContext);
   const { updateUser } = useContext(FirebaseContext);
+  const currentDate = new Date().toISOString().split("T")[0];
   useEffect(() => {
     if (document.readyState === "complete") {
       console.log("loaded");
@@ -81,6 +82,7 @@ const LisencePage = () => {
               required={true}
               name="exp_date"
               onChange={handleData}
+              min={currentDate}
             />
 
             <div className="page-input">

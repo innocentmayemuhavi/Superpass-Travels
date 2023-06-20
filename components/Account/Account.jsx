@@ -10,7 +10,7 @@ const Account = () => {
   const navigate = useNavigate();
   const { setShowaccount } = useContext(AuthContext);
 
-  const { user, signout, Cart } = useContext(FirebaseContext);
+  const { user, signout, Cart, deleteAccount } = useContext(FirebaseContext);
   const setPage = async () => {
     try {
       await signout();
@@ -55,7 +55,17 @@ const Account = () => {
         />
       </div>
 
-      <Button text={user ? "Log Out" : "Log In"} onClick={setPage} class="" />
+      <button onClick={setPage} className="login-btnn">
+        {user ? "Log Out" : "Log In"}
+      </button>
+     { user&&<button
+        onClick={() => {
+          deleteAccount();
+        }}
+        className="delete-user"
+      >
+        Delete Account
+      </button>}
     </section>
   );
 };

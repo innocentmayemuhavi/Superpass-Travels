@@ -10,6 +10,8 @@
   fill: black;
 }
 .accountsection {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   background-color: ghostwhite;
   padding: 10px;
@@ -25,4 +27,25 @@
 }
 .cancel {
   width: 15px;
+}
+.delete-user{
+  font-size: 7px;
+  align-self: center;
+  display: inline;
+  padding: 6px 10px;
+  color: red;
+  width: 80px;
+  border: 2px solid red;
+  
+}
+.delete-user:hover,.delete-user:focus,.delete-user:active{
+  background-color: red;
+  color: #fff;
+  
+  border: 2px solid red;
+  
+}
+.login-btnn{
+  max-width: 745x;
+  align-self: center;
 }

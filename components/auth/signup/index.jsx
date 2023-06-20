@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../src/Assets/Context";
-import Loading from "../Loading";
+import { AuthContext } from "../../../src/Assets/Context";
+import Loading from "../../Loading";
 
 import "./index.css";
-import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
+import { FirebaseContext } from "../../../src/Assets/Context/firebaseContext";
 
 const SignUp = () => {
   useEffect(() => {

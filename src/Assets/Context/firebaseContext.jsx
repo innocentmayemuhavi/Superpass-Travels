@@ -8,6 +8,8 @@ import {
   getAdditionalUserInfo,
   updateProfile,
   signOut,
+  sendPasswordResetEmail,
+  deleteUser,
 } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import {
@@ -17,6 +19,7 @@ import {
   getDoc,
   setDoc,
   onSnapshot,
+  deleteDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -230,6 +233,7 @@ const FirebaseProvider = ({ children }) => {
           });
         }
       }
+      setWarning("");
     } catch (e) {
       const w1 = e.code.split("auth/").join("");
       const w2 = w1.split("-").join(" ");
@@ -252,6 +256,27 @@ const FirebaseProvider = ({ children }) => {
     }
   };
 
+  const resetpassword = async (email) => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+    } catch (error) {
+      const w1 = error.code.split("auth/").join("");
+      const w2 = w1.split("-").join(" ");
+      setWarning(w2);
+    }
+  };
+  const deleteAccount = async () => {
+    try {
+      const usertodelete = await auth.currentUser;
+
+      const docref = doc(database, "users", usertodelete.uid);
+      await deleteDoc(docref);
+      await deleteUser(usertodelete);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <FirebaseContext.Provider
       value={{
@@ -261,10 +286,13 @@ const FirebaseProvider = ({ children }) => {
         profile,
         signout,
         warning,
+        setWarning,
         Cart,
         setCart,
         setUser,
         updateUser,
+        resetpassword,
+        deleteAccount,
       }}
     >
       {children}

@@ -65,7 +65,7 @@ const Receipt = () => {
           >
             <legend>Customer Details And Address</legend>
             <p>
-              User Name:<span className="grey">{user.name}</span>
+              User Name:<span className="grey">{user.displayName}</span>
             </p>
             <p>
               {" "}

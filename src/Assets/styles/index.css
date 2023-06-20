@@ -42,10 +42,12 @@ td {
 svg {
   cursor: pointer;
 }
-a{
+.forgot-password,a{
   color: black;
+  text-decoration: underline;
+  cursor: pointer;
 
 }
-a:hover,a:focus,a:active{
+a:hover,a:focus,a:active,.forgot-password:hover,.forgot-password:focus,.forgot-password:active{
   font-weight: 600;
 }

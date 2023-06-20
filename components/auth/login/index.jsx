@@ -1,13 +1,14 @@
 import { useContext, useState, useEffect } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../src/Assets/Context";
-import Loading from "../Loading";
+import { AuthContext } from "../../../src/Assets/Context";
+import Loading from "../../Loading";
 import "./index.css";
-import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
+import { FirebaseContext } from "../../../src/Assets/Context/firebaseContext";
 
 const Login = () => {
+  const navigate = useNavigate();
   const { setisLoading, isLoading } = useContext(AuthContext);
-  const { signin, user, error, warning } = useContext(FirebaseContext);
+  const { signin, user, warning,setWarning } = useContext(FirebaseContext);
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -28,14 +29,13 @@ const Login = () => {
 
   const submit = async (event) => {
     event.preventDefault();
-    setisLoading(true)
+    setisLoading(true);
     try {
-     
       await signin(data.email, data.password);
     } catch (error) {
       setWarning(error.code);
     }
-    setisLoading(false)
+    setisLoading(false);
   };
   const handleData = (event) => {
     const { name, value } = event.target;
@@ -77,15 +77,12 @@ const Login = () => {
               onChange={handleData}
             />
             <p>
-              Don't have account? Click <Link to={"/signup"}>here</Link>
+              Don't have account? Click <Link to={"/signup"} onClick={()=>setWarning('')}>here</Link>
             </p>
 
             <button>Login</button>
 
-            <Link to={"/"}>
-              {" "}
-              <p>Forgot Password?</p>
-            </Link>
+            <p onClick={() => navigate("/resetpassword")} className="forgot-password">Forgot Password?</p>
           </form>
         </main>
       )}

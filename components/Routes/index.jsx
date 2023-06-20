@@ -1,4 +1,3 @@
-import Login from "../login";
 import CarHirePage from "../CarHirePage";
 import CarBookingPage from "../Travelingpage";
 import { Home } from "../Homepage/Home";
@@ -14,7 +13,7 @@ import {
 import BookingService from "../bookingservice";
 import ContactPage from "../ContactPage";
 import About from "../AboutPage";
-import { SignUp } from "../signup";
+
 import { WhatWeDo } from "../Whatwedo";
 import { OurServices } from "../OurServices";
 import { HireService } from "../HireService";
@@ -24,6 +23,9 @@ import { Receipt } from "../Receipt";
 import AddingCars from "../AddingCar";
 import { useContext } from "react";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
+import Login from "../auth/login";
+import { SignUp } from "../auth/signup";
+import { ResetPassword } from "../auth/resetpassword";
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useContext(FirebaseContext);
@@ -71,10 +73,39 @@ const AppRoutes = () => {
       <Route path="/about" element={<About />} />
       <Route path="/whatwedo" element={<WhatWeDo />} />
       <Route path="/ourservices" element={<OurServices />} />
-      <Route path="/lisenceverification" element={<LisencePage />} />
-      <Route path="/checkout" element={<Checkout />} />
-      <Route path="/receipt" element={<Receipt />} />
-      <Route path="/addingcar" element={<AddingCars />} />
+      <Route
+        path="/lisenceverification"
+        element={
+          <ProtectedRoute>
+            <LisencePage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/checkout"
+        element={
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/receipt"
+        element={
+          <ProtectedRoute>
+            <Receipt />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/addingcar"
+        element={
+          <ProtectedRoute>
+            <AddingCars />
+          </ProtectedRoute>
+        }
+      />
+      <Route path="/resetpassword" element={<ResetPassword />} />
     </Routes>
   );
 };

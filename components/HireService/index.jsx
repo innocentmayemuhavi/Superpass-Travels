@@ -11,6 +11,7 @@ const HireService = (props) => {
     useContext(AuthContext);
 
   const { Cart, setCart, user } = useContext(FirebaseContext);
+  const currentDate = new Date().toISOString().split("T")[0];
   // const systemDataUpdata1 = async () => {
   //   await setCart((prev) => {
   //     return {
@@ -62,13 +63,8 @@ const HireService = (props) => {
       await systemDataUpdata();
       setShowNotification(true);
     } else {
-      console.log("not here");
       const newOrder = Cart.cars;
-      console.log(newOrder);
       newOrder.push(productData);
-      console.log(newOrder);
-
-      console.log(user)
 
       if (user.isLisenceAuthenticated) {
         await setCart((prev) => {
@@ -81,7 +77,7 @@ const HireService = (props) => {
           };
         });
       } else {
-        navigate("/lisenceverification");
+        await navigate("/lisenceverification");
       }
 
       await systemDataUpdata();
@@ -179,6 +175,7 @@ const HireService = (props) => {
                 name="pick_up"
                 value={productData.pick_up}
                 onChange={SetDays}
+                min={currentDate}
               />
             </div>
             <div className="product-buttons">
