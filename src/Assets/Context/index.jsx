@@ -1,35 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 
-import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
-import { initializeApp } from "firebase/app";
-import {
-  getFirestore,
-  doc,
-  updateDoc,
-  getDoc,
-  setDoc,
-} from "firebase/firestore";
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCKKDgFMvxvI6PogJBEoUUaJpEWVRVdv5Q",
-  authDomain: "superpass-fdeeb.firebaseapp.com",
-  databaseURL: "https://superpass-fdeeb-default-rtdb.firebaseio.com",
-  projectId: "superpass-fdeeb",
-  storageBucket: "superpass-fdeeb.appspot.com",
-  messagingSenderId: "648988901889",
-  appId: "1:648988901889:web:f24a9a0a703a693f627600",
-  measurementId: "G-H5K80682K8",
-};
-
-initializeApp(firebaseConfig);
-const database = getFirestore();
-const auth = getAuth();
-
 const AuthContext = createContext({
   user: {
     id: 0,

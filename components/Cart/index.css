@@ -60,10 +60,10 @@ table {
 .car-notice {
   width: 50%;
   padding: 7px;
-  border: 2px solid #d5d5d5d5;
+  border: 2px solid rgb(227, 115, 94,0.6);
   padding: 2px;
   border-radius: 9px;
-  background-color: rgb(227, 115, 94);
+  background-color: rgb(227, 115, 94,0.4);
   display: flex;
   align-items: center;
   gap: 3px;

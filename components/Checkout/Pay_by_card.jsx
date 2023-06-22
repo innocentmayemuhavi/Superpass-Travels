@@ -10,7 +10,7 @@ const navigate=useNavigate()
       return { ...prev, [name]: value };
     });
   };
-
+  const currentDate = new Date().toISOString().split("T")[0];
   const submit = (event) => {
     event.preventDefault();
     console.log(Details);
@@ -45,6 +45,7 @@ const navigate=useNavigate()
             type={"date"}
             required={true}
             name={"expdate"}
+            min={currentDate}
             onChange={Check}
           />
           <label>User Id Number:</label>

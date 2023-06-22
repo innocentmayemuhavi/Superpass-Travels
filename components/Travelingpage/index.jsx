@@ -40,7 +40,7 @@ const TravellingPage = () => {
           className="hire-page fade"
         >
           <Header />
-          <h1> Travells Page Under Development</h1>
+          <h1> Car Booking</h1>
           <hr />
 
           <section className="car-booking-body">{render}</section>

@@ -22,15 +22,17 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCKKDgFMvxvI6PogJBEoUUaJpEWVRVdv5Q",
-  authDomain: "superpass-fdeeb.firebaseapp.com",
-  databaseURL: "https://superpass-fdeeb-default-rtdb.firebaseio.com",
-  projectId: "superpass-fdeeb",
-  storageBucket: "superpass-fdeeb.appspot.com",
-  messagingSenderId: "648988901889",
-  appId: "1:648988901889:web:f24a9a0a703a693f627600",
-  measurementId: "G-H5K80682K8",
+  apiKey: "AIzaSyCOLpFuoFE8r3Kne6V7pRFjjwhQwEjT7SI",
+  authDomain: "superpasstravels.firebaseapp.com",
+  databaseURL: "https://superpasstravels-default-rtdb.firebaseio.com",
+  projectId: "superpasstravels",
+  storageBucket: "superpasstravels.appspot.com",
+  messagingSenderId: "352953280108",
+  appId: "1:352953280108:web:2b13d9621674575d325a49",
+  measurementId: "G-SZ0RV8XYPL",
 };
 
 initializeApp(firebaseConfig);
