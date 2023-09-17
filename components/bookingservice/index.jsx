@@ -17,39 +17,6 @@ const BookingService = () => {
 
   const { Cart, setCart } = useContext(FirebaseContext);
   const navigate = useNavigate();
-  // const systemDataUpdata2 = async () => {
-  //   await setCart((prev) => {
-  //     return {
-  //       ...prev,
-  //       cars: prev.cars,
-  //       bookingsAmount: prev.bookings.reduce((prev, current) => {
-  //         return prev + current.toBePaid;
-  //       }, 0),
-  //       hireAmount: prev.cars.reduce((prev, current) => {
-  //         return prev + current.days * current.amount;
-  //       }, 0),
-  //       totalAmount: prev.hireAmount + prev.bookingsAmount,
-  //     };
-  //   });
-
-  // };
-
-  const systemDataUpdata = async () => {
-    await setCart((prev) => {
-      return {
-        ...prev,
-        cars: prev.cars,
-        hireAmount: prev.cars.reduce((prev, current) => {
-          return prev + current.days * 1 * current.amount;
-        }, 0),
-        bookingsAmount: prev.bookings.reduce((prev, current) => {
-          return prev + current.toBePaid;
-        }, 0),
-        totalAmount: prev.hireAmount + prev.bookingsAmount,
-      };
-    });
-  };
-
   const updatedata = (event, data) => {
     const { name, value } = event.target;
 
@@ -73,8 +40,6 @@ const BookingService = () => {
     const Exists = Cart.bookings.find((data) => data.id === id);
 
     if (Exists) {
-      console.log("here");
-      await systemDataUpdata();
       let filll = Cart.bookings.filter((data) => data.id === id);
       console.log(filll[0].id);
       console.log("its here");
@@ -90,26 +55,22 @@ const BookingService = () => {
 
       setShowNotification(true);
     } else {
-      await systemDataUpdata();
-
-      const newData = Cart.bookings;
+      const newData = Cart.bookings.slice();
       newData.push(serviceData);
+      const bookingsAmount = newData.reduce((prev, current) => {
+        return prev + current.toBePaid;
+      }, 0);
+
       await setCart((prev) => {
         return {
           ...prev,
           cars: prev.cars,
           bookings: newData,
-          bookingsAmount: newData.reduce((prev, current) => {
-            return prev + current.toBePaid;
-          }, 0),
-          totalAmount: prev.bookingsAmount + prev.hireAmount,
+          bookingsAmount: bookingsAmount,
+          totalAmount: bookingsAmount + prev.hireAmount,
         };
       });
-      await systemDataUpdata();
-
-      let filll = Cart.bookings.filter((data) => data.id === id);
-      console.log(filll[0].id);
-      console.log("its here");
+      let filll = newData.filter((data) => data.id === id);
       setNotification((prev) => {
         return (
           <p>
@@ -118,11 +79,8 @@ const BookingService = () => {
           </p>
         );
       });
-      await systemDataUpdata();
-
       setShowNotification(true);
     }
-    await systemDataUpdata();
   };
   return (
     <main className="service-page">

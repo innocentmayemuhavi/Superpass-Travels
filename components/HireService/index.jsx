@@ -5,52 +5,22 @@ import * as React from "react";
 import { Header } from "../Header/Header";
 import { useNavigate } from "react-router-dom";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
-
-const HireService = (props) => {
+import Loading from "../Loading";
+const HireService = () => {
+  const navigate = useNavigate();
   const { setShowNotification, setNotification, productData, setProductData } =
     useContext(AuthContext);
 
-  const { Cart, setCart, user } = useContext(FirebaseContext);
+  const { Cart, setCart, user, isLoading } = useContext(FirebaseContext);
   const currentDate = new Date().toISOString().split("T")[0];
-  // const systemDataUpdata1 = async () => {
-  //   await setCart((prev) => {
-  //     return {
-  //       ...prev,
-  //       cars: prev.cars,
-  //       bookingsAmount: prev.bookings.reduce((prev, current) => {
-  //         return prev + current.toBePaid;
-  //       }, 0),
-  //       hireAmount: prev.cars.reduce((prev, current) => {
-  //         return prev + current.days * current.amount;
-  //       }, 0),
-  //       totalAmount: prev.hireAmount + prev.bookingsAmount,
-  //     };
-  //   });
 
-  // };
-  const systemDataUpdata = async () => {
-    await setCart((prev) => {
-      return {
-        ...prev,
-        cars: prev.cars,
-        bookingsAmount: prev.bookings.reduce((prev, current) => {
-          return prev + current.toBePaid;
-        }, 0),
-        hireAmount: prev.cars.reduce((prev, current) => {
-          return prev + current.days * current.amount;
-        }, 0),
-        totalAmount: prev.hireAmount + prev.bookingsAmount,
-      };
-    });
-  };
-  const navigate = useNavigate();
   const Saving = async (id) => {
     const Exists = Cart.cars.find((prev) => prev.id === id);
-    systemDataUpdata();
+
     if (Exists) {
       let filll = Cart.cars.filter((data) => data.id === id);
       console.log(filll[0].id);
-      console.log("its here");
+
       setNotification((prev) => {
         return (
           <p>
@@ -60,27 +30,28 @@ const HireService = (props) => {
           </p>
         );
       });
-      await systemDataUpdata();
+
       setShowNotification(true);
     } else {
-      const newOrder = Cart.cars;
+      const newOrder = Cart.cars.slice();
+
       newOrder.push(productData);
+      const hireAmount = newOrder.reduce((prev, current) => {
+        return prev + current.amount * current.days;
+      }, 0);
 
       if (user.isLisenceAuthenticated) {
         await setCart((prev) => {
           return {
             ...prev,
             cars: newOrder,
-            hireAmount: newOrder.reduce((prev, current) => {
-              return prev + current.amount * current.days;
-            }, 0),
+            hireAmount: hireAmount,
+            totalAmount: hireAmount + prev.bookingsAmount,
           };
         });
       } else {
-        await navigate("/lisenceverification");
+        navigate("/lisenceverification");
       }
-
-      await systemDataUpdata();
 
       setNotification((prev) => {
         return (
@@ -91,10 +62,9 @@ const HireService = (props) => {
           </p>
         );
       });
-      await systemDataUpdata();
+
       setShowNotification(true);
     }
-    await systemDataUpdata();
   };
 
   const SetDays = (event) => {
@@ -104,88 +74,98 @@ const HireService = (props) => {
       return { ...prev, [name]: value };
     });
   };
-  console.log();
-  return (
-    <div className=" product fade">
-      <Header />
-      <div className="product-body">
-        <div className="product-image">
-          {" "}
-          <img src={productData.picture} />
-        </div>
 
-        <section className="product-content">
-          <div className="booking-content">
-            <p>
-              Service:<span className="gray">{productData.name}</span>
-            </p>
-            <p>
-              Description:
-              <span className="gray">{productData.description}</span>
-            </p>
-            <p>Price/Day:{productData.amount}</p>
-            <div className="page-input">
+  return (
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className=" product fade">
+          <Header />
+          <div className="product-body">
+            <div className="product-image">
               {" "}
-              <label>Days:</label>
-              <select value={productData.days} name="days" onChange={SetDays}>
-                <option value={""}>Select Number Of Days</option>
-                <option value={1 * 1}>1</option>
-                <option value={2 * 1}>2</option>
-                <option value={3 * 1}>3</option>
-                <option value={4 * 1}>4</option>
-                <option value={5 * 1}>5</option>
-                <option value={6 * 1}>6</option>
-                <option value={7 * 1}>7</option>
-              </select>
+              <img src={productData.picture} />
             </div>
-            <div className="page-input">
-              {" "}
-              <label>Drop-Point:</label>
-              <select
-                value={productData.drop_point}
-                name="drop_point"
-                onChange={SetDays}
-              >
-                <option value={""}>Select Drop Point</option>
-                <option value={"Kencom Point"}>Kencom Point</option>
-                <option value={"The Hub-Karen"}>The Hub-Karen</option>
-                <option value={"Kapsabet-The Office"}>
-                  Kapsabet-The Office
-                </option>
-                <option value={"Kisumu-Office"}>Kisumu-Office</option>
-                <option value={"Eldoret-Point"}>Eldoret-Point</option>
-                <option value={"Thika Arcade"}>Thika Arcade</option>
-                <option value={"Moi University-Point"}>
-                  Moi University-Point
-                </option>
-                <option value={"Eldoret-Point"}>Eldoret-Point</option>
-                <option value={"South-B"}>South-B</option>
-                <option value={"Lesoss"}>Lesoss</option>
-                <option value={"Eldoret-Point"}>Eldoret-Point</option>
-                <option value={"Nakuru-near Green Garden"}>
-                  Nakuru-near Green Garden
-                </option>
-                <option value={"Hill-View"}>Hill-View</option>
-              </select>
-            </div>
-            <div className="page-input">
-              <label>Pick Up Date:</label>
-              <input
-                type="date"
-                name="pick_up"
-                value={productData.pick_up}
-                onChange={SetDays}
-                min={currentDate}
-              />
-            </div>
-            <div className="product-buttons">
-              <button onClick={() => navigate(-1)}>Cancel</button>
-              <button onClick={() => Saving(productData.id)}>HIRE</button>
-            </div>
+
+            <section className="product-content">
+              <div className="booking-content">
+                <p>
+                  Service:<span className="gray">{productData.name}</span>
+                </p>
+                <p>
+                  Description:
+                  <span className="gray">{productData.description}</span>
+                </p>
+                <p>Price/Day:{productData.amount}</p>
+                <div className="page-input">
+                  {" "}
+                  <label>Days:</label>
+                  <select
+                    value={productData.days}
+                    name="days"
+                    onChange={SetDays}
+                  >
+                    <option value={""}>Select Number Of Days</option>
+                    <option value={1 * 1}>1</option>
+                    <option value={2 * 1}>2</option>
+                    <option value={3 * 1}>3</option>
+                    <option value={4 * 1}>4</option>
+                    <option value={5 * 1}>5</option>
+                    <option value={6 * 1}>6</option>
+                    <option value={7 * 1}>7</option>
+                  </select>
+                </div>
+                <div className="page-input">
+                  {" "}
+                  <label>Drop-Point:</label>
+                  <select
+                    value={productData.drop_point}
+                    name="drop_point"
+                    onChange={SetDays}
+                  >
+                    <option value={""}>Select Drop Point</option>
+                    <option value={"Kencom Point"}>Kencom Point</option>
+                    <option value={"The Hub-Karen"}>The Hub-Karen</option>
+                    <option value={"Kapsabet-The Office"}>
+                      Kapsabet-The Office
+                    </option>
+                    <option value={"Kisumu-Office"}>Kisumu-Office</option>
+                    <option value={"Eldoret-Point"}>Eldoret-Point</option>
+                    <option value={"Thika Arcade"}>Thika Arcade</option>
+                    <option value={"Moi University-Point"}>
+                      Moi University-Point
+                    </option>
+                    <option value={"Eldoret-Point"}>Eldoret-Point</option>
+                    <option value={"South-B"}>South-B</option>
+                    <option value={"Lesoss"}>Lesoss</option>
+                    <option value={"Eldoret-Point"}>Eldoret-Point</option>
+                    <option value={"Nakuru-near Green Garden"}>
+                      Nakuru-near Green Garden
+                    </option>
+                    <option value={"Hill-View"}>Hill-View</option>
+                  </select>
+                </div>
+                <div className="page-input">
+                  <label>Pick Up Date:</label>
+                  <input
+                    type="date"
+                    name="pick_up"
+                    value={productData.pick_up}
+                    onChange={SetDays}
+                    min={currentDate}
+                  />
+                </div>
+                <div className="product-buttons">
+                  <button onClick={() => navigate(-1)}>Cancel</button>
+                  <button onClick={() => Saving(productData.id)}>HIRE</button>
+                </div>
+              </div>
+            </section>
           </div>
-        </section>
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 };
 

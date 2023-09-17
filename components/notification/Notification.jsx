@@ -7,7 +7,7 @@ import "./index.css";
 const Notifications = () => {
   const { Notification, setShowNotification, showNotification } =
     useContext(AuthContext);
-const navigate=useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
       setShowNotification(false);
@@ -35,23 +35,22 @@ const navigate=useNavigate()
           <button
             onClick={() => {
               setShowNotification(false);
-              navigate(-2)
+              navigate(-2);
             }}
           >
-           Cancel
+            Cancel
           </button>
         </Link>
-        
-          <Link to={'/cart'}>
+
+        <Link to={"/mycars"}>
           <button
             onClick={() => {
               setShowNotification(false);
-            
             }}
           >
-            View Cart
-          </button></Link>
-       
+            View My Cars
+          </button>
+        </Link>
       </div>
     </section>
   );

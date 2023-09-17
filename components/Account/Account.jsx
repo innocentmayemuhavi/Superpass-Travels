@@ -47,25 +47,27 @@ const Account = () => {
 
         <img
           onClick={() => {
-            navigate("/cart");
+            navigate("/mycars");
             setShowaccount(false);
           }}
           className="cartbtn"
-          src="/images/cart.png"
+          src="/images/imagecart.png"
         />
       </div>
 
       <button onClick={setPage} className="login-btnn">
         {user ? "Log Out" : "Log In"}
       </button>
-     { user&&<button
-        onClick={() => {
-          deleteAccount();
-        }}
-        className="delete-user"
-      >
-        Delete Account
-      </button>}
+      {user && (
+        <button
+          onClick={() => {
+            deleteAccount();
+          }}
+          className="delete-user"
+        >
+          Delete Account
+        </button>
+      )}
     </section>
   );
 };

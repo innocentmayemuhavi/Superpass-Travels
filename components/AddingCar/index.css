@@ -1,0 +1,25 @@
+.addingcarpage {
+  margin-top: 60px;
+}
+.carimage {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: 7px 0px;
+}
+.carimage img {
+  height: 200px;
+}
+textarea {
+  width: 100%;
+  min-height: 100px;
+  max-height: 150px;
+  font-size: 17px;
+}
+
+@media screen and (max-width: 800) {
+  .addingcarpage {
+    margin-top: 4px;
+  }
+}

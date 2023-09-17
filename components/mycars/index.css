@@ -60,25 +60,25 @@ table {
 .car-notice {
   width: 50%;
   padding: 7px;
-  border: 2px solid rgb(227, 115, 94,0.6);
+  border: 2px solid rgb(227, 115, 94, 0);
   padding: 2px;
   border-radius: 9px;
-  background-color: rgb(227, 115, 94,0.4);
+  background-color: rgb(227, 115, 94, 0.3);
   display: flex;
   align-items: center;
   gap: 3px;
   justify-content: center;
   margin: 2px 25%;
 }
-.car-notice p{
+.car-notice p {
   margin: 9px;
 }
 
-td a{
+td a {
   text-decoration: underline;
   font-weight: 400;
 }
-td a:hover{
+td a:hover {
   font-weight: 700;
 }
 @media only screen and (max-width: 1000px) {
@@ -92,7 +92,7 @@ td a:hover{
   .booking-cart {
     padding: 1px 2px;
   }
-  .car-notice{
+  .car-notice {
     width: 100%;
     font-size: 13px;
     margin: 0px;

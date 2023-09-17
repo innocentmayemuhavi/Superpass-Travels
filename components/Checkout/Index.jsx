@@ -13,18 +13,6 @@ const Checkout = () => {
   const { isLoading, setisLoading } = useContext(AuthContext);
   const { user, Cart } = useContext(FirebaseContext);
   const navigate = useNavigate();
-  useEffect(() => {
-    if (document.readyState === "complete") {
-      console.log("loaded");
-      setInterval(() => setisLoading(false), 2000);
-    } else {
-      console.log("loading");
-      setisLoading(true);
-      window.addEventListener("load", console.log("loading"), false);
-
-      return window.removeEventListener("load", console.log("loading"));
-    }
-  }, []);
 
   const renderbooking = Cart.bookings.map((data) => {
     return (
@@ -70,7 +58,10 @@ const Checkout = () => {
         <main>
           <Header />
           <div className="checkout-page">
-            <button className="checkout-btn" onClick={() => navigate("/cart")}>
+            <button
+              className="checkout-btn"
+              onClick={() => navigate(" /mycars")}
+            >
               Close Check-Out
             </button>
 

@@ -7,7 +7,6 @@
   transition: 2s;
   margin-bottom: 30px;
   margin-top: 12px;
-  
 }
 .card-content {
   padding-top: 90px;
@@ -19,7 +18,6 @@
   color: white;
   cursor: pointer;
   border-radius: 10px;
- 
 }
 .card-content:hover {
   opacity: 1;
@@ -36,17 +34,16 @@
   width: 100%;
   text-align: center;
 }
-.desktop-nav button{
+.desktop-nav button {
   border: none;
   width: 133px;
   text-transform: capitalize;
   border-radius: 0px;
 }
-.desktop-nav button:hover{
+.desktop-nav button:hover {
   background-color: #efefef;
   border-bottom: 2px solid black;
   color: black;
-
 }
 .phone-nav-overlay {
   display: flex;
@@ -61,7 +58,7 @@
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 9999;
 }
-.phone-nav{
+.phone-nav {
   background-color: #fff;
   width: 60%;
   height: 100%;
@@ -69,21 +66,19 @@
   padding: 2px 20px;
   font-weight: 500;
 }
-.phone-nav hr{
+.phone-nav hr {
   width: 100%;
   height: 1px;
   border: none;
- 
 }
-.phone-nav li{
+.phone-nav li {
   list-style: none;
   padding: 12px 2px;
   font-size: 17px;
   font-weight: 500;
   color: black;
- 
 }
-.phone-nav a{
+.phone-nav a {
   text-decoration: none;
 }
 @media only screen and (max-width: 1010px) {
@@ -95,14 +90,30 @@
     opacity: 1;
   }
 }
+.linkActive {
+  transition: 0.8s;
+  border-bottom: 2px solid black;
+  background-color: #efefef;
+  padding: 10px 30px;
+  text-decoration: none;
+  font-weight: 500;
+}
+.navigationlink{
+  margin: 10px;
+  padding: 10px 30px;
+  text-decoration: none;
+
+
+}
+ 
 
 @media only screen and (max-width: 700px) {
- .card-content{
-  height: 290px;
- }
- .nav-card{
-  height: 350px;
- }
+  .card-content {
+    height: 290px;
+  }
+  .nav-card {
+    height: 350px;
+  }
 }
 .fade {
   animation-name: fade;

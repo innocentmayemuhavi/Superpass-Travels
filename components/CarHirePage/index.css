@@ -1,3 +1,9 @@
-.services{
-    margin: 10px;
+.services {
+  margin: 10px;
+}
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }

@@ -54,13 +54,10 @@ const Cart = () => {
     await setCart(updatedCart);
 
     await systemDataUpdate();
-    //await updateData();
   };
 
   const DeletingFromBooking = async (id) => {
     const fill = Cart.bookings.filter((cars) => cars.id !== id);
-
-    console.log("This is fill", fill);
     await setCart((prev) => {
       return {
         cars: prev.cars,
@@ -75,10 +72,7 @@ const Cart = () => {
       };
     });
 
-    console.log(Cart);
-
     await systemDataUpdate();
-    // await updateData(Cart);
   };
 
   const Add = async (id) => {
@@ -103,9 +97,7 @@ const Cart = () => {
         };
       });
     }
-
     await systemDataUpdate();
-    //await updateData(Cart);
   };
 
   const Minus = async (id) => {
@@ -130,9 +122,7 @@ const Cart = () => {
     } else {
       await DeletingFromCart(id);
     }
-
     await systemDataUpdate();
-    //await updateData(Cart);
   };
 
   const render = Cart.cars.map((data) => {
@@ -236,106 +226,87 @@ const Cart = () => {
     );
   });
 
-  useEffect(() => {
-    if (document.readyState === "complete") {
-      console.log("loaded");
-      setInterval(() => setisLoading(false), 2000);
-    } else {
-      console.log("loading");
-      setisLoading(true);
-      window.addEventListener("load", console.log("loading"), false);
-
-      return window.removeEventListener("load", console.log("loading"));
-    }
-  }, []);
   return (
-    <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <main className="fade">
-          <Header />
-          <section className="Cart  ">
-            <div className="cart-header">
-              {" "}
-              <p>Your Cart</p>
-              <p>( {Cart.bookings.length + Cart.cars.length} item(s) )</p>
+    <main className="fade">
+      <Header />
+      <section className="Cart  ">
+        <div className="cart-header">
+          {" "}
+          <p>My Cars</p>
+          <p>( {Cart.bookings.length + Cart.cars.length} item(s) )</p>
+        </div>
+
+        <hr />
+        {Cart.cars.length > 0 && (
+          <div className="hire-cart">
+            <h2>Hired Cars</h2>
+
+            <div className="car-notice">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                width="16"
+                height="16"
+              >
+                <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
+              </svg>
+              <p> Car Will Be Picked and Returned To Drop Point</p>
             </div>
+            <table>
+              <thead>
+                <th>Car Image</th>
+                <th>Name</th>
+                <th>Drop point</th>
+                <th>Pick-Up Date</th>
+                <th>Days</th>
+                <th>Cost</th>
+              </thead>
 
-            <hr />
-            {Cart.cars.length > 0 && (
-              <div className="hire-cart">
-                <h2>Hired Cars</h2>
+              <tbody>{render}</tbody>
+            </table>
+            <p>
+              <b>Payout Amount:.</b> Ksh. {Cart.hireAmount.toLocaleString()}
+            </p>
+          </div>
+        )}
+        {Cart.bookings.length > 0 && (
+          <div className="booking-cart">
+            <h2>Booked Cars</h2>
+            <table>
+              <thead>
+                <th>Car Image</th>
+                <th>Name</th>
+                <th>Time</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Cost</th>
+              </thead>
 
-                <div className="car-notice">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    width="16"
-                    height="16"
-                  >
-                    <path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path>
-                  </svg>
-                  <p> Car Will Be Picked and Returned To Drop Point</p>
-                </div>
-                <table>
-                  <thead>
-                    <th>Car Image</th>
-                    <th>Name</th>
-                    <th>Drop point</th>
-                    <th>Pick-Up Date</th>
-                    <th>Days</th>
-                    <th>Cost</th>
-                  </thead>
-
-                  <tbody>{render}</tbody>
-                </table>
-                <p>
-                  <b>Payout Amount:.</b> Ksh. {Cart.hireAmount.toLocaleString()}
-                </p>
-              </div>
-            )}
-            {Cart.bookings.length > 0 && (
-              <div className="booking-cart">
-                <h2>Booked Cars</h2>
-                <table>
-                  <thead>
-                    <th>Car Image</th>
-                    <th>Name</th>
-                    <th>Time</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Cost</th>
-                  </thead>
-
-                  <tbody>{renderbooking}</tbody>
-                </table>
-                <p>
-                  <b>Payout Amount:.</b> Ksh.{" "}
-                  {Cart.bookingsAmount.toLocaleString()}
-                </p>
-              </div>
-            )}
-            <div className="c-footer">
-              {Cart.totalAmount > 0 && (
-                <p>
-                  <b>Total Amount:.</b> Ksh.{" "}
-                  {Math.round(Cart.totalAmount).toLocaleString()}
-                </p>
-              )}
-              <div>
-                <Button
-                  text={Cart.totalAmount > 0 ? "Close Cart" : "Hire/Book Cars"}
-                  onClick={() => navigate("/")}
-                />
-                <Button text="Checkout" onClick={() => navigate("/checkout")} />
-              </div>
-            </div>
-          </section>
-          <Footer />
-        </main>
-      )}
-    </>
+              <tbody>{renderbooking}</tbody>
+            </table>
+            <p>
+              <b>Payout Amount:.</b> Ksh. {Cart.bookingsAmount.toLocaleString()}
+            </p>
+          </div>
+        )}
+        <div className="c-footer">
+          {Cart.totalAmount > 0 && (
+            <p>
+              <b>Total Amount:.</b> Ksh.{" "}
+              {Math.round(Cart.totalAmount).toLocaleString()}
+            </p>
+          )}
+          <div>
+            <Button
+              text={Cart.totalAmount > 0 ? "Close Cart" : "Hire/Book Cars"}
+              onClick={() => navigate("/")}
+            />
+            <Button text="Checkout" onClick={() => navigate("/checkout")} />
+          </div>
+        </div>
+      </section>
+      <Footer />
+    </main>
   );
 };
 

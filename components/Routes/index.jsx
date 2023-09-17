@@ -1,7 +1,7 @@
 import CarHirePage from "../CarHirePage";
 import CarBookingPage from "../Travelingpage";
 import { Home } from "../Homepage/Home";
-import { Cart } from "../Cart/Cart";
+
 import {
   Route,
   Routes,
@@ -26,14 +26,16 @@ import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 import Login from "../auth/login";
 import { SignUp } from "../auth/signup";
 import { ResetPassword } from "../auth/resetpassword";
+import { Cart } from "../mycars/Cart";
+import Loading from "../Loading";
 
 const ProtectedRoute = ({ children }) => {
-  const { user } = useContext(FirebaseContext);
+  const { user,isLoading } = useContext(FirebaseContext);
 
   if (user) {
     return children;
   } else {
-    return <Navigate to="/login" replace />;
+    return isLoading?<Loading/>:<Navigate to="/login" replace />;
   }
 };
 
@@ -44,7 +46,7 @@ const AppRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route
-        path="/cart"
+        path="/mycars"
         element={
           <ProtectedRoute>
             <Cart />
@@ -81,6 +83,7 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+      <Route path="/addingcar" element={<AddingCars />} />
       <Route
         path="/checkout"
         element={

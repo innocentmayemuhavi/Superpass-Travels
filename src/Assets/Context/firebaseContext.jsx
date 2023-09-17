@@ -11,31 +11,40 @@ import {
   sendPasswordResetEmail,
   deleteUser,
 } from "firebase/auth";
-import { initializeApp } from "firebase/app";
 import {
   getFirestore,
   doc,
   updateDoc,
-  getDoc,
   setDoc,
+  getDoc,
   onSnapshot,
-  deleteDoc,
+  serverTimestamp,
 } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+  uploadBytes,
+} from "firebase/storage";
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import { getAnalytics } from "firebase/analytics";
+import ServiceData from "../../../components/SystemData/ServiceData";
 const firebaseConfig = {
-  apiKey: "AIzaSyCOLpFuoFE8r3Kne6V7pRFjjwhQwEjT7SI",
-  authDomain: "superpasstravels.firebaseapp.com",
-  databaseURL: "https://superpasstravels-default-rtdb.firebaseio.com",
-  projectId: "superpasstravels",
-  storageBucket: "superpasstravels.appspot.com",
-  messagingSenderId: "352953280108",
-  appId: "1:352953280108:web:2b13d9621674575d325a49",
-  measurementId: "G-SZ0RV8XYPL",
+  apiKey: "AIzaSyCKKDgFMvxvI6PogJBEoUUaJpEWVRVdv5Q",
+  authDomain: "superpass-fdeeb.firebaseapp.com",
+  databaseURL: "https://superpass-fdeeb-default-rtdb.firebaseio.com",
+  projectId: "superpass-fdeeb",
+  storageBucket: "superpass-fdeeb.appspot.com",
+  messagingSenderId: "648988901889",
+  appId: "1:648988901889:web:6013d612d4ec3a2e627600",
+  measurementId: "G-7Q35YZ8EQD",
 };
 
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const mediaDb = getStorage(app);
+const analytics = getAnalytics(app);
 const database = getFirestore();
 
 const auth = getAuth();
@@ -43,6 +52,8 @@ const FirebaseContext = createContext();
 
 const FirebaseProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [cars, setCars] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [warning, setWarning] = useState("");
   const [profile, setProfile] = useState({
     displayName: "",
@@ -56,20 +67,22 @@ const FirebaseProvider = ({ children }) => {
     totalAmount: 0,
   });
 
-  useEffect(async () => {
-    const unsubscribe = onAuthStateChanged(auth, async (userData) => {
+  useEffect(() => {
+    onAuthStateChanged(auth, async (userData) => {
       try {
-        await setUser(userData);
+        setIsLoading(true)
+        setUser(userData);
+        const docRef1 = doc(database, "cars", "sKbnRVOUTouZUUCG8g9F");
 
         if (userData) {
           const docref = doc(database, "users", auth.currentUser.uid);
+
           getDoc(docref).then(async (doc) => {
-            await console.log(doc.data());
-            await setCart({
+            setCart({
               ...doc.data().cart,
             });
 
-            await setUser((prev) => {
+            setUser((prev) => {
               return {
                 ...prev,
                 phone: doc.data().userdata.phoneNumber,
@@ -78,14 +91,12 @@ const FirebaseProvider = ({ children }) => {
                   doc.data().userdata.isLisenceAuthenticated,
               };
             });
-            console.log("done loading user data on database", doc.data());
           });
           onSnapshot(docref, async (doc) => {
-            console.log(doc.data());
-            await setCart({
+            setCart({
               ...doc.data().cart,
             });
-            await setUser((prev) => {
+            setUser((prev) => {
               return {
                 ...prev,
                 ...doc.data.userdata,
@@ -93,51 +104,74 @@ const FirebaseProvider = ({ children }) => {
             });
           });
         }
+
+        getDoc(docRef1).then(async (doc) => {
+          setCars({
+            ...doc.data().cars,
+          });
+        });
+        onSnapshot(docRef1, async (doc) => {
+          setCars({
+            ...doc.data().cars,
+          });
+        });
+        setIsLoading(false)
       } catch (error) {
         console.log(error);
+        setIsLoading(false)
       }
     });
-
-    return () => unsubscribe();
   }, []);
 
   const signin = async (email, password) => {
     try {
+      setIsLoading(true)
       await signInWithEmailAndPassword(auth, email, password);
       setWarning("");
+      setIsLoading(false)
     } catch (e) {
       const w1 = e.code.split("auth/").join("");
       const w2 = w1.split("-").join(" ");
       setWarning(w2);
+      setIsLoading(false)
     }
   };
 
-  // useEffect(() => {
-  //   return async () => {
-  //     const uid = await auth.currentUser.uid;
-
-  //     if (uid) {
-  //       const docref = await doc(database, "users", uid);
-  //       getDoc(docref).then(async (doc) => {
-  //         // await console.log("Dataii", doc.data());
-  //       });
-
-  //       // console.log(Cart);
-  //     }
-  //   };
-  // }, [Cart]);
   const updateData = async () => {
     try {
-      const docRef = doc(database, "users", auth.currentUser.uid);
-      await updateDoc(docRef, {
-        cart: Cart,
-      });
+      if (auth.currentUser.uid) {
+        const docRef = doc(database, "users", auth.currentUser.uid);
+        const docRef1 = doc(database, "cars", "sKbnRVOUTouZUUCG8g9F");
 
-      console.log("Database updated successfully");
+        await updateDoc(docRef, {
+          cart: Cart,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
   };
+  const uploadCar = async () => {
+    try {
+      setIsLoading(true);
+      if (Object.values(cars).length > 1) {
+        const docRef1 = doc(database, "cars", "sKbnRVOUTouZUUCG8g9F");
+
+        await updateDoc(docRef1, {
+          cars: cars,
+        });
+        console.log("added car");
+      }
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    uploadCar();
+  }, [cars]);
+
   const updateUser = async (userData) => {
     const uid = auth.currentUser.uid;
 
@@ -177,30 +211,12 @@ const FirebaseProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    // const process = async () => {
-    //   const uid = await auth.currentUser;
-    //   if (uid) {
-    //     console.log("Cart changed");
-    //     console.log("changed cart", Cart);
-    //     try {
-    //       const docRef = doc(database, "users", auth.currentUser.uid);
-    //       updateDoc(docRef, {
-    //         cart: Cart,
-    //       });
-    //       console.log("Database updated successfully");
-    //     } catch (error) {
-    //       console.log(error);
-    //     }
-    //   }
-    // };
-
-    // return () => process();
-
     updateData();
   }, [Cart]);
 
   const signup = async (email, password, name, phone) => {
     try {
+      setIsLoading(true)
       setProfile({
         displayName: name,
         phoneNumber: phone,
@@ -236,15 +252,19 @@ const FirebaseProvider = ({ children }) => {
         }
       }
       setWarning("");
+      setIsLoading(false)
     } catch (e) {
       const w1 = e.code.split("auth/").join("");
       const w2 = w1.split("-").join(" ");
       setWarning(w2);
+      setIsLoading(false)
     }
   };
 
   const signout = async () => {
+    
     try {
+      setIsLoading(true)
       await signOut(auth);
       await setCart({
         cars: [],
@@ -253,8 +273,10 @@ const FirebaseProvider = ({ children }) => {
         bookingsAmount: 0,
         totalAmount: 0,
       });
+      setIsLoading(false)
     } catch (e) {
       console.log(e.code);
+      setIsLoading(false)
     }
   };
 
@@ -295,6 +317,13 @@ const FirebaseProvider = ({ children }) => {
         updateUser,
         resetpassword,
         deleteAccount,
+        cars,
+        ref,
+        mediaDb,
+        uploadBytesResumable,
+        getDownloadURL,
+        setCars,
+        isLoading,
       }}
     >
       {children}

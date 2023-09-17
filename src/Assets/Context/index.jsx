@@ -57,7 +57,7 @@ const AuthContext = createContext({
 });
 
 const AuthProvider = ({ children }) => {
-  const [isLoading, setisLoading] = useState(true);
+  const [isLoading, setisLoading] = useState(false);
   const [showAccount, setShowaccount] = useState(false);
   const [Notification, setNotification] = useState("");
   const [showNotification, setShowNotification] = useState(false);

@@ -8,22 +8,11 @@ import { Slider } from "../Slider";
 import { Welcome } from "../Welcome";
 import { AuthContext } from "../../src/Assets/Context";
 import Loading from "../Loading";
+import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 
 const Home = () => {
-  const { isLoading, setisLoading } = useContext(AuthContext);
+  const { isLoading } = useContext(FirebaseContext);
 
-  useEffect(() => {
-    if (document.readyState === "complete") {
-      console.log("loaded");
-      setInterval(() => setisLoading(false), 2000);
-    } else {
-      console.log("loading");
-      setisLoading(true);
-      window.addEventListener("load", console.log("loading"), false);
-
-      return window.removeEventListener("load", console.log("loading"));
-    }
-  }, []);
   return (
     <>
       {isLoading ? (

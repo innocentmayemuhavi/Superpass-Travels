@@ -11,18 +11,6 @@ const LisencePage = () => {
   const { isLoading, setisLoading } = useContext(AuthContext);
   const { updateUser } = useContext(FirebaseContext);
   const currentDate = new Date().toISOString().split("T")[0];
-  useEffect(() => {
-    if (document.readyState === "complete") {
-      console.log("loaded");
-      setInterval(() => setisLoading(false), 2000);
-    } else {
-      console.log("loading");
-      setisLoading(true);
-      window.addEventListener("load", console.log("loading"), false);
-
-      return window.removeEventListener("load", console.log("loading"));
-    }
-  }, []);
 
   const submit = async (event) => {
     event.preventDefault();
