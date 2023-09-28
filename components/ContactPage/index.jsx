@@ -19,14 +19,12 @@ import {
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 const ContactPage = () => {
-  const [message, setMessage] = useState([
-    {
-      name: "",
-      email: "",
-      subject: "",
-      mainmessage: "",
-    },
-  ]);
+  const [message, setMessage] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    mainmessage: "",
+  });
 
   const handleChange = () => {
     const { name, value } = event.target;
@@ -41,7 +39,20 @@ const ContactPage = () => {
 
   const Submit = () => {
     event.preventDefault();
-    console.log(message);
+
+    document.location =
+      "mailto:" +
+      "innocentmuhavimaye@gmail.com" +
+      "?subject=" +
+      message.subject +
+      "&body=" +
+      `Hi there Am ${message.name},  ${message.mainmessage}`;
+    setMessage({
+      name: "",
+      email: "",
+      subject: "",
+      mainmessage: "",
+    });
   };
 
   return (
@@ -64,7 +75,7 @@ const ContactPage = () => {
             <div>
               <p>Mail me at </p>
               <p>
-                <a>irismaye@gmail.com</a>
+                <a>innocentmuhavimaye@gmail.com</a>
               </p>
             </div>
           </div>
@@ -72,19 +83,22 @@ const ContactPage = () => {
           <div className="contact-icon-div">
             <div className="icon-div">
               {" "}
-              <a href={`tel:${+254745933527}`} target="_blank">
+              <a href={`tel:${+254796331359}`} target="_blank">
                 <FontAwesomeIcon className="icon" icon={faPhoneVolume} />
               </a>
             </div>
             <div className="icon-div">
               {" "}
-              <a href="https://www.facebook.com/iris.maye.10" target="_blank">
+              <a
+                href="https://www.facebook.com/profile.php?id=100075061790231"
+                target="_blank"
+              >
                 <FontAwesomeIcon className="icon" icon={faFacebookF} />
               </a>
             </div>
             <div className="icon-div">
               <a
-                href={`https://wa.me/+254745933527?text=${encodeURIComponent(
+                href={`https://wa.me/+254796331359?text=${encodeURIComponent(
                   `Hello🖐️ I Have Checked Services Of Superpass Travels and i would like to be one of your customers thank you.`
                 )}`}
                 target="_blank"
@@ -113,7 +127,7 @@ const ContactPage = () => {
             <input
               type={"text"}
               required={true}
-              pattern={"[A-Za-z]{4,}"}
+              value={message.name}
               name="name"
               onChange={handleChange}
             ></input>
@@ -122,6 +136,7 @@ const ContactPage = () => {
             <label>Email Address:</label>
             <input
               type={"email"}
+              value={message.email}
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
               required={true}
               name="email"
@@ -130,17 +145,18 @@ const ContactPage = () => {
           </div>
           <div className="page-input1">
             <label>Subject:</label>
-            <input type={"text"} name="subject" onChange={handleChange}></input>
+            <input type={"text"} value={message.subject} name="subject" onChange={handleChange}></input>
           </div>
           <p>Message*</p>
           <textarea
+          value={message.mainmessage}
             className="ta"
             placeholder="Tell Us Your Thoughts..."
             name="mainmessage"
             required={true}
             onChange={handleChange}
           ></textarea>
-          <Button text="Send Message" />
+          <button>Send Message</button>
         </form>
       </section>
       <Footer />

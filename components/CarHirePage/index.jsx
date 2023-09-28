@@ -9,18 +9,22 @@ import { Button } from "../Button/Index";
 import { Link } from "react-router-dom";
 import React from "react";
 import "./index.css";
-import { useEffect } from "react";
-import Loading from "../Loading";
+
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 const CarHirePage = () => {
   const { searchval, setSearchval } = useContext(AuthContext);
   const { cars } = useContext(FirebaseContext);
 
   const [number, setnumber] = useState(0);
-  const filltered = Object.values(cars).filter((data) =>
-    data.category
-      .toLocaleLowerCase()
-      .includes(`${searchval.toLocaleLowerCase()}`)
+  const filltered = Object.values(cars).filter(
+    (data) =>
+      data.category
+        .toLocaleLowerCase()
+        .includes(`${searchval.toLocaleLowerCase()}`) ||
+      data.description
+        .toLocaleLowerCase()
+        .includes(`${searchval.toLocaleLowerCase()}`) ||
+      data.name.toLocaleLowerCase().includes(`${searchval.toLocaleLowerCase()}`)
   );
   const render = filltered.map((data) => (
     <ServiceCardEl key={data.id} {...data} />
@@ -38,6 +42,19 @@ const CarHirePage = () => {
           Car Hiring Services
         </h1>
         <hr></hr>
+        <div className="search-div">
+          <input
+            type="search"
+            className="search-input"
+            placeholder="Search car..."
+            onChange={(value) =>
+              value.target.value.length > 0
+                ? setSearchval(value.target.value)
+                : setSearchval("")
+            }
+          />
+          <div></div>
+        </div>
         <div
           style={{
             textAlign: "center",
@@ -184,9 +201,29 @@ const CarHirePage = () => {
             </svg>{" "}
             CARAVANS
           </button>
+          <button
+            onClick={() => {
+              setnumber(7);
+              setSearchval("SUV");
+            }}
+            style={{
+              color: number === 7 && "green",
+              fill: number === 7 && "green",
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              width="16"
+              height="12"
+            >
+              <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"></path>
+            </svg>{" "}
+            SUV
+          </button>
         </div>
         {filltered.length < 1 ? (
-          <div className="center"> 
+          <div className="center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"

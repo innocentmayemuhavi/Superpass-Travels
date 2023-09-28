@@ -5,26 +5,21 @@ import { Content } from "../PageContent";
 import "./index.css";
 
 import { Slider } from "../Slider";
-import { Welcome } from "../Welcome";
+import { Notifications } from "../notification/addedcarnotification";
 import { AuthContext } from "../../src/Assets/Context";
-import Loading from "../Loading";
-import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 
 const Home = () => {
-  const { isLoading } = useContext(FirebaseContext);
-
+  const {  showNotification,  } =
+    useContext(AuthContext);
   return (
     <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <main className="fade">
-          <Header />
-          <Slider />
-          <Content />
-          <Footer />
-        </main>
-      )}
+      <main className="fade">
+        <Header />
+        <Slider />
+        <Content />
+        <Footer />
+        {showNotification && <Notifications />}
+      </main>
     </>
   );
 };

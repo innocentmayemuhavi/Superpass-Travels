@@ -32,7 +32,7 @@ const WhatWeDo = () => {
           <div className="contact-icon-div">
             <div className="icon-div">
               {" "}
-              <a href={`tel:${+254745933527}`}>
+              <a href={`tel:${+254796331359}`}>
                 <FontAwesomeIcon className="icon" icon={faPhoneVolume} />
               </a>
             </div>

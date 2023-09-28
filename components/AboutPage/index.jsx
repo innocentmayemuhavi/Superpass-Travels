@@ -56,21 +56,24 @@ const About = () => {
               Below are the various platforms where you can easily contact us...
             </p>
             <div className="contact-icon-div">
-            <div className="icon-div">
-              {" "}
-             <a  href={`tel:${+254745933527}`}>
-             <FontAwesomeIcon className="icon" icon={faPhoneVolume} />
-             </a>
-            </div>
               <div className="icon-div">
                 {" "}
-                <a href="https://www.facebook.com/iris.maye.10" target="_blank">
+                <a href={`tel:${+254796331359}`}>
+                  <FontAwesomeIcon className="icon" icon={faPhoneVolume} />
+                </a>
+              </div>
+              <div className="icon-div">
+                {" "}
+                <a
+                  href="https://www.facebook.com/profile.php?id=100075061790231"
+                  target="_blank"
+                >
                   <FontAwesomeIcon className="icon" icon={faFacebookF} />
                 </a>
               </div>
               <div className="icon-div">
                 <a
-                  href={`https://wa.me/+254745933527?text=${encodeURIComponent(
+                  href={`https://wa.me/+254796331359?text=${encodeURIComponent(
                     `Hello🖐️ I Have Checked Services Of Superpass Travels and i would like to be one of your customers thank you.`
                   )}`}
                   target="_blank"

@@ -4,13 +4,24 @@ import { nanoid } from "nanoid";
 
 import "./index.css";
 import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
-
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../src/Assets/Context";
 const AddingCars = () => {
-  const { cars, setCars, ref, mediaDb, uploadBytesResumable, getDownloadURL ,isLoading} =
-    useContext(FirebaseContext);
+  const {
+    cars,
+    setCars,
+    ref,
+    mediaDb,
+    uploadBytesResumable,
+    getDownloadURL,
+    isLoading,
+  } = useContext(FirebaseContext);
+  const { setShowNotification, showNotification, setNotification } =
+    useContext(AuthContext);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [showProgress, setShowProgress] = useState(false);
-  
+  const navigate = useNavigate();
+
   const [data, setData] = useState({
     picture: "",
     id: nanoid(50),
@@ -36,15 +47,22 @@ const AddingCars = () => {
 
   const submit = async (event) => {
     event.preventDefault();
-    
+
     const newCars = Object.values(cars).slice();
     newCars.unshift(data);
-    setCars((prev) => {
+    setCars(() => {
       return {
         ...newCars,
       };
     });
+    setNotification(() => (
+      <p>
+        You Have Added <strong>{data.name}</strong> Car Succesfully
+      </p>
+    ));
+    setShowNotification(true);
   };
+
   const handlePostImage = async (data, id) => {
     const imgref = ref(mediaDb, `images/${id}`);
     const upload_pic = uploadBytesResumable(imgref, data);
@@ -56,14 +74,6 @@ const AddingCars = () => {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setShowProgress(true);
         setUploadProgress(Math.floor(progress));
-        switch (snapshot.state) {
-          case "paused":
-            console.log("Upload is paused");
-            break;
-          case "running":
-            console.log("Upload is running");
-            break;
-        }
       },
       (error) => {
         console.log(error.code);
@@ -105,7 +115,7 @@ const AddingCars = () => {
               <label>Car Image:</label>
               <input
                 type="file"
-                accept="image/png, image/jpeg,image/jpg"
+                accept="image/png,image/jpeg,image/jpg"
                 name="picture"
                 onChange={async (event) => {
                   console.log(event.target.files[0]);
@@ -163,6 +173,7 @@ const AddingCars = () => {
                 onChange={handleData}
               >
                 <option>coach</option>
+                <option>SUV</option>
                 <option>bike</option>
                 <option>vintage</option>
                 <option>van</option>

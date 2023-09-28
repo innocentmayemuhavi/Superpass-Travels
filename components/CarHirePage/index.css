@@ -7,3 +7,20 @@
   justify-content: center;
   width: 100%;
 }
+
+.search-div {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.search-input {
+  align-self: center;
+  padding: 10px 7px;
+  outline: none;
+  border-radius: 7px;
+  width: 370px;
+  font-size: 12px;
+  border: 1px solid black;
+  text-align: center;
+}
