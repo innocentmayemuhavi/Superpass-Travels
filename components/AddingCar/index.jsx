@@ -60,6 +60,7 @@ const AddingCars = () => {
         You Have Added <strong>{data.name}</strong> Car Succesfully
       </p>
     ));
+    navigate("/");
     setShowNotification(true);
   };
 
