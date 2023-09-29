@@ -7,19 +7,24 @@ import "./index.css";
 import { Slider } from "../Slider";
 import { Notifications } from "../notification/addedcarnotification";
 import { AuthContext } from "../../src/Assets/Context";
-
+import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
+import Loading from "../Loading";
 const Home = () => {
-  const {  showNotification,  } =
-    useContext(AuthContext);
+  const { showNotification } = useContext(AuthContext);
+  const { isLoading } = useContext(FirebaseContext);
   return (
     <>
-      <main className="fade">
-        <Header />
-        <Slider />
-        <Content />
-        <Footer />
-        {showNotification && <Notifications />}
-      </main>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <main className="fade">
+          <Header />
+          <Slider />
+          <Content />
+          <Footer />
+          {showNotification && <Notifications />}
+        </main>
+      )}
     </>
   );
 };

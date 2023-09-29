@@ -53,7 +53,7 @@ const FirebaseContext = createContext();
 const FirebaseProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [cars, setCars] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [warning, setWarning] = useState("");
   const [profile, setProfile] = useState({
     displayName: "",
@@ -70,7 +70,7 @@ const FirebaseProvider = ({ children }) => {
   useEffect(() => {
     onAuthStateChanged(auth, async (userData) => {
       try {
-        setIsLoading(true)
+        setIsLoading(true);
         setUser(userData);
         const docRef1 = doc(database, "cars", "sKbnRVOUTouZUUCG8g9F");
 
@@ -115,25 +115,25 @@ const FirebaseProvider = ({ children }) => {
             ...doc.data().cars,
           });
         });
-        setIsLoading(false)
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
-        setIsLoading(false)
+        setIsLoading(false);
       }
     });
   }, []);
 
   const signin = async (email, password) => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
       setWarning("");
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (e) {
       const w1 = e.code.split("auth/").join("");
       const w2 = w1.split("-").join(" ");
       setWarning(w2);
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
@@ -216,7 +216,7 @@ const FirebaseProvider = ({ children }) => {
 
   const signup = async (email, password, name, phone) => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       setProfile({
         displayName: name,
         phoneNumber: phone,
@@ -252,19 +252,18 @@ const FirebaseProvider = ({ children }) => {
         }
       }
       setWarning("");
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (e) {
       const w1 = e.code.split("auth/").join("");
       const w2 = w1.split("-").join(" ");
       setWarning(w2);
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
   const signout = async () => {
-    
     try {
-      setIsLoading(true)
+      setIsLoading(true);
       await signOut(auth);
       await setCart({
         cars: [],
@@ -273,10 +272,10 @@ const FirebaseProvider = ({ children }) => {
         bookingsAmount: 0,
         totalAmount: 0,
       });
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (e) {
       console.log(e.code);
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
