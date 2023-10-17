@@ -11,20 +11,16 @@ import { FirebaseContext } from "../../src/Assets/Context/firebaseContext";
 import Loading from "../Loading";
 const Home = () => {
   const { showNotification } = useContext(AuthContext);
-  const { isLoading } = useContext(FirebaseContext);
+
   return (
     <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <main className="fade">
-          <Header />
-          <Slider />
-          <Content />
-          <Footer />
-          {showNotification && <Notifications />}
-        </main>
-      )}
+      <main className="fade">
+        <Header />
+        <Slider />
+        <Content />
+        <Footer />
+        {showNotification && <Notifications />}
+      </main>
     </>
   );
 };

@@ -30,19 +30,28 @@ import { Cart } from "../mycars/Cart";
 import Loading from "../Loading";
 
 const ProtectedRoute = ({ children }) => {
-  const { user,isLoading } = useContext(FirebaseContext);
+  const { user, isLoading } = useContext(FirebaseContext);
 
-  if (user) {
-    return children;
-  } else {
-    return isLoading?<Loading/>:<Navigate to="/login" replace />;
-  }
+  return isLoading ? (
+    <Loading />
+  ) : user ? (
+    children
+  ) : (
+    <Navigate to="/login" replace />
+  );
 };
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
       <Route
